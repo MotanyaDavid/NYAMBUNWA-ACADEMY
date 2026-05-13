@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore life at Nyambunwa Academy through our photo and video gallery. See our campus, classrooms, sports, events, and arts programs in action.">
+    <meta name="keywords" content="Nyambunwa Academy gallery, school photos Nairobi, campus tour, school events Kenya, student activities photos">
+    <meta name="author" content="Nyambunwa Academy">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="School Media Gallery | Nyambunwa Academy">
+    <meta property="og:description" content="See Nyambunwa Academy in action — browse photos and videos of our vibrant campus life, sports, events, and creative arts.">
+    <meta property="og:image" content="assets/images/gallery-hero.jpg">
+    <meta property="og:url" content="https://nyambunwaacademy.ac.ke/gallery.html">
+    <meta property="og:type" content="website">
+    
+    <title>Gallery | Nyambunwa Academy</title>
+    
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script src="school-data.js"></script>
+</head>
+<body>
+    
+    <!-- ============================================ -->
+    <!-- TOP STRIP -->
+    <!-- ============================================ -->
+    <div class="header__top-strip">
+        <span id="top-strip-text">Nyambunwa Academy</span>
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- HEADER & NAVIGATION -->
+    <!-- ============================================ -->
+    <header class="header" id="header">
+        <div class="header__container">
+            
+            <a href="index.html" class="header__logo">
+                <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo">
+            </a>
+            
+            <nav class="nav" id="nav">
+                <ul class="nav__list">
+                    <li><a href="index.html" class="nav__link">Home</a></li>
+                    <li><a href="about.html" class="nav__link">About</a></li>
+                    <li><a href="admissions.html" class="nav__link">Admissions</a></li>
+                    <li><a href="gallery.html" class="nav__link nav__link--active">Gallery</a></li>
+                    <li><a href="downloads.html" class="nav__link">Downloads</a></li>
+                    <li><a href="careers.html" class="nav__link">Careers</a></li>
+                    <li><a href="contact.html" class="nav__link">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <a href="admissions.html#inquiry-form" class="header__cta">Enroll Now</a>
+            
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="nav__toggle-bar"></span>
+                <span class="nav__toggle-bar"></span>
+                <span class="nav__toggle-bar"></span>
+            </button>
+            
+        </div>
+    </header>
+    
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================================ -->
+    <main>
+        
+        <!-- ========================================== -->
+        <!-- PAGE HERO -->
+        <!-- ========================================== -->
+        <section class="page-hero" style="background-image: url('assets/images/gallery-hero.jpg');">
+            <div class="container">
+                <h1 class="page-hero__title">School Media</h1>
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb__separator">/</span>
+                    <span class="breadcrumb__current">Gallery</span>
+                </nav>
+            </div>
+        </section>
+        
+        <!-- ========================================== -->
+        <!-- PHOTO GALLERY -->
+        <!-- ========================================== -->
+        <section class="section" id="photo-gallery">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Our School in Pictures</span>
+                    <h2 class="section__title">Photo Gallery</h2>
+                    <p class="section__description">A glimpse into daily life at Nyambunwa Academy — from the classroom to the sports field, and everywhere in between.</p>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div class="gallery__filters">
+                    <button class="gallery__filter-btn gallery__filter-btn--active" data-filter="all">All</button>
+                    <button class="gallery__filter-btn" data-filter="campus">Campus</button>
+                    <button class="gallery__filter-btn" data-filter="classrooms">Classrooms</button>
+                    <button class="gallery__filter-btn" data-filter="sports">Sports</button>
+                    <button class="gallery__filter-btn" data-filter="events">Events</button>
+                    <button class="gallery__filter-btn" data-filter="arts">Arts & Culture</button>
+                </div>
+                
+                <!-- Gallery Grid -->
+                <div class="gallery__grid" id="gallery-grid">
+                    
+                    <!-- Campus Photos -->
+                    <div class="gallery__item" data-category="campus" data-full-image="assets/images/gallery/campus-1.jpg">
+                        <img src="assets/images/gallery/campus-1.jpg" alt="Main school building entrance" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="campus" data-full-image="assets/images/gallery/campus-2.jpg">
+                        <img src="assets/images/gallery/campus-2.jpg" alt="School garden and playground" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="campus" data-full-image="assets/images/gallery/campus-3.jpg">
+                        <img src="assets/images/gallery/campus-3.jpg" alt="Aerial view of Nyambunwa Academy campus" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="campus" data-full-image="assets/images/gallery/campus-4.jpg">
+                        <img src="assets/images/gallery/campus-4.jpg" alt="School chapel" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    
+                    <!-- Classroom Photos -->
+                    <div class="gallery__item" data-category="classrooms" data-full-image="assets/images/gallery/classroom-1.jpg">
+                        <img src="assets/images/gallery/classroom-1.jpg" alt="Students in a science laboratory" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="classrooms" data-full-image="assets/images/gallery/classroom-2.jpg">
+                        <img src="assets/images/gallery/classroom-2.jpg" alt="ICT center with students at workstations" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="classrooms" data-full-image="assets/images/gallery/classroom-3.jpg">
+                        <img src="assets/images/gallery/classroom-3.jpg" alt="Kindergarten play-based learning session" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="classrooms" data-full-image="assets/images/gallery/classroom-4.jpg">
+                        <img src="assets/images/gallery/classroom-4.jpg" alt="Library reading area" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    
+                    <!-- Sports Photos -->
+                    <div class="gallery__item" data-category="sports" data-full-image="assets/images/gallery/sports-1.jpg">
+                        <img src="assets/images/gallery/sports-1.jpg" alt="Annual Sports Day athletics" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="sports" data-full-image="assets/images/gallery/sports-2.jpg">
+                        <img src="assets/images/gallery/sports-2.jpg" alt="Football match on school field" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="sports" data-full-image="assets/images/gallery/sports-4.jpg">
+                        <img src="assets/images/gallery/sports-4.jpg" alt="Basketball team practice" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    
+                    <!-- Events Photos -->
+                    <div class="gallery__item" data-category="events" data-full-image="assets/images/gallery/events-1.jpg">
+                        <img src="assets/images/gallery/events-1.jpg" alt="Prize giving ceremony" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="events" data-full-image="assets/images/gallery/events-2.jpg">
+                        <img src="assets/images/gallery/events-2.jpg" alt="Graduation day celebration" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="events" data-full-image="assets/images/gallery/events-3.jpg">
+                        <img src="assets/images/gallery/events-3.jpg" alt="Parents' Day gathering" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    
+                    <!-- Arts Photos -->
+                    <div class="gallery__item" data-category="arts" data-full-image="assets/images/gallery/arts-1.jpg">
+                        <img src="assets/images/gallery/arts-1.jpg" alt="Drama club performance" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="arts" data-full-image="assets/images/gallery/arts-2.jpg">
+                        <img src="assets/images/gallery/arts-2.jpg" alt="School choir performance" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    <div class="gallery__item" data-category="arts" data-full-image="assets/images/gallery/arts-3.jpg">
+                        <img src="assets/images/gallery/arts-3.jpg" alt="Student art exhibition" loading="lazy" onerror="this.style.background='#e0e0e0'">
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========================================== -->
+        <!-- LIGHTBOX -->
+        <!-- ========================================== -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox__close" id="lightbox-close" aria-label="Close lightbox">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <button class="lightbox__prev" id="lightbox-prev" aria-label="Previous image">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <img src="" alt="" class="lightbox__image" id="lightbox-image">
+            <button class="lightbox__next" id="lightbox-next" aria-label="Next image">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- ========================================== -->
+        <!-- VIDEO GALLERY -->
+        <!-- ========================================== -->
+        <section class="section section--light" id="video-gallery">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Watch Our Story</span>
+                    <h2 class="section__title">Video Gallery</h2>
+                    <p class="section__description">Experience Nyambunwa Academy in motion. Watch our virtual tour, event highlights, and student features.</p>
+                </div>
+                
+                <div class="video__grid">
+                    <div class="video__item">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Nyambunwa Academy Virtual Campus Tour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video__item">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Nyambunwa Academy 2025 Highlights" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video__item">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Student Life at Nyambunwa Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video__item">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Nyambunwa Academy Alumni Stories" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========================================== -->
+        <!-- SCHOOL ANTHEM (OPTIONAL) -->
+        <!-- ========================================== -->
+        <section class="section" id="anthem">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__subtitle">Our Voice</span>
+                    <h2 class="section__title">School Anthem</h2>
+                    <p class="section__description">The Nyambunwa Academy anthem is a cherished tradition sung with pride by students, staff, and alumni at every major school event.</p>
+                </div>
+                
+                <div style="max-width: 600px; margin: 0 auto; text-align: center; background-color: var(--color-neutral-light); padding: 2rem; border-radius: var(--border-radius-md);">
+                    <!-- Audio Player -->
+                    <audio controls style="width: 100%; margin-bottom: 1.5rem;" id="anthem-audio">
+                        <source src="assets/audio/school-anthem.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    
+                    <!-- Lyrics -->
+                    <div style="text-align: left; line-height: 2; color: var(--color-neutral-dark);" id="anthem-lyrics">
+                        <h4 style="text-align: center; font-family: var(--font-heading); margin-bottom: 1rem;">"Excel for Scholarship"</h4>
+                        <p style="text-align: center; font-style: italic; color: var(--color-neutral-medium);">
+                            <em>Verse 1:</em><br>
+                            In the heart of Nairobi we stand,<br>
+                            A beacon of learning across the land.<br>
+                            With minds ablaze and hearts so true,<br>
+                            We strive for greatness in all we do.
+                        </p>
+                        <p style="text-align: center; font-style: italic; color: var(--color-neutral-medium); margin-top: 1rem;">
+                            <em>Chorus:</em><br>
+                            Excel for scholarship!<br>
+                            With integrity and resilience.<br>
+                            Nyambunwa Academy, our guiding light,<br>
+                            Building leaders, burning bright.
+                        </p>
+                        <p style="text-align: center; font-style: italic; color: var(--color-neutral-medium); margin-top: 1rem;">
+                            <em>Verse 2:</em><br>
+                            From Kindergarten to Senior years,<br>
+                            We conquer challenges, overcome fears.<br>
+                            With compassion deep and service true,<br>
+                            The future shines in me and you.
+                        </p>
+                        <p style="text-align: center; font-style: italic; color: var(--color-neutral-medium); margin-top: 1rem;">
+                            <em>(Repeat Chorus)</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========================================== -->
+        <!-- CTA BANNER -->
+        <!-- ========================================== -->
+        <section class="cta-banner">
+            <div class="container">
+                <h2 class="cta-banner__title">Want to See More?</h2>
+                <p class="cta-banner__text">Schedule a personal school tour and experience the Nyambunwa Academy difference firsthand.</p>
+                <a href="contact.html" class="btn btn--primary">Book a Campus Tour</a>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                
+                <div class="footer__brand">
+                    <img src="assets/images/logo-white.png" alt="Nyambunwa Academy Logo" class="footer__brand-logo">
+                    <p class="footer__brand-text" id="footer-tagline">Nurturing leaders, building character, and shaping futures since 1995.</p>
+                </div>
+                
+                <div class="footer__links-wrapper">
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <ul class="footer__links">
+                        <li><a href="index.html" class="footer__link">Home</a></li>
+                        <li><a href="about.html" class="footer__link">About Us</a></li>
+                        <li><a href="admissions.html" class="footer__link">Admissions</a></li>
+                        <li><a href="gallery.html" class="footer__link">Gallery</a></li>
+                        <li><a href="downloads.html" class="footer__link">Downloads</a></li>
+                        <li><a href="careers.html" class="footer__link">Careers</a></li>
+                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+                        <li><a href="portals.html" class="footer__link">School Portals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__contact">
+                    <h4 class="footer__heading">Contact Us</h4>
+                    <div class="footer__contact-item">
+                        <i class="fa-solid fa-location-dot footer__contact-icon"></i>
+                        <span id="footer-address">Suneka-Asumbi Rd, P.O Box 742 - 40200, Kisii</span>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fa-solid fa-phone footer__contact-icon"></i>
+                        <span id="footer-phone">+254 757 862 075</span>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fa-solid fa-envelope footer__contact-icon"></i>
+                        <span id="footer-email">nyambunwaacademy@gmail.com</span>
+                    </div>
+                    <div class="footer__contact-item">
+                        <i class="fa-solid fa-clock footer__contact-icon"></i>
+                        <span id="footer-hours">Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 13:00 | Sun: Closed</span>
+                    </div>
+                </div>
+                
+                <div class="footer__newsletter">
+                    <h4 class="footer__heading">Stay Updated</h4>
+                    <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Subscribe to our newsletter for the latest news and updates.</p>
+                    <form class="footer__newsletter-form">
+                        <input type="email" class="footer__newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="footer__newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+                
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; <span id="current-year">2025</span> Nyambunwa Academy. All Rights Reserved.</p>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ============================================ -->
+    <!-- FLOATING ELEMENTS -->
+    <!-- ============================================ -->
+    <a href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+    
+    <!-- ============================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================ -->
+    <script src="assets/js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            if (typeof schoolData === 'undefined') return;
+            
+            // Top strip
+            document.getElementById('top-strip-text').textContent = schoolData.name;
+            
+            // Footer
+            document.getElementById('footer-tagline').textContent = schoolData.tagline + '. A ' + schoolData.schoolType + ' on ' + schoolData.mainCampus.address + '.';
+            document.getElementById('footer-address').textContent = schoolData.mainCampus.address;
+            document.getElementById('footer-phone').textContent = schoolData.phone.displayFormat;
+            document.getElementById('footer-email').textContent = schoolData.email.general;
+            document.getElementById('footer-hours').textContent = schoolData.workingHours.shortDisplay;
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+        });
+    </script>
+    
+</body>
+</html>

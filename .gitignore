@@ -1,0 +1,30 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if you add build tools later)
+node_modules/
+
+# Environment variables
+.env
+.env.local
+
+# Large original images (keep only optimized versions)
+assets/images/originals/
+*.psd
+*.ai
+
+# Backup files
+*.bak
+*.zip
+*.tar.gz
+
+# Logs
+*.log
