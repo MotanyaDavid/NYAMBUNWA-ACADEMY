@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Nyambunwa Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body class="dashboard-page">
+    
+    <!-- ============================================ -->
+    <!-- SIDEBAR -->
+    <!-- ============================================ -->
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <h2>Nyambunwa</h2>
+            <p>Admin Dashboard</p>
+        </div>
+        
+        <nav class="sidebar__nav">
+            <a href="{{ url_for('dashboard') }}" class="sidebar__link {% if not submission_type %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">📊</span>
+                Overview
+            </a>
+            <a href="{{ url_for('view_submissions', submission_type='contacts') }}" class="sidebar__link {% if submission_type == 'contacts' %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">📧</span>
+                Contact Messages
+                {% if stats and stats.contacts_new > 0 %}
+                <span class="badge">{{ stats.contacts_new }}</span>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('view_submissions', submission_type='admissions') }}" class="sidebar__link {% if submission_type == 'admissions' %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">🎓</span>
+                Admissions
+                {% if stats and stats.admissions_new > 0 %}
+                <span class="badge">{{ stats.admissions_new }}</span>
+                {% endif %}
+            </a>
+            <a href="{{ url_for('view_submissions', submission_type='careers') }}" class="sidebar__link {% if submission_type == 'careers' %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">💼</span>
+                Job Applications
+                {% if stats and stats.careers_new > 0 %}
+                <span class="badge">{{ stats.careers_new }}</span>
+                {% endif %}
+            </a>
+        </nav>
+        
+        <div class="sidebar__footer">
+            <p>Logged in as: <strong>{{ session.get('admin_username', 'Admin') }}</strong></p>
+            <a href="{{ url_for('logout') }}" class="btn btn--outline btn--sm btn--full">Logout</a>
+        </div>
+    </aside>
+    
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================================ -->
+    <main class="main-content">
+        
+        <!-- Top Bar -->
+        <header class="topbar">
+            <h1>
+                {% if submission_type %}
+                    {{ submission_type|capitalize }}
+                {% else %}
+                    Dashboard Overview
+                {% endif %}
+            </h1>
+            <div class="topbar__actions">
+                <span style="font-size: 0.85rem; color: #666;">{{ stats.contacts_total + stats.admissions_total + stats.careers_total }} total submissions</span>
+            </div>
+        </header>
+        
+        <!-- ========================================== -->
+        <!-- STATS CARDS (Overview only) -->
+        <!-- ========================================== -->
+        {% if not submission_type %}
+        <div class="stats-grid">
+            <div class="stat-card stat-card--contacts">
+                <div class="stat-card__icon">📧</div>
+                <div class="stat-card__info">
+                    <h3>{{ stats.contacts_total }}</h3>
+                    <p>Contact Messages</p>
+                </div>
+                <span class="stat-card__new">{{ stats.contacts_new }} new</span>
+            </div>
+            
+            <div class="stat-card stat-card--admissions">
+                <div class="stat-card__icon">🎓</div>
+                <div class="stat-card__info">
+                    <h3>{{ stats.admissions_total }}</h3>
+                    <p>Admissions Inquiries</p>
+                </div>
+                <span class="stat-card__new">{{ stats.admissions_new }} new</span>
+            </div>
+            
+            <div class="stat-card stat-card--careers">
+                <div class="stat-card__icon">💼</div>
+                <div class="stat-card__info">
+                    <h3>{{ stats.careers_total }}</h3>
+                    <p>Job Applications</p>
+                </div>
+                <span class="stat-card__new">{{ stats.careers_new }} new</span>
+            </div>
+            
+            <div class="stat-card stat-card--newsletter">
+                <div class="stat-card__icon">📰</div>
+                <div class="stat-card__info">
+                    <h3>{{ stats.newsletter_subscribers }}</h3>
+                    <p>Newsletter Subscribers</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <h2>Quick Actions</h2>
+            <div class="quick-links__grid">
+                <a href="{{ url_for('view_submissions', submission_type='contacts') }}" class="quick-link-card">
+                    <span>📧</span> View Contact Messages
+                </a>
+                <a href="{{ url_for('view_submissions', submission_type='admissions') }}" class="quick-link-card">
+                    <span>🎓</span> View Admissions
+                </a>
+                <a href="{{ url_for('view_submissions', submission_type='careers') }}" class="quick-link-card">
+                    <span>💼</span> View Applications
+                </a>
+                <a href="{{ url_for('view_submissions', submission_type='newsletter') }}" class="quick-link-card">
+                    <span>📰</span> View Newsletter Subscribers
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- ========================================== -->
+        <!-- SUBMISSIONS TABLE (When viewing a type) -->
+        <!-- ========================================== -->
+        {% if submission_type %}
+        <div class="table-section">
+            
+            <!-- Filters -->
+            <div class="table-filters">
+                <div class="filter-buttons">
+                    <a href="?status=All" class="filter-btn {% if current_filter == 'All' or not current_filter %}filter-btn--active{% endif %}">All</a>
+                    <a href="?status=New" class="filter-btn {% if current_filter == 'New' %}filter-btn--active{% endif %}">🆕 New</a>
+                    <a href="?status=In Progress" class="filter-btn {% if current_filter == 'In Progress' %}filter-btn--active{% endif %}">🔄 In Progress</a>
+                    <a href="?status=Replied" class="filter-btn {% if current_filter == 'Replied' %}filter-btn--active{% endif %}">✅ Replied</a>
+                    <a href="?status=Closed" class="filter-btn {% if current_filter == 'Closed' %}filter-btn--active{% endif %}">🔒 Closed</a>
+                </div>
+            </div>
+            
+            <!-- Table -->
+            {% if submissions %}
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            {% if submission_type == 'contacts' %}
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            {% elif submission_type == 'admissions' %}
+                            <th>Parent</th>
+                            <th>Child</th>
+                            <th>Grade</th>
+                            <th>Email</th>
+                            {% elif submission_type == 'careers' %}
+                            <th>Applicant</th>
+                            <th>Position</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            {% endif %}
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for submission in submissions %}
+                        <tr class="status-{{ submission.status|lower|replace(' ', '-') }}">
+                            <td><strong>#{{ submission.id }}</strong></td>
+                            <td>
+                                <span class="status-badge status-badge--{{ submission.status|lower|replace(' ', '-') }}">
+                                    {{ submission.status }}
+                                </span>
+                            </td>
+                            <td>{{ submission.created_at[:10] }}</td>
+                            
+                            {% if submission_type == 'contacts' %}
+                            <td>{{ submission.name }}</td>
+                            <td>{{ submission.email }}</td>
+                            <td>{{ submission.subject or 'N/A' }}</td>
+                            {% elif submission_type == 'admissions' %}
+                            <td>{{ submission.parent_name }}</td>
+                            <td>{{ submission.child_name }}</td>
+                            <td>{{ submission.grade_applying }}</td>
+                            <td>{{ submission.email }}</td>
+                            {% elif submission_type == 'careers' %}
+                            <td>{{ submission.name }}</td>
+                            <td>{{ submission.position_applying or 'General' }}</td>
+                            <td>{{ submission.email }}</td>
+                            <td>{{ submission.phone }}</td>
+                            {% endif %}
+                            
+                            <td>
+                                <a href="{{ url_for('view_message', submission_type=submission_type, submission_id=submission.id) }}" class="btn btn--sm btn--primary">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>📭 No submissions found.</p>
+                {% if current_filter and current_filter != 'All' %}
+                <a href="?status=All">Show all submissions</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+        </div>
+        {% endif %}
+        
+    </main>
+    
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

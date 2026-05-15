@@ -8,10 +8,17 @@ import os
 from datetime import datetime
 from config import Config
 
+# Map submission types to table names
+TABLE_MAP = {
+    'contacts': 'contacts',
+    'admissions': 'admissions',
+    'careers': 'careers'
+}
+
 def get_db():
     """Get database connection."""
     conn = sqlite3.connect(Config.DATABASE)
-    conn.row_factory = sqlite3.Row  # Return rows as dictionaries
+    conn.row_factory = sqlite3.Row
     return conn
 
 def init_db():
@@ -19,7 +26,6 @@ def init_db():
     conn = get_db()
     cursor = conn.cursor()
     
-    # Contact form submissions
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS contacts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,7 +41,6 @@ def init_db():
         )
     ''')
     
-    # Admissions inquiries
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS admissions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -54,7 +59,6 @@ def init_db():
         )
     ''')
     
-    # Career applications
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS careers (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -71,7 +75,6 @@ def init_db():
         )
     ''')
     
-    # Newsletter subscriptions
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS newsletters (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -81,7 +84,6 @@ def init_db():
         )
     ''')
     
-    # Replies log (track all replies sent)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS replies (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -98,9 +100,11 @@ def init_db():
     conn.close()
     print("Database initialized successfully!")
 
-# ============================================
-# CRUD OPERATIONS
-# ============================================
+
+def get_table_name(submission_type):
+    """Get the correct table name for a submission type."""
+    return TABLE_MAP.get(submission_type, submission_type)
+
 
 def save_contact(name, email, phone, subject, message):
     """Save a contact form submission."""
@@ -142,7 +146,7 @@ def save_career(name, email, phone, position_applying, cover_letter, cv_filename
     return submission_id
 
 def save_newsletter(email):
-    """Save a newsletter subscription. Returns True if new, False if already subscribed."""
+    """Save a newsletter subscription."""
     conn = get_db()
     cursor = conn.cursor()
     try:
@@ -169,7 +173,7 @@ def update_status(submission_type, submission_id, status, notes=None):
     """Update the status and optional notes of a submission."""
     conn = get_db()
     cursor = conn.cursor()
-    table = submission_type + 's'  # contacts, admissions, careers
+    table = get_table_name(submission_type)
     
     if notes:
         cursor.execute(f'''
@@ -190,7 +194,7 @@ def get_all_submissions(submission_type, status_filter=None):
     conn = get_db()
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    table = submission_type + 's'
+    table = get_table_name(submission_type)
     
     if status_filter and status_filter != 'All':
         cursor.execute(f'SELECT * FROM {table} WHERE status = ? ORDER BY created_at DESC', (status_filter,))
@@ -206,7 +210,7 @@ def get_submission(submission_type, submission_id):
     conn = get_db()
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    table = submission_type + 's'
+    table = get_table_name(submission_type)
     
     cursor.execute(f'SELECT * FROM {table} WHERE id = ?', (submission_id,))
     result = cursor.fetchone()
@@ -249,6 +253,5 @@ def get_stats():
     conn.close()
     return stats
 
-# Run this to create database
 if __name__ == '__main__':
     init_db()

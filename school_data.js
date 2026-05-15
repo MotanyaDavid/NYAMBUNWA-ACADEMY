@@ -12,53 +12,53 @@ const schoolData = {
   // --- SCHOOL IDENTITY ---
   name: "Nyambunwa Academy",
   shortName: "Nyambunwa",
-  motto: "Excellence in Education",
+  motto: "Excellence for Scholarship",
   tagline: "Shaping Tomorrow's Leaders",
   shortDescription: "Nyambunwa Academy is committed to providing quality education that fosters intellectual growth, moral development, and social responsibility.",
   foundingYear: 2005,
-  schoolType: "Private Co-educational Day School",
+  schoolType: "Private Co-educational Day and Boarding School",
   affiliation: "Kenya Private Schools Association (KPSA)",
 
   // --- LOCATION & MULTIPLE CAMPUSES ---
   mainCampus: {
-    name: "Main Campus",
-    address: "Langata Road, Opposite Wilson Airport",
-    city: "Nairobi",
-    county: "Nairobi County",
+    name: "Schools",
+    address: "Suneka-Asumbi Rd",
+    city: "Kisii",
+    county: "Kisii County",
     country: "Kenya",
-    postalAddress: "P.O. Box 12345 - 00100, Nairobi",
-    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.757226587167!2d36.81432931475406!3d-1.3196118990399248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d2c6f2c6b3%3A0x1c6e6c0e3c1c5e1!2sLangata%20Road!5e0!3m2!1sen!2ske!4v1620000000000"
+    postalAddress: "P.O. Box 742 - 40200 Kisii",
+    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7572265https://maps.app.goo.gl/YAvMUockAMn2aggX687167!2d36.81432931475406!3d-1.3196118990399248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d2c6f2c6b3%3A0x1c6e6c0e3c1c5e1!2sLangata%20Road!5e0!3m2!1sen!2ske!4v1620000000000"
   },
 
-  additionalCampuses: [
-    {
-      name: "Kindergarten Annex",
-      address: "Mbagathi Way, Karen",
-      city: "Nairobi",
-      phone: "+254 711 222 333",
-      mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.700000000000!2d36.700000000000!3d-1.350000000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjEnMDAuMCJTIDM2wrA0MicwMC4wIkU!5e0!3m2!1sen!2ske!4v1620000000000"
-    }
-  ],
+  // additionalCampuses: [
+  //   {
+  //     name: "Kindergarten Annex",
+  //     address: "Mbagathi Way, Karen",
+  //     city: "Nairobi",
+  //     phone: "+254 711 222 333",
+  //     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.700000000000!2d36.700000000000!3d-1.350000000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjEnMDAuMCJTIDM2wrA0MicwMC4wIkU!5e0!3m2!1sen!2ske!4v1620000000000"
+  //   }
+  // ],
 
   // --- CONTACT INFORMATION ---
   phone: {
-    main: "+254 700 123 456",
-    admissions: "+254 711 789 012",
-    displayFormat: "+254 700 123 456"
+    main: "+254 757 862 075",
+    admissions: "+254 757 862 075",
+    displayFormat: "+254 757 862 075"
   },
   email: {
-    general: "info@nyambunwaacademy.sc.ke",
-    admissions: "admissions@nyambunwaacademy.sc.ke",
-    careers: "careers@nyambunwaacademy.sc.ke",
-    principal: "principal@nyambunwaacademy.sc.ke"
+    general: "nyambunwaacademy@gmail.com",
+    admissions: "nyambunwaacademy@gmail.com",
+    careers: "nyambunwaacademy@gmail.com",
+    principal: "nyambunwaacademy@gmail.com"
   },
   workingHours: {
-    weekdays: "Monday - Friday: 07:00 - 19:00",
+    weekdays: "Monday - Friday: 08:00 - 17:00",
     saturday: "Saturday: 08:00 - 13:00 (Open for inquiries and tours by appointment)",
     sunday: "Sunday: Closed",
-    shortDisplay: "Mon-Fri: 07:00 - 19:00 | Sat: 08:00 - 13:00 | Sun: Closed"
+    shortDisplay: "Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 13:00 | Sun: Closed"
   },
-  whatsappNumber: "254700123456",
+  whatsappNumber: "254757862075",
 
   // --- SOCIAL MEDIA ---
 //   socialMedia: {
@@ -75,33 +75,26 @@ const schoolData = {
 
   programs: [
     {
-      name: "Kindergarten",
+      name: "Pre School",
       grades: "Playgroup - PP2",
       ageRange: "3 - 6 years",
       description: "Our Kindergarten program provides a warm, stimulating environment where young learners develop foundational skills through play-based and activity-centered learning.",
       image: "assets/images/programs/kindergarten.jpg"
     },
     {
-      name: "Primary School",
-      grades: "Grade 1 - 6",
+      name: "Lower Primary",
+      grades: "Grade 1 - 3",
       ageRange: "6 - 11 years",
       description: "The Primary School curriculum builds strong literacy, numeracy, and critical thinking skills while nurturing curiosity and a love for learning.",
       image: "assets/images/programs/primary.jpg"
     },
     {
-      name: "Junior Secondary",
-      grades: "Grade 7 - 9",
+      name: "Upper Primary",
+      grades: "Grade 4 - 6",
       ageRange: "12 - 14 years",
       description: "Our Junior Secondary program bridges the transition to advanced studies, offering a broad curriculum that helps students discover their strengths and interests.",
       image: "assets/images/programs/junior-secondary.jpg"
     },
-    {
-      name: "Senior Secondary",
-      grades: "Form 1 - 4",
-      ageRange: "14 - 18 years",
-      description: "The Senior Secondary school prepares students for KCSE examinations and beyond, with a focus on academic excellence, leadership, and career readiness.",
-      image: "assets/images/programs/senior-secondary.jpg"
-    }
   ],
 
   // --- WHY CHOOSE US ---
@@ -141,8 +134,8 @@ const schoolData = {
   // --- SCHOOL STATISTICS ---
   stats: {
     yearsOfExcellence: 30,
-    totalStudents: 1200,
-    teachingStaff: 85,
+    totalStudents: 300,
+    teachingStaff: 15,
     nonTeachingStaff: 30,
     studentTeacherRatio: "15:1",
     averageClassSize: 30,
@@ -161,7 +154,7 @@ const schoolData = {
       title: "School Director & Principal",
       bio: "Dr. Muthoni has over 25 years of experience in education leadership. She holds a PhD in Educational Management from the University of Nairobi and is passionate about holistic child development.",
       image: "assets/images/staff/principal.jpg",
-      quote: "At Sunshine Schools, we don't just teach subjects; we shape character, ignite curiosity, and prepare leaders who will transform their communities."
+      quote: "At Nyambunwa Academy, we don't just teach subjects; we shape character, ignite curiosity, and prepare leaders who will transform their communities."
     },
     {
       name: "Mr. Peter Waweru",
@@ -198,25 +191,25 @@ const schoolData = {
   // --- TESTIMONIALS ---
   testimonials: [
     {
-      quote: "Sunshine Schools transformed our son. He was shy and struggling academically. Within two years, his confidence soared, and he emerged as a top performer. The teachers here genuinely care.",
+      quote: "Nyambunwa Academy transformed our son. He was shy and struggling academically. Within two years, his confidence soared, and he emerged as a top performer. The teachers here genuinely care.",
       parentName: "Mrs. Wanjiku Kamau",
       childInfo: "Parent of Kevin, Grade 6",
       image: "assets/images/testimonials/parent-1.jpg"
     },
     {
-      quote: "We moved our three children to Sunshine from another school, and it was the best decision we ever made. The discipline, the values, and the academic rigor are simply unmatched.",
+      quote: "We moved our three children to Nyambunwa Academy from another school, and it was the best decision we ever made. The discipline, the values, and the academic rigor are simply unmatched.",
       parentName: "Mr. & Mrs. Ochieng",
       childInfo: "Parents of Amani, Baraka & Chiku",
       image: "assets/images/testimonials/parent-2.jpg"
     },
     {
-      quote: "As an alumnus, I can confidently say Sunshine Schools laid the foundation for everything I've achieved. The leadership skills and strong moral compass I developed here still guide me today.",
+      quote: "As an alumnus, I can confidently say Nyambunwa Academy laid the foundation for everything I've achieved. The leadership skills and strong moral compass I developed here still guide me today.",
       parentName: "Eng. James Mwangi",
       childInfo: "Alumnus, Class of 2008, now an Alumni Parent",
       image: "assets/images/testimonials/parent-3.jpg"
     },
     {
-      quote: "What sets Sunshine apart is the partnership with parents. The school communicates regularly and genuinely involves us in our child's journey. It feels like family.",
+      quote: "What sets Nyambunwa apart is the partnership with parents. The school communicates regularly and genuinely involves us in our child's journey. It feels like family.",
       parentName: "Mrs. Aisha Bello",
       childInfo: "Parent of Zara, Grade 3",
       image: "assets/images/testimonials/parent-4.jpg"
@@ -227,14 +220,14 @@ const schoolData = {
   latestNews: [
     {
       date: "2025-09-15",
-      title: "Sunshine Schools Tops National Science Fair for Third Consecutive Year",
+      title: "Nyambunwa Academy Tops National Science Fair for Third Consecutive Year",
       excerpt: "Our students showcased groundbreaking projects in renewable energy and sustainable agriculture, earning top honors at the National Science and Engineering Fair held at KICC.",
       image: "assets/images/news/science-fair-2025.jpg",
       category: "Achievements"
     },
     {
       date: "2025-08-28",
-      title: "2025 KCSE Results: Sunshine Maintains 98% University Transition Rate",
+      title: "2025 KCSE Results: Nyambunwa Maintains 98% University Transition Rate",
       excerpt: "We celebrate our Form Four graduates who have made us proud with exceptional performance in the 2025 KCSE examinations, with 45 students scoring A- and above.",
       image: "assets/images/news/kcse-results-2025.jpg",
       category: "Academics"
@@ -242,7 +235,7 @@ const schoolData = {
     {
       date: "2025-08-10",
       title: "New State-of-the-Art ICT Center Commissioned",
-      excerpt: "Sunshine Schools has unveiled a modern ICT center equipped with 60 workstations, high-speed internet, and interactive smart boards to enhance digital literacy across all grade levels.",
+      excerpt: "Nyambunwa Academy has unveiled a modern ICT center equipped with 60 workstations, high-speed internet, and interactive smart boards to enhance digital literacy across all grade levels.",
       image: "assets/images/news/ict-center-2025.jpg",
       category: "Facilities"
     }
@@ -253,7 +246,7 @@ const schoolData = {
     {
       date: "2025-10-05",
       title: "Open Day & School Tour",
-      description: "Prospective parents and students are invited to tour our campus, meet teachers, and experience life at Sunshine Schools firsthand.",
+      description: "Prospective parents and students are invited to tour our campus, meet teachers, and experience life at Nyambunwa Academy firsthand.",
       time: "9:00 AM - 3:00 PM",
       location: "Main Campus Hall"
     },
@@ -295,9 +288,9 @@ const schoolData = {
       { name: "Parent-School Partnership Guidelines", file: "assets/downloads/parent-partnership.pdf" }
     ],
     newsletters: [
-      { name: "The Sunshine Times - September 2025", file: "assets/downloads/newsletter-sept-2025.pdf" },
-      { name: "The Sunshine Times - July 2025", file: "assets/downloads/newsletter-july-2025.pdf" },
-      { name: "The Sunshine Times - May 2025", file: "assets/downloads/newsletter-may-2025.pdf" }
+      { name: "The Nyambunwa Times - September 2025", file: "assets/downloads/newsletter-sept-2025.pdf" },
+      { name: "The Nyambunwa Times - July 2025", file: "assets/downloads/newsletter-july-2025.pdf" },
+      { name: "The Nyambunwa Times - May 2025", file: "assets/downloads/newsletter-may-2025.pdf" }
     ]
   },
 
@@ -305,7 +298,7 @@ const schoolData = {
   faqs: [
     {
       question: "What curriculum does Sunshine Schools follow?",
-      answer: "We follow both the 8-4-4 system and the Competency-Based Curriculum (CBC) as mandated by the Kenya Institute of Curriculum Development (KICD). Our students sit for the Kenya Certificate of Primary Education (KCPE) and Kenya Certificate of Secondary Education (KCSE) examinations."
+      answer: "We follow both the 8-4-4 system and the Competency-Based Curriculum (CBC) as mandated by the Kenya Institute of Curriculum Development (KICD). Our students sit for the Kenya Certificate of Primary Education (KCPE)."
     },
     {
       question: "What is the student-to-teacher ratio?",
@@ -416,8 +409,8 @@ const schoolData = {
 
   // --- SCHOOL HISTORY MILESTONES ---
   milestones: [
-    { year: 1995, event: "Sunshine Schools founded with 45 students and 6 teachers in a rented facility on Ngong Road." },
-    { year: 2000, event: "First KCSE graduating class achieves 100% pass rate. Student population grows to 300." },
+    { year: 1995, event: "Nyambunwa Academy founded with 45 students and 6 teachers in a rented facility on Ngong Road." },
+    { year: 2000, event: "First KCPE graduating class achieves 100% pass rate. Student population grows to 300." },
     { year: 2005, event: "Moved to current permanent campus on Langata Road. Added science laboratories and library." },
     { year: 2010, event: "Opened Kindergarten Annex in Karen. Introduced ICT as a core subject across all grades." },
     { year: 2015, event: "Celebrated 20th anniversary. Launched scholarship program for deserving students from underprivileged backgrounds." },

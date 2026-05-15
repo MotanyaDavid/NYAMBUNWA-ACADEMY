@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message #{{ submission.id }} | Nyambunwa Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body class="dashboard-page">
+    
+    <!-- ============================================ -->
+    <!-- SIDEBAR -->
+    <!-- ============================================ -->
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <h2>Nyambunwa</h2>
+            <p>Admin Dashboard</p>
+        </div>
+        
+        <nav class="sidebar__nav">
+            <a href="{{ url_for('dashboard') }}" class="sidebar__link">
+                <span class="sidebar__icon">📊</span> Overview
+            </a>
+            <a href="{{ url_for('view_submissions', submission_type='contacts') }}" class="sidebar__link {% if submission_type == 'contacts' %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">📧</span> Contact Messages
+            </a>
+            <a href="{{ url_for('view_submissions', submission_type='admissions') }}" class="sidebar__link {% if submission_type == 'admissions' %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">🎓</span> Admissions
+            </a>
+            <a href="{{ url_for('view_submissions', submission_type='careers') }}" class="sidebar__link {% if submission_type == 'careers' %}sidebar__link--active{% endif %}">
+                <span class="sidebar__icon">💼</span> Job Applications
+            </a>
+        </nav>
+        
+        <div class="sidebar__footer">
+            <p>Logged in as: <strong>{{ session.get('admin_username', 'Admin') }}</strong></p>
+            <a href="{{ url_for('logout') }}" class="btn btn--outline btn--sm btn--full">Logout</a>
+        </div>
+    </aside>
+    
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================================ -->
+    <main class="main-content">
+        
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div>
+                <a href="{{ url_for('view_submissions', submission_type=submission_type) }}" class="back-link">← Back to {{ submission_type|capitalize }}</a>
+                <h1>Message #{{ submission.id }}</h1>
+            </div>
+            <span class="status-badge status-badge--{{ submission.status|lower|replace(' ', '-') }}">
+                {{ submission.status }}
+            </span>
+        </header>
+        
+        <div class="message-detail">
+            
+            <!-- Submission Details -->
+            <div class="detail-card">
+                <h3>Submission Details</h3>
+                <div class="detail-grid">
+                    {% if submission_type == 'contacts' %}
+                    <div class="detail-item">
+                        <span class="detail-label">From</span>
+                        <span class="detail-value">{{ submission.name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value"><a href="mailto:{{ submission.email }}">{{ submission.email }}</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone</span>
+                        <span class="detail-value">{{ submission.phone or 'Not provided' }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Subject</span>
+                        <span class="detail-value">{{ submission.subject or 'N/A' }}</span>
+                    </div>
+                    <div class="detail-item detail-item--full">
+                        <span class="detail-label">Message</span>
+                        <div class="detail-message">{{ submission.message }}</div>
+                    </div>
+                    
+                    {% elif submission_type == 'admissions' %}
+                    <div class="detail-item">
+                        <span class="detail-label">Parent Name</span>
+                        <span class="detail-value">{{ submission.parent_name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value"><a href="mailto:{{ submission.email }}">{{ submission.email }}</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone</span>
+                        <span class="detail-value">{{ submission.phone or 'Not provided' }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Child's Name</span>
+                        <span class="detail-value">{{ submission.child_name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date of Birth</span>
+                        <span class="detail-value">{{ submission.child_dob or 'Not provided' }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Grade Applying For</span>
+                        <span class="detail-value">{{ submission.grade_applying }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Current School</span>
+                        <span class="detail-value">{{ submission.current_school or 'Not provided' }}</span>
+                    </div>
+                    {% if submission.message %}
+                    <div class="detail-item detail-item--full">
+                        <span class="detail-label">Additional Message</span>
+                        <div class="detail-message">{{ submission.message }}</div>
+                    </div>
+                    {% endif %}
+                    
+                    {% elif submission_type == 'careers' %}
+                    <div class="detail-item">
+                        <span class="detail-label">Applicant</span>
+                        <span class="detail-value">{{ submission.name }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value"><a href="mailto:{{ submission.email }}">{{ submission.email }}</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone</span>
+                        <span class="detail-value">{{ submission.phone }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Position</span>
+                        <span class="detail-value">{{ submission.position_applying or 'General Application' }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">CV</span>
+                        <span class="detail-value">{{ submission.cv_filename or 'Not uploaded' }}</span>
+                    </div>
+                    <div class="detail-item detail-item--full">
+                        <span class="detail-label">Cover Letter</span>
+                        <div class="detail-message">{{ submission.cover_letter }}</div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Submitted</span>
+                        <span class="detail-value">{{ submission.created_at }}</span>
+                    </div>
+                    
+                    {% if submission.notes %}
+                    <div class="detail-item detail-item--full">
+                        <span class="detail-label">Internal Notes</span>
+                        <div class="detail-message">{{ submission.notes }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Status Update -->
+            <div class="detail-card">
+                <h3>Update Status</h3>
+                <form class="status-form" id="status-form">
+                    <div class="form-row">
+                        <select name="status" id="status-select">
+                            <option value="New" {% if submission.status == 'New' %}selected{% endif %}>🆕 New</option>
+                            <option value="In Progress" {% if submission.status == 'In Progress' %}selected{% endif %}>🔄 In Progress</option>
+                            <option value="Replied" {% if submission.status == 'Replied' %}selected{% endif %}>✅ Replied</option>
+                            <option value="Closed" {% if submission.status == 'Closed' %}selected{% endif %}>🔒 Closed</option>
+                        </select>
+                        <button type="submit" class="btn btn--sm btn--primary">Update Status</button>
+                    </div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label for="notes">Internal Notes</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Add private notes about this submission...">{{ submission.notes or '' }}</textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Reply Section -->
+            <div class="detail-card">
+                <h3>Send Reply</h3>
+                <form class="reply-form" id="reply-form">
+                    <div class="form-group">
+                        <label>To: <strong>{{ submission.email }}</strong></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="reply-body">Your Reply</label>
+                        <textarea id="reply-body" name="reply_body" rows="6" placeholder="Type your reply here...&#10;&#10;This will be sent to {{ submission.email }}" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary">
+                        📨 Send Reply
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Previous Replies -->
+            {% if replies %}
+            <div class="detail-card">
+                <h3>Reply History ({{ replies|length }})</h3>
+                <div class="replies-list">
+                    {% for reply in replies %}
+                    <div class="reply-item">
+                        <div class="reply-header">
+                            <strong>You replied</strong>
+                            <span>{{ reply.sent_at }}</span>
+                        </div>
+                        <div class="reply-body">{{ reply.body }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+        </div>
+        
+    </main>
+    
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+    
+    <script>
+        // Submission type and ID for API calls
+        const SUBMISSION_TYPE = '{{ submission_type }}';
+        const SUBMISSION_ID = '{{ submission.id }}';
+    </script>
+</body>
+</html>

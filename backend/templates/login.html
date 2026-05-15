@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Nyambunwa Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body class="login-page">
+    
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Nyambunwa Academy</h1>
+                <p>Admin Portal</p>
+            </div>
+            
+            {% if error %}
+            <div class="alert alert--error">
+                <i class="icon">⚠️</i> {{ error }}
+            </div>
+            {% endif %}
+            
+            <form method="POST" action="{{ url_for('login_page') }}" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" required autofocus>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+                
+                <button type="submit" class="btn btn--primary btn--full">
+                    Sign In
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>🔒 Secure admin access only</p>
+                <p style="font-size: 0.75rem; margin-top: 0.5rem;">Default: admin / Nyambunwa2025!</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

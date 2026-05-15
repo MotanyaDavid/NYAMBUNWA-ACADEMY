@@ -341,6 +341,7 @@ def view_submissions(submission_type):
     submissions = get_all_submissions(submission_type, status_filter)
     
     return render_template('dashboard.html', 
+                         stats=get_stats(),
                          submissions=submissions,
                          submission_type=submission_type,
                          current_filter=status_filter)
