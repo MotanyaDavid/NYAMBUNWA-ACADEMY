@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     
     <script src="school-data.js"></script>
 </head>
@@ -237,7 +238,7 @@
                 <div class="footer__newsletter">
                     <h4 class="footer__heading">Stay Updated</h4>
                     <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Subscribe to our newsletter for the latest news and updates.</p>
-                    <form class="footer__newsletter-form" id="newsletter-form">
+                    <form class="footer__newsletter-form newsletter-form">
                         <input type="email" class="footer__newsletter-input" placeholder="Your email address" required>
                         <button type="submit" class="footer__newsletter-btn">Subscribe</button>
                     </form>
@@ -325,10 +326,10 @@
                 const positionApplying = document.getElementById('position-applying').value;
                 const coverLetter = document.getElementById('cover-letter').value.trim();
                 
-                const cvInput = document.getElementById('cv-upload');
+                const cvFileInput = document.getElementById('cv-upload');
                 let cvFilename = 'Not uploaded';
-                if (cvInput && cvInput.files && cvInput.files.length > 0) {
-                    cvFilename = cvInput.files[0].name;
+                if (cvFileInput && cvFileInput.files && cvFileInput.files.length > 0) {
+                    cvFilename = cvFileInput.files[0].name;
                 }
                 
                 if (!name || !email || !phone || !coverLetter) {
@@ -341,17 +342,21 @@
                 submitBtn.textContent = 'Submitting...';
                 submitBtn.disabled = true;
                 
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('phone', phone);
+                formData.append('position_applying', positionApplying);
+                formData.append('cover_letter', coverLetter);
+                
+                const cvInput = document.getElementById('cv-upload');
+                if (cvInput && cvInput.files && cvInput.files.length > 0) {
+                    formData.append('cv', cvInput.files[0]);
+                }
+                
                 fetch('http://localhost:5000/api/careers', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        position_applying: positionApplying,
-                        cover_letter: coverLetter,
-                        cv_filename: cvFilename
-                    })
+                    body: formData 
                 })
                 .then(res => res.json())
                 .then(data => {

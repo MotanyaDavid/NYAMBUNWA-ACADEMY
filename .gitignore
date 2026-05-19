@@ -28,3 +28,12 @@ assets/images/originals/
 
 # Logs
 *.log
+
+# Database
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

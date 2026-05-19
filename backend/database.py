@@ -96,6 +96,21 @@ def init_db():
         )
     ''')
     
+    # Create admins table
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS admins (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE NOT NULL,
+        password_hash TEXT NOT NULL,
+        full_name TEXT NOT NULL,
+        email TEXT,
+        role TEXT DEFAULT 'admin',
+        is_active INTEGER DEFAULT 1,
+        last_login TIMESTAMP,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+''')
+    
     conn.commit()
     conn.close()
     print("Database initialized successfully!")
@@ -252,6 +267,77 @@ def get_stats():
     
     conn.close()
     return stats
+
+def create_admins_table():
+    """Create admins table for multi-user support."""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS admins (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            full_name TEXT NOT NULL,
+            email TEXT,
+            role TEXT DEFAULT 'admin',
+            is_active INTEGER DEFAULT 1,
+            last_login TIMESTAMP,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Insert default admin if table is empty
+    cursor.execute('SELECT COUNT(*) FROM admins')
+    if cursor.fetchone()[0] == 0:
+        from werkzeug.security import generate_password_hash
+        from config import Config
+        
+        cursor.execute('''
+            INSERT INTO admins (username, password_hash, full_name, email, role)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (
+            Config.ADMIN_USERNAME,
+            generate_password_hash(Config.ADMIN_PASSWORD_HASH.split('$')[-1] if '$' in Config.ADMIN_PASSWORD_HASH else Config.ADMIN_PASSWORD_HASH, method='pbkdf2:sha256'),
+            'School Administrator',
+            Config.SCHOOL_EMAIL,
+            'super_admin'
+        ))
+    
+    conn.commit()
+    conn.close()
+    print("Admins table ready!")
+
+
+def get_admin_by_username(username):
+    """Get admin by username."""
+    conn = get_db()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM admins WHERE username = ? AND is_active = 1', (username,))
+    result = cursor.fetchone()
+    conn.close()
+    return dict(result) if result else None
+
+
+def update_admin_last_login(admin_id):
+    """Update last login timestamp."""
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('UPDATE admins SET last_login = CURRENT_TIMESTAMP WHERE id = ?', (admin_id,))
+    conn.commit()
+    conn.close()
+
+
+def get_all_admins():
+    """Get all admin users."""
+    conn = get_db()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, username, full_name, email, role, is_active, last_login, created_at FROM admins ORDER BY created_at')
+    results = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return results
 
 if __name__ == '__main__':
     init_db()

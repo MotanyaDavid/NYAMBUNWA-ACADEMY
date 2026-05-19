@@ -36,7 +36,8 @@
         </nav>
         
         <div class="sidebar__footer">
-            <p>Logged in as: <strong>{{ session.get('admin_username', 'Admin') }}</strong></p>
+            <p>Logged in as: <strong>{{ session.get('admin_full_name', session.get('admin_username', 'Admin')) }}</strong></p>
+            <p style="font-size: 0.7rem;">Role: {{ session.get('admin_role', 'Admin') }}</p>
             <a href="{{ url_for('logout') }}" class="btn btn--outline btn--sm btn--full">Logout</a>
         </div>
     </aside>
@@ -166,6 +167,7 @@
             <div class="detail-card">
                 <h3>Update Status</h3>
                 <form class="status-form" id="status-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="form-row">
                         <select name="status" id="status-select">
                             <option value="New" {% if submission.status == 'New' %}selected{% endif %}>🆕 New</option>
@@ -186,6 +188,7 @@
             <div class="detail-card">
                 <h3>Send Reply</h3>
                 <form class="reply-form" id="reply-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>To: <strong>{{ submission.email }}</strong></label>
                     </div>
