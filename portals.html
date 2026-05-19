@@ -1,292 +1,598 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Access Nyambunwa Academy student, parent, and staff portals. Login to view grades, assignments, fee balances, timetables, and internal resources.">
-    <meta name="keywords" content="Nyambunwa Academy portals, student portal login, parent portal, staff portal, school management system">
-    <meta name="author" content="Nyambunwa Academy">
-    
+    <meta
+      name="description"
+      content="Access Nyambunwa Academy student, parent, and staff portals. Login to view grades, assignments, fee balances, timetables, and internal resources."
+    />
+    <meta
+      name="keywords"
+      content="Nyambunwa Academy portals, student portal login, parent portal, staff portal, school management system"
+    />
+    <meta name="author" content="Nyambunwa Academy" />
+
     <!-- Open Graph -->
-    <meta property="og:title" content="School Portals | Nyambunwa Academy">
-    <meta property="og:description" content="Quick access to Nyambunwa Academy online portals for students, parents, and staff.">
-    <meta property="og:image" content="assets/images/portals-hero.jpg">
-    <meta property="og:url" content="https://nyambunwacademy.ac.ke/portals.html">
-    <meta property="og:type" content="website">
-    
+    <meta property="og:title" content="School Portals | Nyambunwa Academy" />
+    <meta
+      property="og:description"
+      content="Quick access to Nyambunwa Academy online portals for students, parents, and staff."
+    />
+    <meta property="og:image" content="assets/images/portals-hero.jpg" />
+    <meta
+      property="og:url"
+      content="https://nyambunwacademy.ac.ke/portals.html"
+    />
+    <meta property="og:type" content="website" />
+
     <title>School Portals | Nyambunwa Academy</title>
-    
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/print.css" media="print" />
+
     <script src="school-data.js"></script>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <!-- Mobile CTA Button -->
+    <a href="admissions.html#inquiry-form" class="mobile-cta">Apply Now</a>
+    <!-- Page Loader -->
+    <div id="page-loader">
+      <div class="loader-spinner"></div>
+    </div>
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- ============================================ -->
     <!-- TOP STRIP -->
     <!-- ============================================ -->
     <div class="header__top-strip">
-        <span id="top-strip-text">Nyambunwa Academy</span>
+      <span id="top-strip-text">Nyambunwa Academy</span>
     </div>
-    
+
     <!-- ============================================ -->
     <!-- HEADER & NAVIGATION -->
     <!-- ============================================ -->
-    <header class="header" id="header">
-        <div class="header__container">
-            
-            <a href="index.html" class="header__logo">
-                <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo">
-            </a>
-            
-            <nav class="nav" id="nav">
-                <ul class="nav__list">
-                    <li><a href="index.html" class="nav__link">Home</a></li>
-                    <li><a href="about.html" class="nav__link">About</a></li>
-                    <li><a href="admissions.html" class="nav__link">Admissions</a></li>
-                    <li><a href="gallery.html" class="nav__link">Gallery</a></li>
-                    <li><a href="downloads.html" class="nav__link">Downloads</a></li>
-                    <li><a href="careers.html" class="nav__link">Careers</a></li>
-                    <li><a href="contact.html" class="nav__link">Contact Us</a></li>
-                </ul>
-            </nav>
-            
-            <a href="admissions.html#inquiry-form" class="header__cta">Enroll Now</a>
-            
-            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-            </button>
-            
+    <header class="header" id="header" role="banner">
+      <div class="header__container">
+        <a href="index.html" class="header__logo">
+          <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo" />
+        </a>
+
+        <!-- Search Bar -->
+        <div class="header__search">
+          <input
+            type="text"
+            id="site-search"
+            placeholder="Search..."
+            class="header__search-input"
+          />
+          <button
+            id="search-btn"
+            class="header__search-btn"
+            aria-label="Search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="admissions.html" class="nav__link">Admissions</a></li>
+            <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+            <li><a href="downloads.html" class="nav__link">Downloads</a></li>
+            <li><a href="careers.html" class="nav__link">Careers</a></li>
+            <li><a href="contact.html" class="nav__link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <a href="admissions.html#inquiry-form" class="header__cta"
+          >Enroll Now</a
+        >
+
+        <button
+          class="nav__toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </button>
+        <!-- Dark Mode Toggle -->
+        <button
+          class="dark-mode-toggle"
+          id="dark-mode-toggle"
+          aria-label="Toggle dark mode"
+        >
+          🌙 Dark
+        </button>
+      </div>
     </header>
-    
+
     <!-- ============================================ -->
     <!-- MAIN CONTENT -->
     <!-- ============================================ -->
-    <main>
-        
-        <!-- ========================================== -->
-        <!-- PAGE HERO -->
-        <!-- ========================================== -->
-        <section class="page-hero" style="background-image: url('assets/images/portals-hero.jpg');">
-            <div class="container">
-                <h1 class="page-hero__title">School Portals</h1>
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb__separator">/</span>
-                    <span class="breadcrumb__current">School Portals</span>
-                </nav>
+    <main id="main-content">
+      <!-- ========================================== -->
+      <!-- PAGE HERO -->
+      <!-- ========================================== -->
+      <section
+        class="page-hero"
+        style="
+          background-image: url(&quot;assets/images/portals-hero.jpg&quot;);
+        "
+      >
+        <div class="container">
+          <h1 class="page-hero__title">School Portals</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">School Portals</span>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- INTRO TEXT -->
+      <!-- ========================================== -->
+      <section class="section" style="padding-bottom: 0">
+        <div class="container">
+          <div style="max-width: 700px; margin: 0 auto; text-align: center">
+            <span class="section__subtitle">Online Access</span>
+            <h2 class="section__title">Welcome to Our Portals</h2>
+            <p style="color: var(--color-neutral-medium); line-height: 1.8">
+              Nyambunwa Academy provides secure online portals for students,
+              parents, and staff. Select your portal below to access your
+              personalized dashboard. If you experience any issues logging in,
+              please contact our IT support team at
+              <a href="mailto:nyambunwaacademy@gmail.com"
+                >nyambunwaacademy@gmail.com</a
+              >.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- PORTAL CARDS -->
+      <!-- ========================================== -->
+      <section class="section" id="portals">
+        <div class="container">
+          <div class="portals__grid" id="portals-grid">
+            <!-- Portal cards populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- HELPFUL INFORMATION -->
+      <!-- ========================================== -->
+      <section class="section section--light" id="portal-help">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__subtitle">Need Help?</span>
+            <h2 class="section__title">Portal Support</h2>
+            <p class="section__description">
+              Common questions and guidance for accessing your portal.
+            </p>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 2rem;
+              max-width: 1000px;
+              margin: 0 auto;
+            "
+            id="portal-help-grid"
+          >
+            <div
+              style="
+                background-color: var(--color-white);
+                padding: 2rem;
+                border-radius: var(--border-radius-md);
+                box-shadow: var(--shadow-sm);
+                text-align: center;
+              "
+            >
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  background-color: rgba(26, 60, 110, 0.08);
+                  color: var(--color-primary);
+                  font-size: 1.3rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fa-solid fa-key"></i>
+              </div>
+              <h4
+                style="font-family: var(--font-heading); margin-bottom: 0.75rem"
+              >
+                Forgotten Password?
+              </h4>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: var(--color-neutral-medium);
+                  line-height: 1.7;
+                "
+              >
+                Click the "Forgot Password" link on your portal's login page. A
+                reset link will be sent to your registered email address. If you
+                don't receive it within 5 minutes, check your spam folder.
+              </p>
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- INTRO TEXT -->
-        <!-- ========================================== -->
-        <section class="section" style="padding-bottom: 0;">
-            <div class="container">
-                <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                    <span class="section__subtitle">Online Access</span>
-                    <h2 class="section__title">Welcome to Our Portals</h2>
-                    <p style="color: var(--color-neutral-medium); line-height: 1.8;">
-                        Nyambunwa Academy provides secure online portals for students, parents, and staff. 
-                        Select your portal below to access your personalized dashboard. If you experience any issues 
-                        logging in, please contact our IT support team at 
-                        <a href="mailto:nyambunwaacademy@gmail.com">nyambunwaacademy@gmail.com</a>.
-                    </p>
-                </div>
+
+            <div
+              style="
+                background-color: var(--color-white);
+                padding: 2rem;
+                border-radius: var(--border-radius-md);
+                box-shadow: var(--shadow-sm);
+                text-align: center;
+              "
+            >
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  background-color: rgba(244, 180, 0, 0.15);
+                  color: var(--color-secondary-dark);
+                  font-size: 1.3rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+              <h4
+                style="font-family: var(--font-heading); margin-bottom: 0.75rem"
+              >
+                New User?
+              </h4>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: var(--color-neutral-medium);
+                  line-height: 1.7;
+                "
+              >
+                New students and parents receive their login credentials via
+                email upon enrollment. Staff receive credentials during
+                orientation. Contact the school office if you haven't received
+                yours.
+              </p>
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- PORTAL CARDS -->
-        <!-- ========================================== -->
-        <section class="section" id="portals">
-            <div class="container">
-                <div class="portals__grid" id="portals-grid">
-                    <!-- Portal cards populated by JavaScript -->
-                </div>
+
+            <div
+              style="
+                background-color: var(--color-white);
+                padding: 2rem;
+                border-radius: var(--border-radius-md);
+                box-shadow: var(--shadow-sm);
+                text-align: center;
+              "
+            >
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  background-color: rgba(40, 167, 69, 0.1);
+                  color: #28a745;
+                  font-size: 1.3rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                <i class="fa-solid fa-headset"></i>
+              </div>
+              <h4
+                style="font-family: var(--font-heading); margin-bottom: 0.75rem"
+              >
+                Technical Support
+              </h4>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: var(--color-neutral-medium);
+                  line-height: 1.7;
+                "
+              >
+                For technical assistance, email
+                <strong>nyambunwaacademy@gmail.com</strong> or call
+                <strong>+254 757 862 075</strong> during working hours. Our IT
+                team responds within 4 hours on weekdays.
+              </p>
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- HELPFUL INFORMATION -->
-        <!-- ========================================== -->
-        <section class="section section--light" id="portal-help">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__subtitle">Need Help?</span>
-                    <h2 class="section__title">Portal Support</h2>
-                    <p class="section__description">Common questions and guidance for accessing your portal.</p>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto;" id="portal-help-grid">
-                    
-                    <div style="background-color: var(--color-white); padding: 2rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); text-align: center;">
-                        <div style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background-color: rgba(26,60,110,0.08); color: var(--color-primary); font-size: 1.3rem; margin-bottom: 1rem;">
-                            <i class="fa-solid fa-key"></i>
-                        </div>
-                        <h4 style="font-family: var(--font-heading); margin-bottom: 0.75rem;">Forgotten Password?</h4>
-                        <p style="font-size: 0.9rem; color: var(--color-neutral-medium); line-height: 1.7;">
-                            Click the "Forgot Password" link on your portal's login page. A reset link will be sent to your registered email address. If you don't receive it within 5 minutes, check your spam folder.
-                        </p>
-                    </div>
-                    
-                    <div style="background-color: var(--color-white); padding: 2rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); text-align: center;">
-                        <div style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background-color: rgba(244,180,0,0.15); color: var(--color-secondary-dark); font-size: 1.3rem; margin-bottom: 1rem;">
-                            <i class="fa-solid fa-user-plus"></i>
-                        </div>
-                        <h4 style="font-family: var(--font-heading); margin-bottom: 0.75rem;">New User?</h4>
-                        <p style="font-size: 0.9rem; color: var(--color-neutral-medium); line-height: 1.7;">
-                            New students and parents receive their login credentials via email upon enrollment. Staff receive credentials during orientation. Contact the school office if you haven't received yours.
-                        </p>
-                    </div>
-                    
-                    <div style="background-color: var(--color-white); padding: 2rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); text-align: center;">
-                        <div style="display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background-color: rgba(40,167,69,0.1); color: #28A745; font-size: 1.3rem; margin-bottom: 1rem;">
-                            <i class="fa-solid fa-headset"></i>
-                        </div>
-                        <h4 style="font-family: var(--font-heading); margin-bottom: 0.75rem;">Technical Support</h4>
-                        <p style="font-size: 0.9rem; color: var(--color-neutral-medium); line-height: 1.7;">
-                            For technical assistance, email <strong>nyambunwaacademy@gmail.com</strong> or call <strong>+254 757 862 075</strong> during working hours. Our IT team responds within 4 hours on weekdays.
-                        </p>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- CTA BANNER -->
-        <!-- ========================================== -->
-        <section class="cta-banner">
-            <div class="container">
-                <h2 class="cta-banner__title">Still Need Assistance?</h2>
-                <p class="cta-banner__text">Our team is happy to walk you through the login process or troubleshoot any issues you may encounter.</p>
-                <a href="contact.html" class="btn btn--primary">Contact Support</a>
-            </div>
-        </section>
-        
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- CTA BANNER -->
+      <!-- ========================================== -->
+      <section class="cta-banner">
+        <div class="container">
+          <h2 class="cta-banner__title">Still Need Assistance?</h2>
+          <p class="cta-banner__text">
+            Our team is happy to walk you through the login process or
+            troubleshoot any issues you may encounter.
+          </p>
+          <a href="contact.html" class="btn btn--primary">Contact Support</a>
+        </div>
+      </section>
     </main>
-    
+
     <!-- ============================================ -->
     <!-- FOOTER -->
     <!-- ============================================ -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__grid">
-                
-                <div class="footer__brand">
-                    <img src="assets/images/logo-white.png" alt="Sunshine Schools Logo" class="footer__brand-logo">
-                    <p class="footer__brand-text" id="footer-tagline">Nurturing leaders, building character, and shaping futures since 1995.</p>
-                </div>
-                
-                <div class="footer__links-wrapper">
-                    <h4 class="footer__heading">Quick Links</h4>
-                    <ul class="footer__links">
-                        <li><a href="index.html" class="footer__link">Home</a></li>
-                        <li><a href="about.html" class="footer__link">About Us</a></li>
-                        <li><a href="admissions.html" class="footer__link">Admissions</a></li>
-                        <li><a href="gallery.html" class="footer__link">Gallery</a></li>
-                        <li><a href="downloads.html" class="footer__link">Downloads</a></li>
-                        <li><a href="careers.html" class="footer__link">Careers</a></li>
-                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-                        <li><a href="portals.html" class="footer__link">School Portals</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer__contact">
-                    <h4 class="footer__heading">Contact Us</h4>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-location-dot footer__contact-icon"></i>
-                        <span id="footer-address">Suneka-Asumbi Rd, P.O Box 742 - 40200, Kisii</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-phone footer__contact-icon"></i>
-                        <span id="footer-phone">+254 757 862 075</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-envelope footer__contact-icon"></i>
-                        <span id="footer-email">nyambunwaacademy@gmail.com</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-clock footer__contact-icon"></i>
-                        <span id="footer-hours">Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 19:00 | Sun: Closed</span>
-                    </div>
-                </div>
-                
-                <div class="footer__newsletter">
-                    <h4 class="footer__heading">Stay Updated</h4>
-                    <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Subscribe to our newsletter for the latest news and updates.</p>
-                    <form class="footer__newsletter-form newsletter-form">
-                        <input type="email" class="footer__newsletter-input" placeholder="Your email address" required>
-                        <button type="submit" class="footer__newsletter-btn">Subscribe</button>
-                    </form>
-                </div>
-                
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img
+              src="assets/images/logo-white.png"
+              alt="Sunshine Schools Logo"
+              class="footer__brand-logo"
+            />
+            <p class="footer__brand-text" id="footer-tagline">
+              Nurturing leaders, building character, and shaping futures since
+              1995.
+            </p>
+          </div>
+
+          <div class="footer__links-wrapper">
+            <h4 class="footer__heading">Quick Links</h4>
+            <ul class="footer__links">
+              <li><a href="index.html" class="footer__link">Home</a></li>
+              <li><a href="about.html" class="footer__link">About Us</a></li>
+              <li>
+                <a href="admissions.html" class="footer__link">Admissions</a>
+              </li>
+              <li><a href="gallery.html" class="footer__link">Gallery</a></li>
+              <li>
+                <a href="downloads.html" class="footer__link">Downloads</a>
+              </li>
+              <li><a href="careers.html" class="footer__link">Careers</a></li>
+              <li>
+                <a href="contact.html" class="footer__link">Contact Us</a>
+              </li>
+              <li>
+                <a href="portals.html" class="footer__link">School Portals</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__contact">
+            <h4 class="footer__heading">Contact Us</h4>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-location-dot footer__contact-icon"></i>
+              <span id="footer-address"
+                >Suneka-Asumbi Rd, P.O Box 742 - 40200, Kisii</span
+              >
             </div>
-            
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; <span id="current-year">2026</span> Nyambunwa Academy. All Rights Reserved.</p>
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-phone footer__contact-icon"></i>
+              <span id="footer-phone">+254 757 862 075</span>
             </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-envelope footer__contact-icon"></i>
+              <span id="footer-email">nyambunwaacademy@gmail.com</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-clock footer__contact-icon"></i>
+              <span id="footer-hours"
+                >Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 19:00 | Sun: Closed</span
+              >
+            </div>
+          </div>
+
+          <div class="footer__newsletter">
+            <h4 class="footer__heading">Stay Updated</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 1rem;
+              "
+            >
+              Subscribe to our newsletter for the latest news and updates.
+            </p>
+            <form class="footer__newsletter-form newsletter-form">
+              <input
+                type="email"
+                class="footer__newsletter-input"
+                placeholder="Your email address"
+                required
+              />
+              <button type="submit" class="footer__newsletter-btn">
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            &copy; <span id="current-year">2026</span> Nyambunwa Academy. All
+            Rights Reserved.
+          </p>
+          <div class="footer__social">
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </footer>
-    
+
     <!-- ============================================ -->
     <!-- FLOATING ELEMENTS -->
     <!-- ============================================ -->
-    <a href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!%20I%20need%20help%20accessing%20the%20portal." class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <!-- WhatsApp Chat Widget -->
+    <div class="whatsapp-widget">
+      <div class="whatsapp-popup" id="whatsapp-popup">
+        <div class="whatsapp-popup__header">
+          <img
+            src="assets/images/logo.png"
+            alt="Nyambunwa Academy"
+            style="width: 40px; height: 40px; border-radius: 50%"
+          />
+          <div>
+            <strong>Nyambunwa Academy</strong>
+            <p style="font-size: 0.7rem; margin: 0; color: #e0e0e0">
+              Typically replies within a few hours
+            </p>
+          </div>
+          <button
+            id="whatsapp-close"
+            style="
+              background: none;
+              border: none;
+              color: white;
+              font-size: 1.2rem;
+              cursor: pointer;
+            "
+          >
+            ✕
+          </button>
+        </div>
+        <div class="whatsapp-popup__body">
+          <p>
+            Hello! 👋 Welcome to Nyambunwa Academy. How can we help you today?
+          </p>
+          <a
+            href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!%20I%20have%20a%20question"
+            target="_blank"
+            class="whatsapp-popup__btn"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Start Chat
+          </a>
+        </div>
+      </div>
+      <button
+        class="whatsapp-btn"
+        id="whatsapp-btn"
+        aria-label="Chat on WhatsApp"
+      >
         <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    
+      </button>
+    </div>
+
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
+      <i class="fa-solid fa-chevron-up"></i>
     </button>
-    
+
     <!-- ============================================ -->
     <!-- SCRIPTS -->
     <!-- ============================================ -->
     <script src="assets/js/main.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            if (typeof schoolData === 'undefined') return;
-            
-            // Top strip
-            document.getElementById('top-strip-text').textContent = schoolData.name;
-            
-            // Footer
-            document.getElementById('footer-tagline').textContent = schoolData.tagline + '. A ' + schoolData.schoolType + ' on ' + schoolData.mainCampus.address + '.';
-            document.getElementById('footer-address').textContent = schoolData.mainCampus.address;
-            document.getElementById('footer-phone').textContent = schoolData.phone.displayFormat;
-            document.getElementById('footer-email').textContent = schoolData.email.general;
-            document.getElementById('footer-hours').textContent = schoolData.workingHours.shortDisplay;
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Populate portal cards
-            const portalsGrid = document.getElementById('portals-grid');
-            schoolData.portals.forEach(function (portal) {
-                portalsGrid.innerHTML += `
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof schoolData === "undefined") return;
+
+        // Top strip
+        document.getElementById("top-strip-text").textContent = schoolData.name;
+
+        // Footer
+        document.getElementById("footer-tagline").textContent =
+          schoolData.tagline +
+          ". A " +
+          schoolData.schoolType +
+          " on " +
+          schoolData.mainCampus.address +
+          ".";
+        document.getElementById("footer-address").textContent =
+          schoolData.mainCampus.address;
+        document.getElementById("footer-phone").textContent =
+          schoolData.phone.displayFormat;
+        document.getElementById("footer-email").textContent =
+          schoolData.email.general;
+        document.getElementById("footer-hours").textContent =
+          schoolData.workingHours.shortDisplay;
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        // Populate portal cards
+        const portalsGrid = document.getElementById("portals-grid");
+        schoolData.portals.forEach(function (portal) {
+          portalsGrid.innerHTML += `
                     <div class="portal-card fade-in-up">
                         <div class="portal-card__icon">
                             <i class="${portal.icon}"></i>
@@ -298,16 +604,15 @@
                         </a>
                     </div>
                 `;
-            });
-            
-            // Responsive portal help grid on mobile
-            const portalHelpGrid = document.getElementById('portal-help-grid');
-            if (portalHelpGrid && window.innerWidth < 768) {
-                portalHelpGrid.style.gridTemplateColumns = '1fr';
-            }
-            
         });
+
+        // Responsive portal help grid on mobile
+        const portalHelpGrid = document.getElementById("portal-help-grid");
+        if (portalHelpGrid && window.innerWidth < 768) {
+          portalHelpGrid.style.gridTemplateColumns = "1fr";
+        }
+      });
     </script>
-    
-</body>
+    <script src="assets/js/webp-check.js"></script>
+  </body>
 </html>

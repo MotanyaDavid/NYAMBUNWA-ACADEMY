@@ -7,7 +7,8 @@
       "default",
       {
         "ignore": [
-          "-webkit-text-size-adjust"
+          "-webkit-text-size-adjust",
+          "-webkit-overflow-scrolling"
         ]
       }
     ],
@@ -17,6 +18,7 @@
       {
         "select-name": "off"
       }
-    ]
+    ],
+    "disown-opener": "off"
   }
 }

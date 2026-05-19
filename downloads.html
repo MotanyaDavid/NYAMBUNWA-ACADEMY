@@ -1,303 +1,521 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Download essential Nyambunwa Academy documents including admission forms, fee structures, term calendars, policies, and newsletters.">
-    <meta name="keywords" content="Nyambunwa Academy downloads, admission forms PDF, school calendar, fee structure, school policies, newsletters">
-    <meta name="author" content="Nyambunwa Academy">
-    
+    <meta
+      name="description"
+      content="Download essential Nyambunwa Academy documents including admission forms, fee structures, term calendars, policies, and newsletters."
+    />
+    <meta
+      name="keywords"
+      content="Nyambunwa Academy downloads, admission forms PDF, school calendar, fee structure, school policies, newsletters"
+    />
+    <meta name="author" content="Nyambunwa Academy" />
+
     <!-- Open Graph -->
-    <meta property="og:title" content="Downloads | Nyambunwa Academy">
-    <meta property="og:description" content="Access all essential school documents in one place — admission forms, fee structures, policies, term calendars, and newsletters.">
-    <meta property="og:image" content="assets/images/downloads-hero.jpg">
-    <meta property="og:url" content="https://NyambunwaAcademy.ac.ke/downloads.html">
-    <meta property="og:type" content="website">
-    
+    <meta property="og:title" content="Downloads | Nyambunwa Academy" />
+    <meta
+      property="og:description"
+      content="Access all essential school documents in one place — admission forms, fee structures, policies, term calendars, and newsletters."
+    />
+    <meta property="og:image" content="assets/images/downloads-hero.jpg" />
+    <meta
+      property="og:url"
+      content="https://NyambunwaAcademy.ac.ke/downloads.html"
+    />
+    <meta property="og:type" content="website" />
+
     <title>Downloads | Nyambunwa Academy</title>
-    
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/print.css" media="print" />
+
     <script src="school-data.js"></script>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <!-- Mobile CTA Button -->
+    <a href="admissions.html#inquiry-form" class="mobile-cta">Apply Now</a>
+    <!-- Page Loader -->
+    <div id="page-loader">
+      <div class="loader-spinner"></div>
+    </div>
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- ============================================ -->
     <!-- TOP STRIP -->
     <!-- ============================================ -->
     <div class="header__top-strip">
-        <span id="top-strip-text">Nyambunwa Academy</span>
+      <span id="top-strip-text">Nyambunwa Academy</span>
     </div>
-    
+
     <!-- ============================================ -->
     <!-- HEADER & NAVIGATION -->
     <!-- ============================================ -->
-    <header class="header" id="header">
-        <div class="header__container">
-            
-            <a href="index.html" class="header__logo">
-                <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo">
-            </a>
-            
-            <nav class="nav" id="nav">
-                <ul class="nav__list">
-                    <li><a href="index.html" class="nav__link">Home</a></li>
-                    <li><a href="about.html" class="nav__link">About</a></li>
-                    <li><a href="admissions.html" class="nav__link">Admissions</a></li>
-                    <li><a href="gallery.html" class="nav__link">Gallery</a></li>
-                    <li><a href="downloads.html" class="nav__link nav__link--active">Downloads</a></li>
-                    <li><a href="careers.html" class="nav__link">Careers</a></li>
-                    <li><a href="contact.html" class="nav__link">Contact Us</a></li>
-                </ul>
-            </nav>
-            
-            <a href="admissions.html#inquiry-form" class="header__cta">Enroll Now</a>
-            
-            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-            </button>
-            
+    <header class="header" id="header" role="banner">
+      <div class="header__container">
+        <a href="index.html" class="header__logo">
+          <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo" />
+        </a>
+
+        <!-- Search Bar -->
+        <div class="header__search">
+          <input
+            type="text"
+            id="site-search"
+            placeholder="Search..."
+            class="header__search-input"
+          />
+          <button
+            id="search-btn"
+            class="header__search-btn"
+            aria-label="Search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="admissions.html" class="nav__link">Admissions</a></li>
+            <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+            <li>
+              <a href="downloads.html" class="nav__link nav__link--active"
+                >Downloads</a
+              >
+            </li>
+            <li><a href="careers.html" class="nav__link">Careers</a></li>
+            <li><a href="contact.html" class="nav__link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <a href="admissions.html#inquiry-form" class="header__cta"
+          >Enroll Now</a
+        >
+
+        <button
+          class="nav__toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </button>
+        <!-- Dark Mode Toggle -->
+        <button
+          class="dark-mode-toggle"
+          id="dark-mode-toggle"
+          aria-label="Toggle dark mode"
+        >
+          🌙 Dark
+        </button>
+      </div>
     </header>
-    
+
     <!-- ============================================ -->
     <!-- MAIN CONTENT -->
     <!-- ============================================ -->
-    <main>
-        
-        <!-- ========================================== -->
-        <!-- PAGE HERO -->
-        <!-- ========================================== -->
-        <section class="page-hero" style="background-image: url('assets/images/downloads-hero.jpg');">
-            <div class="container">
-                <h1 class="page-hero__title">Downloads</h1>
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb__separator">/</span>
-                    <span class="breadcrumb__current">Downloads</span>
-                </nav>
+    <main id="main-content">
+      <!-- ========================================== -->
+      <!-- PAGE HERO -->
+      <!-- ========================================== -->
+      <section
+        class="page-hero"
+        style="
+          background-image: url(&quot;assets/images/downloads-hero.jpg&quot;);
+        "
+      >
+        <div class="container">
+          <h1 class="page-hero__title">Downloads</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">Downloads</span>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- INTRO TEXT -->
+      <!-- ========================================== -->
+      <section class="section" style="padding-bottom: 0">
+        <div class="container">
+          <div style="max-width: 700px; margin: 0 auto; text-align: center">
+            <span class="section__subtitle">Resources</span>
+            <h2 class="section__title">Essential Documents</h2>
+            <p style="color: var(--color-neutral-medium); line-height: 1.8">
+              All the forms, policies, and information documents you need are
+              available for download below. Simply click on any document to
+              download it as a PDF. If you need a document that isn't listed
+              here, please <a href="contact.html">contact us</a> and we'll be
+              happy to assist.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- ADMISSIONS DOCUMENTS -->
+      <!-- ========================================== -->
+      <section class="section" id="admissions-docs">
+        <div class="container">
+          <div class="downloads__section">
+            <h3 class="downloads__section-title">
+              <i
+                class="fa-solid fa-file-signature"
+                style="color: var(--color-primary); margin-right: 0.5rem"
+              ></i>
+              Admissions
+            </h3>
+            <div class="downloads__list" id="downloads-admissions">
+              <!-- Populated by JavaScript -->
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- INTRO TEXT -->
-        <!-- ========================================== -->
-        <section class="section" style="padding-bottom: 0;">
-            <div class="container">
-                <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                    <span class="section__subtitle">Resources</span>
-                    <h2 class="section__title">Essential Documents</h2>
-                    <p style="color: var(--color-neutral-medium); line-height: 1.8;">
-                        All the forms, policies, and information documents you need are available for download below. 
-                        Simply click on any document to download it as a PDF. If you need a document that isn't listed here, 
-                        please <a href="contact.html">contact us</a> and we'll be happy to assist.
-                    </p>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- ACADEMIC DOCUMENTS -->
+      <!-- ========================================== -->
+      <section class="section section--light" id="academic-docs">
+        <div class="container">
+          <div class="downloads__section">
+            <h3 class="downloads__section-title">
+              <i
+                class="fa-solid fa-calendar-days"
+                style="color: var(--color-primary); margin-right: 0.5rem"
+              ></i>
+              Academic
+            </h3>
+            <div class="downloads__list" id="downloads-academic">
+              <!-- Populated by JavaScript -->
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- ADMISSIONS DOCUMENTS -->
-        <!-- ========================================== -->
-        <section class="section" id="admissions-docs">
-            <div class="container">
-                <div class="downloads__section">
-                    <h3 class="downloads__section-title">
-                        <i class="fa-solid fa-file-signature" style="color: var(--color-primary); margin-right: 0.5rem;"></i>
-                        Admissions
-                    </h3>
-                    <div class="downloads__list" id="downloads-admissions">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- POLICIES -->
+      <!-- ========================================== -->
+      <section class="section" id="policies-docs">
+        <div class="container">
+          <div class="downloads__section">
+            <h3 class="downloads__section-title">
+              <i
+                class="fa-solid fa-shield-halved"
+                style="color: var(--color-primary); margin-right: 0.5rem"
+              ></i>
+              Policies
+            </h3>
+            <div class="downloads__list" id="downloads-policies">
+              <!-- Populated by JavaScript -->
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- ACADEMIC DOCUMENTS -->
-        <!-- ========================================== -->
-        <section class="section section--light" id="academic-docs">
-            <div class="container">
-                <div class="downloads__section">
-                    <h3 class="downloads__section-title">
-                        <i class="fa-solid fa-calendar-days" style="color: var(--color-primary); margin-right: 0.5rem;"></i>
-                        Academic
-                    </h3>
-                    <div class="downloads__list" id="downloads-academic">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- NEWSLETTERS -->
+      <!-- ========================================== -->
+      <section class="section section--light" id="newsletters-docs">
+        <div class="container">
+          <div class="downloads__section">
+            <h3 class="downloads__section-title">
+              <i
+                class="fa-solid fa-newspaper"
+                style="color: var(--color-primary); margin-right: 0.5rem"
+              ></i>
+              Newsletters
+            </h3>
+            <p
+              style="
+                color: var(--color-neutral-medium);
+                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+              "
+            >
+              Catch up on past editions of <em>The Nyambunwa Times</em>, our
+              monthly school newsletter.
+            </p>
+            <div class="downloads__list" id="downloads-newsletters">
+              <!-- Populated by JavaScript -->
             </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- POLICIES -->
-        <!-- ========================================== -->
-        <section class="section" id="policies-docs">
-            <div class="container">
-                <div class="downloads__section">
-                    <h3 class="downloads__section-title">
-                        <i class="fa-solid fa-shield-halved" style="color: var(--color-primary); margin-right: 0.5rem;"></i>
-                        Policies
-                    </h3>
-                    <div class="downloads__list" id="downloads-policies">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- NEWSLETTERS -->
-        <!-- ========================================== -->
-        <section class="section section--light" id="newsletters-docs">
-            <div class="container">
-                <div class="downloads__section">
-                    <h3 class="downloads__section-title">
-                        <i class="fa-solid fa-newspaper" style="color: var(--color-primary); margin-right: 0.5rem;"></i>
-                        Newsletters
-                    </h3>
-                    <p style="color: var(--color-neutral-medium); margin-bottom: 1.5rem; font-size: 0.95rem;">
-                        Catch up on past editions of <em>The Nyambunwa Times</em>, our monthly school newsletter.
-                    </p>
-                    <div class="downloads__list" id="downloads-newsletters">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ========================================== -->
-        <!-- CTA BANNER -->
-        <!-- ========================================== -->
-        <section class="cta-banner">
-            <div class="container">
-                <h2 class="cta-banner__title">Can't Find What You Need?</h2>
-                <p class="cta-banner__text">Our team is ready to help. Reach out to us directly and we'll provide any document or information you're looking for.</p>
-                <a href="contact.html" class="btn btn--primary">Contact Us</a>
-            </div>
-        </section>
-        
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- CTA BANNER -->
+      <!-- ========================================== -->
+      <section class="cta-banner">
+        <div class="container">
+          <h2 class="cta-banner__title">Can't Find What You Need?</h2>
+          <p class="cta-banner__text">
+            Our team is ready to help. Reach out to us directly and we'll
+            provide any document or information you're looking for.
+          </p>
+          <a href="contact.html" class="btn btn--primary">Contact Us</a>
+        </div>
+      </section>
     </main>
-    
+
     <!-- ============================================ -->
     <!-- FOOTER -->
     <!-- ============================================ -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__grid">
-                
-                <div class="footer__brand">
-                    <img src="assets/images/logo-white.png" alt="Nyambunwa Academy Logo" class="footer__brand-logo">
-                    <p class="footer__brand-text" id="footer-tagline">Nurturing leaders, building character, and shaping futures since 1995.</p>
-                </div>
-                
-                <div class="footer__links-wrapper">
-                    <h4 class="footer__heading">Quick Links</h4>
-                    <ul class="footer__links">
-                        <li><a href="index.html" class="footer__link">Home</a></li>
-                        <li><a href="about.html" class="footer__link">About Us</a></li>
-                        <li><a href="admissions.html" class="footer__link">Admissions</a></li>
-                        <li><a href="gallery.html" class="footer__link">Gallery</a></li>
-                        <li><a href="downloads.html" class="footer__link">Downloads</a></li>
-                        <li><a href="careers.html" class="footer__link">Careers</a></li>
-                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-                        <li><a href="portals.html" class="footer__link">School Portals</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer__contact">
-                    <h4 class="footer__heading">Contact Us</h4>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-location-dot footer__contact-icon"></i>
-                        <span id="footer-address">Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-phone footer__contact-icon"></i>
-                        <span id="footer-phone">+254 757 862 075</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-envelope footer__contact-icon"></i>
-                        <span id="footer-email">nyambunwaacademy@gmail.com</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-clock footer__contact-icon"></i>
-                        <span id="footer-hours">Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 19:00 | Sun: Closed</span>
-                    </div>
-                </div>
-                
-                <div class="footer__newsletter">
-                    <h4 class="footer__heading">Stay Updated</h4>
-                    <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Subscribe to our newsletter for the latest news and updates.</p>
-                    <form class="footer__newsletter-form newsletter-form">
-                        <input type="email" class="footer__newsletter-input" placeholder="Your email address" required>
-                        <button type="submit" class="footer__newsletter-btn">Subscribe</button>
-                    </form>
-                </div>
-                
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img
+              src="assets/images/logo-white.png"
+              alt="Nyambunwa Academy Logo"
+              class="footer__brand-logo"
+            />
+            <p class="footer__brand-text" id="footer-tagline">
+              Nurturing leaders, building character, and shaping futures since
+              1995.
+            </p>
+          </div>
+
+          <div class="footer__links-wrapper">
+            <h4 class="footer__heading">Quick Links</h4>
+            <ul class="footer__links">
+              <li><a href="index.html" class="footer__link">Home</a></li>
+              <li><a href="about.html" class="footer__link">About Us</a></li>
+              <li>
+                <a href="admissions.html" class="footer__link">Admissions</a>
+              </li>
+              <li><a href="gallery.html" class="footer__link">Gallery</a></li>
+              <li>
+                <a href="downloads.html" class="footer__link">Downloads</a>
+              </li>
+              <li><a href="careers.html" class="footer__link">Careers</a></li>
+              <li>
+                <a href="contact.html" class="footer__link">Contact Us</a>
+              </li>
+              <li>
+                <a href="portals.html" class="footer__link">School Portals</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer__contact">
+            <h4 class="footer__heading">Contact Us</h4>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-location-dot footer__contact-icon"></i>
+              <span id="footer-address"
+                >Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</span
+              >
             </div>
-            
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; <span id="current-year">2025</span> Nyambunwa Academy. All Rights Reserved.</p>
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-phone footer__contact-icon"></i>
+              <span id="footer-phone">+254 757 862 075</span>
             </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-envelope footer__contact-icon"></i>
+              <span id="footer-email">nyambunwaacademy@gmail.com</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-clock footer__contact-icon"></i>
+              <span id="footer-hours"
+                >Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 19:00 | Sun: Closed</span
+              >
+            </div>
+          </div>
+
+          <div class="footer__newsletter">
+            <h4 class="footer__heading">Stay Updated</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 1rem;
+              "
+            >
+              Subscribe to our newsletter for the latest news and updates.
+            </p>
+            <form class="footer__newsletter-form newsletter-form">
+              <input
+                type="email"
+                class="footer__newsletter-input"
+                placeholder="Your email address"
+                required
+              />
+              <button type="submit" class="footer__newsletter-btn">
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            &copy; <span id="current-year">2025</span> Nyambunwa Academy. All
+            Rights Reserved.
+          </p>
+          <div class="footer__social">
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </footer>
-    
+
     <!-- ============================================ -->
     <!-- FLOATING ELEMENTS -->
     <!-- ============================================ -->
-    <a href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <!-- WhatsApp Chat Widget -->
+    <div class="whatsapp-widget">
+      <div class="whatsapp-popup" id="whatsapp-popup">
+        <div class="whatsapp-popup__header">
+          <img
+            src="assets/images/logo.png"
+            alt="Nyambunwa Academy"
+            style="width: 40px; height: 40px; border-radius: 50%"
+          />
+          <div>
+            <strong>Nyambunwa Academy</strong>
+            <p style="font-size: 0.7rem; margin: 0; color: #e0e0e0">
+              Typically replies within a few hours
+            </p>
+          </div>
+          <button
+            id="whatsapp-close"
+            style="
+              background: none;
+              border: none;
+              color: white;
+              font-size: 1.2rem;
+              cursor: pointer;
+            "
+          >
+            ✕
+          </button>
+        </div>
+        <div class="whatsapp-popup__body">
+          <p>
+            Hello! 👋 Welcome to Nyambunwa Academy. How can we help you today?
+          </p>
+          <a
+            href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!%20I%20have%20a%20question"
+            target="_blank"
+            class="whatsapp-popup__btn"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Start Chat
+          </a>
+        </div>
+      </div>
+      <button
+        class="whatsapp-btn"
+        id="whatsapp-btn"
+        aria-label="Chat on WhatsApp"
+      >
         <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    
+      </button>
+    </div>
+
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
+      <i class="fa-solid fa-chevron-up"></i>
     </button>
-    
+
     <!-- ============================================ -->
     <!-- SCRIPTS -->
     <!-- ============================================ -->
     <script src="assets/js/main.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            if (typeof schoolData === 'undefined') return;
-            
-            // Top strip
-            document.getElementById('top-strip-text').textContent = schoolData.name;
-            
-            // Footer
-            document.getElementById('footer-tagline').textContent = schoolData.tagline + '. A ' + schoolData.schoolType + ' on ' + schoolData.mainCampus.address + '.';
-            document.getElementById('footer-address').textContent = schoolData.mainCampus.address;
-            document.getElementById('footer-phone').textContent = schoolData.phone.displayFormat;
-            document.getElementById('footer-email').textContent = schoolData.email.general;
-            document.getElementById('footer-hours').textContent = schoolData.workingHours.shortDisplay;
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Helper function to create download items
-            function createDownloadItem(doc) {
-                return `
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof schoolData === "undefined") return;
+
+        // Top strip
+        document.getElementById("top-strip-text").textContent = schoolData.name;
+
+        // Footer
+        document.getElementById("footer-tagline").textContent =
+          schoolData.tagline +
+          ". A " +
+          schoolData.schoolType +
+          " on " +
+          schoolData.mainCampus.address +
+          ".";
+        document.getElementById("footer-address").textContent =
+          schoolData.mainCampus.address;
+        document.getElementById("footer-phone").textContent =
+          schoolData.phone.displayFormat;
+        document.getElementById("footer-email").textContent =
+          schoolData.email.general;
+        document.getElementById("footer-hours").textContent =
+          schoolData.workingHours.shortDisplay;
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        // Helper function to create download items
+        function createDownloadItem(doc) {
+          return `
                     <div class="download-item">
                         <div class="download-item__info">
                             <i class="fa-solid fa-file-pdf download-item__icon"></i>
@@ -308,40 +526,43 @@
                         </a>
                     </div>
                 `;
-            }
-            
-            // Populate all download sections
-            const downloadsAdmissions = document.getElementById('downloads-admissions');
-            const downloadsAcademic = document.getElementById('downloads-academic');
-            const downloadsPolicies = document.getElementById('downloads-policies');
-            const downloadsNewsletters = document.getElementById('downloads-newsletters');
-            
-            if (downloadsAdmissions) {
-                schoolData.downloads.admissions.forEach(function (doc) {
-                    downloadsAdmissions.innerHTML += createDownloadItem(doc);
-                });
-            }
-            
-            if (downloadsAcademic) {
-                schoolData.downloads.academic.forEach(function (doc) {
-                    downloadsAcademic.innerHTML += createDownloadItem(doc);
-                });
-            }
-            
-            if (downloadsPolicies) {
-                schoolData.downloads.policies.forEach(function (doc) {
-                    downloadsPolicies.innerHTML += createDownloadItem(doc);
-                });
-            }
-            
-            if (downloadsNewsletters) {
-                schoolData.downloads.newsletters.forEach(function (doc) {
-                    downloadsNewsletters.innerHTML += createDownloadItem(doc);
-                });
-            }
-            
-        });
+        }
+
+        // Populate all download sections
+        const downloadsAdmissions = document.getElementById(
+          "downloads-admissions",
+        );
+        const downloadsAcademic = document.getElementById("downloads-academic");
+        const downloadsPolicies = document.getElementById("downloads-policies");
+        const downloadsNewsletters = document.getElementById(
+          "downloads-newsletters",
+        );
+
+        if (downloadsAdmissions) {
+          schoolData.downloads.admissions.forEach(function (doc) {
+            downloadsAdmissions.innerHTML += createDownloadItem(doc);
+          });
+        }
+
+        if (downloadsAcademic) {
+          schoolData.downloads.academic.forEach(function (doc) {
+            downloadsAcademic.innerHTML += createDownloadItem(doc);
+          });
+        }
+
+        if (downloadsPolicies) {
+          schoolData.downloads.policies.forEach(function (doc) {
+            downloadsPolicies.innerHTML += createDownloadItem(doc);
+          });
+        }
+
+        if (downloadsNewsletters) {
+          schoolData.downloads.newsletters.forEach(function (doc) {
+            downloadsNewsletters.innerHTML += createDownloadItem(doc);
+          });
+        }
+      });
     </script>
-    
-</body>
+    <script src="assets/js/webp-check.js"></script>
+  </body>
 </html>

@@ -1,456 +1,869 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="description" content="Contact Nyambunwa Academy. Find our address, phone numbers, email, working hours, and send us a message. We'd love to hear from you.">
-    <meta name="keywords" content="Nyambunwa Academy contact, school location, contact school Kenya">
-    <meta name="author" content="Nyambunwa Academy">
-    
-    <meta property="og:title" content="Contact Us | Nyambunwa Academy">
-    <meta property="og:description" content="Get in touch with Nyambunwa Academy. Visit us, call us, or send a message.">
-    <meta property="og:image" content="assets/images/contact-hero.jpg">
-    <meta property="og:url" content="https://nyambunwaacademy.ac.ke/contact.html">
-    <meta property="og:type" content="website">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Contact Nyambunwa Academy. Find our address, phone numbers, email, working hours, and send us a message. We'd love to hear from you."
+    />
+    <meta
+      name="keywords"
+      content="Nyambunwa Academy contact, school location, contact school Kenya"
+    />
+    <meta name="author" content="Nyambunwa Academy" />
+
+    <meta property="og:title" content="Contact Us | Nyambunwa Academy" />
+    <meta
+      property="og:description"
+      content="Get in touch with Nyambunwa Academy. Visit us, call us, or send a message."
+    />
+    <meta property="og:image" content="assets/images/contact-hero.jpg" />
+    <meta
+      property="og:url"
+      content="https://nyambunwaacademy.ac.ke/contact.html"
+    />
+    <meta property="og:type" content="website" />
+
     <title>Contact Us | Nyambunwa Academy</title>
-    
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/print.css" media="print" />
+
     <script src="school-data.js"></script>
-</head>
-<body>
-    
-    <div class="header__top-strip">
-        <span id="top-strip-text">Nyambunwa Academy</span>
+  </head>
+  <body>
+    <!-- Mobile CTA Button -->
+    <a href="admissions.html#inquiry-form" class="mobile-cta">Apply Now</a>
+    <!-- Page Loader -->
+    <div id="page-loader">
+      <div class="loader-spinner"></div>
     </div>
-    
-    <header class="header" id="header">
-        <div class="header__container">
-            <a href="index.html" class="header__logo">
-                <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo">
-            </a>
-            <nav class="nav" id="nav">
-                <ul class="nav__list">
-                    <li><a href="index.html" class="nav__link">Home</a></li>
-                    <li><a href="about.html" class="nav__link">About</a></li>
-                    <li><a href="admissions.html" class="nav__link">Admissions</a></li>
-                    <li><a href="gallery.html" class="nav__link">Gallery</a></li>
-                    <li><a href="downloads.html" class="nav__link">Downloads</a></li>
-                    <li><a href="careers.html" class="nav__link">Careers</a></li>
-                    <li><a href="contact.html" class="nav__link nav__link--active">Contact Us</a></li>
-                </ul>
-            </nav>
-            <a href="admissions.html#inquiry-form" class="header__cta">Enroll Now</a>
-            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-            </button>
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="header__top-strip">
+      <span id="top-strip-text">Nyambunwa Academy</span>
+    </div>
+
+    <header class="header" id="header" role="banner">
+      <div class="header__container">
+        <a href="index.html" class="header__logo">
+          <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo" />
+        </a>
+
+        <!-- Search Bar -->
+        <div class="header__search">
+          <input
+            type="text"
+            id="site-search"
+            placeholder="Search..."
+            class="header__search-input"
+          />
+          <button
+            id="search-btn"
+            class="header__search-btn"
+            aria-label="Search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="admissions.html" class="nav__link">Admissions</a></li>
+            <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+            <li><a href="downloads.html" class="nav__link">Downloads</a></li>
+            <li><a href="careers.html" class="nav__link">Careers</a></li>
+            <li>
+              <a href="contact.html" class="nav__link nav__link--active"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <a href="admissions.html#inquiry-form" class="header__cta"
+          >Enroll Now</a
+        >
+        <button
+          class="nav__toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </button>
+        <!-- Dark Mode Toggle -->
+        <button
+          class="dark-mode-toggle"
+          id="dark-mode-toggle"
+          aria-label="Toggle dark mode"
+        >
+          🌙 Dark
+        </button>
+      </div>
     </header>
-    
-    <main>
-        
-        <section class="page-hero" style="background-image: url('assets/images/contact-hero.jpg');">
-            <div class="container">
-                <h1 class="page-hero__title">Get In Touch</h1>
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb__separator">/</span>
-                    <span class="breadcrumb__current">Contact Us</span>
-                </nav>
-            </div>
-        </section>
-        
-        <section class="section" id="contact">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__subtitle">We'd Love to Hear From You</span>
-                    <h2 class="section__title">Contact Nyambunwa Academy</h2>
-                    <p class="section__description">Whether you have a question about admissions, want to schedule a tour, or simply need more information, our team is here to help.</p>
-                </div>
-                
-                <div class="contact__grid">
-                    
-                    <div>
-                        <form class="form" id="contact-form">
-                            
-                            <div class="form__success-message" id="form-success">
-                                <i class="fa-solid fa-circle-check"></i> Thank you for your message! Our team will respond within 24 hours.
-                            </div>
-                            
-                            <div class="form__group">
-                                <label for="contact-name" class="form__label form__label--required">Your Name</label>
-                                <input type="text" id="contact-name" name="name" class="form__input" placeholder="Enter your full name" required>
-                            </div>
-                            
-                            <div class="form__group">
-                                <label for="contact-email" class="form__label form__label--required">Email Address</label>
-                                <input type="email" id="contact-email" name="email" class="form__input" placeholder="your.email@example.com" required>
-                            </div>
-                            
-                            <div class="form__group">
-                                <label for="contact-phone" class="form__label">Phone Number</label>
-                                <input type="tel" id="contact-phone" name="phone" class="form__input" placeholder="+254 7XX XXX XXX">
-                            </div>
-                            
-                            <div class="form__group">
-                                <label for="contact-subject" class="form__label form__label--required">Subject</label>
-                                <select id="contact-subject" name="subject" class="form__select" required>
-                                    <option value="">Select a subject</option>
-                                    <option value="General Inquiry">General Inquiry</option>
-                                    <option value="Admissions Question">Admissions Question</option>
-                                    <option value="Schedule a School Tour">Schedule a School Tour</option>
-                                    <option value="Careers Inquiry">Careers Inquiry</option>
-                                    <option value="Feedback & Suggestions">Feedback & Suggestions</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form__group">
-                                <label for="contact-message" class="form__label form__label--required">Your Message</label>
-                                <textarea id="contact-message" name="message" class="form__textarea" placeholder="Tell us how we can help you..." rows="5" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="form__submit">
-                                <i class="fa-solid fa-paper-plane"></i> Send Message
-                            </button>
-                            
-                        </form>
-                    </div>
-                    
-                    <div class="contact__info">
-                        
-                        <div style="background-color: var(--color-neutral-light); padding: 2rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
-                            <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 1rem;">Main Campus</h3>
-                            
-                            <div class="contact__info-item">
-                                <div class="contact__info-icon">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <p class="contact__info-label">Address</p>
-                                    <p class="contact__info-value" id="info-address">Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</p>
-                                    <p class="contact__info-value" id="info-postal" style="font-size: 0.85rem;">P.O. Box 742 - 40200, Kisii</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact__info-item">
-                                <div class="contact__info-icon">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                                <div>
-                                    <p class="contact__info-label">Phone</p>
-                                    <p class="contact__info-value" id="info-phone">+254 757 862 075</p>
-                                    <p style="font-size: 0.85rem; color: var(--color-neutral-medium);" id="info-admissions-phone">Admissions: +254 711 789 012</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact__info-item">
-                                <div class="contact__info-icon">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <p class="contact__info-label">Email</p>
-                                    <p class="contact__info-value" id="info-email">nyambunwaacademy@gmail.com</p>
-                                    <p style="font-size: 0.85rem; color: var(--color-neutral-medium);" id="info-admissions-email">Admissions: admissions@nyambunwaacademy.sc.ke</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact__info-item">
-                                <div class="contact__info-icon">
-                                    <i class="fa-solid fa-clock"></i>
-                                </div>
-                                <div>
-                                    <p class="contact__info-label">Working Hours</p>
-                                    <p class="contact__info-value" id="info-hours-weekdays">Monday - Friday: 08:00 - 17:00</p>
-                                    <p style="font-size: 0.85rem; color: var(--color-neutral-medium);" id="info-hours-sat">Saturday: 08:00 - 13:00 (Tours by appointment)</p>
-                                    <p style="font-size: 0.85rem; color: var(--color-neutral-medium);" id="info-hours-sun">Sunday: Closed</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="background-color: var(--color-primary); color: var(--color-white); padding: 1.5rem; border-radius: var(--border-radius-md); text-align: center;">
-                            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-white); margin-bottom: 0.5rem;">Prefer to Call?</h3>
-                            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 1rem;">Our team is ready to assist you directly.</p>
-                            <a href="tel:+254757862075" style="display: inline-block; padding: 10px 24px; background-color: var(--color-secondary); color: var(--color-primary-dark); border-radius: var(--border-radius-sm); font-weight: 600; font-size: 0.9rem; transition: background-color 0.3s ease;">
-                                <i class="fa-solid fa-phone"></i> Call Now
-                            </a>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <section class="section section--light" id="campuses">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__subtitle">Our Locations</span>
-                    <h2 class="section__title">Our Schools</h2>
-                    <p class="section__description">Select a campus below to view its specific contact details and location.</p>
-                </div>
-                <div class="campus-tabs" id="campus-tabs"></div>
-                <div id="campus-panels"></div>
-            </div>
-        </section>
-        
-        <section id="map-section">
-            <div class="contact__map" id="main-map"></div>
-        </section>
-        
-        <section class="cta-banner">
-            <div class="container">
-                <h2 class="cta-banner__title">Ready to Visit Us?</h2>
-                <p class="cta-banner__text">Schedule a personal tour of our school and discover why Nyambunwa Academy is the right choice for your child.</p>
-                <a href="admissions.html#inquiry-form" class="btn btn--primary">Book a Tour</a>
-            </div>
-        </section>
-        
-    </main>
-    
-    <footer class="footer">
+
+    <main id="main-content">
+      <section
+        class="page-hero"
+        style="
+          background-image: url(&quot;assets/images/contact-hero.jpg&quot;);
+        "
+      >
         <div class="container">
-            <div class="footer__grid">
-                <div class="footer__brand">
-                    <img src="assets/images/logo-white.png" alt="Nyambunwa Academy Logo" class="footer__brand-logo">
-                    <p class="footer__brand-text" id="footer-tagline">Nurturing leaders, building character, and shaping futures.</p>
-                </div>
-                <div class="footer__links-wrapper">
-                    <h4 class="footer__heading">Quick Links</h4>
-                    <ul class="footer__links">
-                        <li><a href="index.html" class="footer__link">Home</a></li>
-                        <li><a href="about.html" class="footer__link">About Us</a></li>
-                        <li><a href="admissions.html" class="footer__link">Admissions</a></li>
-                        <li><a href="gallery.html" class="footer__link">Gallery</a></li>
-                        <li><a href="downloads.html" class="footer__link">Downloads</a></li>
-                        <li><a href="careers.html" class="footer__link">Careers</a></li>
-                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-                        <li><a href="portals.html" class="footer__link">School Portals</a></li>
-                    </ul>
-                </div>
-                <div class="footer__contact">
-                    <h4 class="footer__heading">Contact Us</h4>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-location-dot footer__contact-icon"></i>
-                        <span id="footer-address">Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-phone footer__contact-icon"></i>
-                        <span id="footer-phone">+254 757 862 075</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-envelope footer__contact-icon"></i>
-                        <span id="footer-email">nyambunwaacademy@gmail.com</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-clock footer__contact-icon"></i>
-                        <span id="footer-hours">Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 13:00 | Sun: Closed</span>
-                    </div>
-                </div>
-                <div class="footer__newsletter">
-                    <h4 class="footer__heading">Stay Updated</h4>
-                    <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Subscribe to our newsletter for the latest news and updates.</p>
-                    <form class="footer__newsletter-form newsletter-form">
-                        <input type="email" class="footer__newsletter-input" placeholder="Your email address" required>
-                        <button type="submit" class="footer__newsletter-btn">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; <span id="current-year">2025</span> Nyambunwa Academy. All Rights Reserved.</p>
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-            </div>
+          <h1 class="page-hero__title">Get In Touch</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">Contact Us</span>
+          </nav>
         </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__subtitle">We'd Love to Hear From You</span>
+            <h2 class="section__title">Contact Nyambunwa Academy</h2>
+            <p class="section__description">
+              Whether you have a question about admissions, want to schedule a
+              tour, or simply need more information, our team is here to help.
+            </p>
+          </div>
+
+          <div class="contact__grid">
+            <div>
+              <form class="form" id="contact-form">
+                <div class="form__success-message" id="form-success">
+                  <i class="fa-solid fa-circle-check"></i> Thank you for your
+                  message! Our team will respond within 24 hours.
+                </div>
+
+                <div class="form__group">
+                  <label
+                    for="contact-name"
+                    class="form__label form__label--required"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    class="form__input"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+
+                <div class="form__group">
+                  <label
+                    for="contact-email"
+                    class="form__label form__label--required"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    class="form__input"
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
+
+                <div class="form__group">
+                  <label for="contact-phone" class="form__label"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    name="phone"
+                    class="form__input"
+                    placeholder="+254 7XX XXX XXX"
+                  />
+                </div>
+
+                <div class="form__group">
+                  <label
+                    for="contact-subject"
+                    class="form__label form__label--required"
+                    >Subject</label
+                  >
+                  <select
+                    id="contact-subject"
+                    name="subject"
+                    class="form__select"
+                    required
+                  >
+                    <option value="">Select a subject</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Admissions Question">
+                      Admissions Question
+                    </option>
+                    <option value="Schedule a School Tour">
+                      Schedule a School Tour
+                    </option>
+                    <option value="Careers Inquiry">Careers Inquiry</option>
+                    <option value="Feedback & Suggestions">
+                      Feedback & Suggestions
+                    </option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form__group">
+                  <label
+                    for="contact-message"
+                    class="form__label form__label--required"
+                    >Your Message</label
+                  >
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    class="form__textarea"
+                    placeholder="Tell us how we can help you..."
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="form__submit">
+                  <i class="fa-solid fa-paper-plane"></i> Send Message
+                </button>
+              </form>
+            </div>
+
+            <div class="contact__info">
+              <div
+                style="
+                  background-color: var(--color-neutral-light);
+                  padding: 2rem;
+                  border-radius: var(--border-radius-md);
+                  margin-bottom: 1.5rem;
+                "
+              >
+                <h3
+                  style="
+                    font-family: var(--font-heading);
+                    font-size: 1.3rem;
+                    margin-bottom: 1rem;
+                  "
+                >
+                  Main Campus
+                </h3>
+
+                <div class="contact__info-item">
+                  <div class="contact__info-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div>
+                    <p class="contact__info-label">Address</p>
+                    <p class="contact__info-value" id="info-address">
+                      Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii
+                    </p>
+                    <p
+                      class="contact__info-value"
+                      id="info-postal"
+                      style="font-size: 0.85rem"
+                    >
+                      P.O. Box 742 - 40200, Kisii
+                    </p>
+                  </div>
+                </div>
+
+                <div class="contact__info-item">
+                  <div class="contact__info-icon">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div>
+                    <p class="contact__info-label">Phone</p>
+                    <p class="contact__info-value" id="info-phone">
+                      +254 757 862 075
+                    </p>
+                    <p
+                      style="
+                        font-size: 0.85rem;
+                        color: var(--color-neutral-medium);
+                      "
+                      id="info-admissions-phone"
+                    >
+                      Admissions: +254 711 789 012
+                    </p>
+                  </div>
+                </div>
+
+                <div class="contact__info-item">
+                  <div class="contact__info-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <p class="contact__info-label">Email</p>
+                    <p class="contact__info-value" id="info-email">
+                      nyambunwaacademy@gmail.com
+                    </p>
+                    <p
+                      style="
+                        font-size: 0.85rem;
+                        color: var(--color-neutral-medium);
+                      "
+                      id="info-admissions-email"
+                    >
+                      Admissions: admissions@nyambunwaacademy.sc.ke
+                    </p>
+                  </div>
+                </div>
+
+                <div class="contact__info-item">
+                  <div class="contact__info-icon">
+                    <i class="fa-solid fa-clock"></i>
+                  </div>
+                  <div>
+                    <p class="contact__info-label">Working Hours</p>
+                    <p class="contact__info-value" id="info-hours-weekdays">
+                      Monday - Friday: 08:00 - 17:00
+                    </p>
+                    <p
+                      style="
+                        font-size: 0.85rem;
+                        color: var(--color-neutral-medium);
+                      "
+                      id="info-hours-sat"
+                    >
+                      Saturday: 08:00 - 13:00 (Tours by appointment)
+                    </p>
+                    <p
+                      style="
+                        font-size: 0.85rem;
+                        color: var(--color-neutral-medium);
+                      "
+                      id="info-hours-sun"
+                    >
+                      Sunday: Closed
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  background-color: var(--color-primary);
+                  color: var(--color-white);
+                  padding: 1.5rem;
+                  border-radius: var(--border-radius-md);
+                  text-align: center;
+                "
+              >
+                <h3
+                  style="
+                    font-family: var(--font-heading);
+                    font-size: 1.2rem;
+                    color: var(--color-white);
+                    margin-bottom: 0.5rem;
+                  "
+                >
+                  Prefer to Call?
+                </h3>
+                <p
+                  style="
+                    font-size: 0.9rem;
+                    color: rgba(255, 255, 255, 0.8);
+                    margin-bottom: 1rem;
+                  "
+                >
+                  Our team is ready to assist you directly.
+                </p>
+                <a
+                  href="tel:+254757862075"
+                  style="
+                    display: inline-block;
+                    padding: 10px 24px;
+                    background-color: var(--color-secondary);
+                    color: var(--color-primary-dark);
+                    border-radius: var(--border-radius-sm);
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                    transition: background-color 0.3s ease;
+                  "
+                >
+                  <i class="fa-solid fa-phone"></i> Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light" id="campuses">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__subtitle">Our Locations</span>
+            <h2 class="section__title">Our Schools</h2>
+            <p class="section__description">
+              Select a campus below to view its specific contact details and
+              location.
+            </p>
+          </div>
+          <div class="campus-tabs" id="campus-tabs"></div>
+          <div id="campus-panels"></div>
+        </div>
+      </section>
+
+      <section id="map-section">
+        <div class="contact__map" id="main-map"></div>
+      </section>
+
+      <section class="cta-banner">
+        <div class="container">
+          <h2 class="cta-banner__title">Ready to Visit Us?</h2>
+          <p class="cta-banner__text">
+            Schedule a personal tour of our school and discover why Nyambunwa
+            Academy is the right choice for your child.
+          </p>
+          <a href="admissions.html#inquiry-form" class="btn btn--primary"
+            >Book a Tour</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img
+              src="assets/images/logo-white.png"
+              alt="Nyambunwa Academy Logo"
+              class="footer__brand-logo"
+            />
+            <p class="footer__brand-text" id="footer-tagline">
+              Nurturing leaders, building character, and shaping futures.
+            </p>
+          </div>
+          <div class="footer__links-wrapper">
+            <h4 class="footer__heading">Quick Links</h4>
+            <ul class="footer__links">
+              <li><a href="index.html" class="footer__link">Home</a></li>
+              <li><a href="about.html" class="footer__link">About Us</a></li>
+              <li>
+                <a href="admissions.html" class="footer__link">Admissions</a>
+              </li>
+              <li><a href="gallery.html" class="footer__link">Gallery</a></li>
+              <li>
+                <a href="downloads.html" class="footer__link">Downloads</a>
+              </li>
+              <li><a href="careers.html" class="footer__link">Careers</a></li>
+              <li>
+                <a href="contact.html" class="footer__link">Contact Us</a>
+              </li>
+              <li>
+                <a href="portals.html" class="footer__link">School Portals</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__contact">
+            <h4 class="footer__heading">Contact Us</h4>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-location-dot footer__contact-icon"></i>
+              <span id="footer-address"
+                >Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</span
+              >
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-phone footer__contact-icon"></i>
+              <span id="footer-phone">+254 757 862 075</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-envelope footer__contact-icon"></i>
+              <span id="footer-email">nyambunwaacademy@gmail.com</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-clock footer__contact-icon"></i>
+              <span id="footer-hours"
+                >Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 13:00 | Sun: Closed</span
+              >
+            </div>
+          </div>
+          <div class="footer__newsletter">
+            <h4 class="footer__heading">Stay Updated</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 1rem;
+              "
+            >
+              Subscribe to our newsletter for the latest news and updates.
+            </p>
+            <form class="footer__newsletter-form newsletter-form">
+              <input
+                type="email"
+                class="footer__newsletter-input"
+                placeholder="Your email address"
+                required
+              />
+              <button type="submit" class="footer__newsletter-btn">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            &copy; <span id="current-year">2025</span> Nyambunwa Academy. All
+            Rights Reserved.
+          </p>
+          <div class="footer__social">
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </footer>
-    
-    <a href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+
+    <!-- WhatsApp Chat Widget -->
+    <div class="whatsapp-widget">
+      <div class="whatsapp-popup" id="whatsapp-popup">
+        <div class="whatsapp-popup__header">
+          <img
+            src="assets/images/logo.png"
+            alt="Nyambunwa Academy"
+            style="width: 40px; height: 40px; border-radius: 50%"
+          />
+          <div>
+            <strong>Nyambunwa Academy</strong>
+            <p style="font-size: 0.7rem; margin: 0; color: #e0e0e0">
+              Typically replies within a few hours
+            </p>
+          </div>
+          <button
+            id="whatsapp-close"
+            style="
+              background: none;
+              border: none;
+              color: white;
+              font-size: 1.2rem;
+              cursor: pointer;
+            "
+          >
+            ✕
+          </button>
+        </div>
+        <div class="whatsapp-popup__body">
+          <p>
+            Hello! 👋 Welcome to Nyambunwa Academy. How can we help you today?
+          </p>
+          <a
+            href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!%20I%20have%20a%20question"
+            target="_blank"
+            class="whatsapp-popup__btn"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Start Chat
+          </a>
+        </div>
+      </div>
+      <button
+        class="whatsapp-btn"
+        id="whatsapp-btn"
+        aria-label="Chat on WhatsApp"
+      >
         <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    
+      </button>
+    </div>
+
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
+      <i class="fa-solid fa-chevron-up"></i>
     </button>
-    
+
     <script src="assets/js/main.js"></script>
-    
+
     <!-- ============================================ -->
     <!-- BACKEND INTEGRATION SCRIPTS -->
     <!-- ============================================ -->
-    
+
     <script>
-        // Populate page data from school-data.js
-        document.addEventListener('DOMContentLoaded', function () {
-            if (typeof schoolData === 'undefined') return;
-            
-            document.getElementById('top-strip-text').textContent = schoolData.name;
-            document.getElementById('footer-tagline').textContent = schoolData.tagline + '. A ' + schoolData.schoolType + ' on ' + schoolData.mainCampus.address + '.';
-            document.getElementById('footer-address').textContent = schoolData.mainCampus.address;
-            document.getElementById('footer-phone').textContent = schoolData.phone.displayFormat;
-            document.getElementById('footer-email').textContent = schoolData.email.general;
-            document.getElementById('footer-hours').textContent = schoolData.workingHours.shortDisplay;
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            document.getElementById('info-address').textContent = schoolData.mainCampus.address;
-            document.getElementById('info-postal').textContent = schoolData.mainCampus.postalAddress;
-            document.getElementById('info-phone').textContent = schoolData.phone.main;
-            document.getElementById('info-admissions-phone').textContent = 'Admissions: ' + schoolData.phone.admissions;
-            document.getElementById('info-email').textContent = schoolData.email.general;
-            document.getElementById('info-admissions-email').textContent = 'Admissions: ' + schoolData.email.admissions;
-            document.getElementById('info-hours-weekdays').textContent = schoolData.workingHours.weekdays;
-            document.getElementById('info-hours-sat').textContent = schoolData.workingHours.saturday;
-            document.getElementById('info-hours-sun').textContent = schoolData.workingHours.sunday;
-            
-            document.getElementById('main-map').innerHTML = '<iframe src="' + schoolData.mainCampus.mapEmbedUrl + '" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Nyambunwa Academy Main Campus Location"></iframe>';
-            
-            // Campus tabs
-            const campusTabs = document.getElementById('campus-tabs');
-            const campusPanels = document.getElementById('campus-panels');
-            
-            campusTabs.innerHTML = '<button class="campus-tab campus-tab--active" data-campus="main">Main Campus</button>';
-            campusPanels.innerHTML = '<div class="campus-panel" id="main-panel" style="display: block;"><div class="contact__info-item" style="margin-bottom: 1rem;"><div class="contact__info-icon"><i class="fa-solid fa-location-dot"></i></div><div><p class="contact__info-label">Address</p><p class="contact__info-value">' + schoolData.mainCampus.address + ', ' + schoolData.mainCampus.city + '</p><p style="font-size: 0.85rem; color: var(--color-neutral-medium);">' + schoolData.mainCampus.postalAddress + '</p></div></div><a href="tel:' + schoolData.phone.main + '" class="btn btn--primary btn--sm"><i class="fa-solid fa-phone"></i> Call Main Campus</a></div>';
-            
-            schoolData.additionalCampuses.forEach(function (campus, index) {
-                const campusId = 'campus-' + index;
-                campusTabs.innerHTML += '<button class="campus-tab" data-campus="' + campusId + '">' + campus.name + '</button>';
-                campusPanels.innerHTML += '<div class="campus-panel" id="' + campusId + '-panel" style="display: none;"><div class="contact__info-item" style="margin-bottom: 1rem;"><div class="contact__info-icon"><i class="fa-solid fa-location-dot"></i></div><div><p class="contact__info-label">Address</p><p class="contact__info-value">' + campus.address + ', ' + campus.city + '</p></div></div><a href="tel:' + campus.phone + '" class="btn btn--primary btn--sm"><i class="fa-solid fa-phone"></i> Call ' + campus.name + '</a></div>';
-            });
-            
-            // Re-initialize campus tabs
-            document.querySelectorAll('.campus-tab').forEach(function (tab) {
-                tab.addEventListener('click', function () {
-                    const targetId = this.getAttribute('data-campus');
-                    document.querySelectorAll('.campus-tab').forEach(function (t) { t.classList.remove('campus-tab--active'); });
-                    this.classList.add('campus-tab--active');
-                    document.querySelectorAll('.campus-panel').forEach(function (panel) { panel.style.display = 'none'; });
-                    const targetPanel = document.getElementById(targetId + '-panel');
-                    if (targetPanel) targetPanel.style.display = 'block';
-                });
-            });
+      // Populate page data from school-data.js
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof schoolData === "undefined") return;
+
+        document.getElementById("top-strip-text").textContent = schoolData.name;
+        document.getElementById("footer-tagline").textContent =
+          schoolData.tagline +
+          ". A " +
+          schoolData.schoolType +
+          " on " +
+          schoolData.mainCampus.address +
+          ".";
+        document.getElementById("footer-address").textContent =
+          schoolData.mainCampus.address;
+        document.getElementById("footer-phone").textContent =
+          schoolData.phone.displayFormat;
+        document.getElementById("footer-email").textContent =
+          schoolData.email.general;
+        document.getElementById("footer-hours").textContent =
+          schoolData.workingHours.shortDisplay;
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        document.getElementById("info-address").textContent =
+          schoolData.mainCampus.address;
+        document.getElementById("info-postal").textContent =
+          schoolData.mainCampus.postalAddress;
+        document.getElementById("info-phone").textContent =
+          schoolData.phone.main;
+        document.getElementById("info-admissions-phone").textContent =
+          "Admissions: " + schoolData.phone.admissions;
+        document.getElementById("info-email").textContent =
+          schoolData.email.general;
+        document.getElementById("info-admissions-email").textContent =
+          "Admissions: " + schoolData.email.admissions;
+        document.getElementById("info-hours-weekdays").textContent =
+          schoolData.workingHours.weekdays;
+        document.getElementById("info-hours-sat").textContent =
+          schoolData.workingHours.saturday;
+        document.getElementById("info-hours-sun").textContent =
+          schoolData.workingHours.sunday;
+
+        document.getElementById("main-map").innerHTML =
+          '<iframe src="' +
+          schoolData.mainCampus.mapEmbedUrl +
+          '" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Nyambunwa Academy Main Campus Location"></iframe>';
+
+        // Campus tabs
+        const campusTabs = document.getElementById("campus-tabs");
+        const campusPanels = document.getElementById("campus-panels");
+
+        campusTabs.innerHTML =
+          '<button class="campus-tab campus-tab--active" data-campus="main">Main Campus</button>';
+        campusPanels.innerHTML =
+          '<div class="campus-panel" id="main-panel" style="display: block;"><div class="contact__info-item" style="margin-bottom: 1rem;"><div class="contact__info-icon"><i class="fa-solid fa-location-dot"></i></div><div><p class="contact__info-label">Address</p><p class="contact__info-value">' +
+          schoolData.mainCampus.address +
+          ", " +
+          schoolData.mainCampus.city +
+          '</p><p style="font-size: 0.85rem; color: var(--color-neutral-medium);">' +
+          schoolData.mainCampus.postalAddress +
+          '</p></div></div><a href="tel:' +
+          schoolData.phone.main +
+          '" class="btn btn--primary btn--sm"><i class="fa-solid fa-phone"></i> Call Main Campus</a></div>';
+
+        schoolData.additionalCampuses.forEach(function (campus, index) {
+          const campusId = "campus-" + index;
+          campusTabs.innerHTML +=
+            '<button class="campus-tab" data-campus="' +
+            campusId +
+            '">' +
+            campus.name +
+            "</button>";
+          campusPanels.innerHTML +=
+            '<div class="campus-panel" id="' +
+            campusId +
+            '-panel" style="display: none;"><div class="contact__info-item" style="margin-bottom: 1rem;"><div class="contact__info-icon"><i class="fa-solid fa-location-dot"></i></div><div><p class="contact__info-label">Address</p><p class="contact__info-value">' +
+            campus.address +
+            ", " +
+            campus.city +
+            '</p></div></div><a href="tel:' +
+            campus.phone +
+            '" class="btn btn--primary btn--sm"><i class="fa-solid fa-phone"></i> Call ' +
+            campus.name +
+            "</a></div>";
         });
+
+        // Re-initialize campus tabs
+        document.querySelectorAll(".campus-tab").forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-campus");
+            document.querySelectorAll(".campus-tab").forEach(function (t) {
+              t.classList.remove("campus-tab--active");
+            });
+            this.classList.add("campus-tab--active");
+            document
+              .querySelectorAll(".campus-panel")
+              .forEach(function (panel) {
+                panel.style.display = "none";
+              });
+            const targetPanel = document.getElementById(targetId + "-panel");
+            if (targetPanel) targetPanel.style.display = "block";
+          });
+        });
+      });
     </script>
-    
+
     <script>
-        // ==========================================
-        // CONTACT FORM - Flask Backend Integration
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', function () {
-            const contactForm = document.getElementById('contact-form');
-            if (!contactForm) return;
-            
-            contactForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                
-                const name = document.getElementById('contact-name').value.trim();
-                const email = document.getElementById('contact-email').value.trim();
-                const phone = document.getElementById('contact-phone').value.trim();
-                const subject = document.getElementById('contact-subject').value;
-                const message = document.getElementById('contact-message').value.trim();
-                
-                if (!name || !email || !message) {
-                    alert('Please fill in all required fields.');
-                    return;
+      // ==========================================
+      // CONTACT FORM - Flask Backend Integration
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactForm = document.getElementById("contact-form");
+        if (!contactForm) return;
+
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("contact-name").value.trim();
+          const email = document.getElementById("contact-email").value.trim();
+          const phone = document.getElementById("contact-phone").value.trim();
+          const subject = document.getElementById("contact-subject").value;
+          const message = document
+            .getElementById("contact-message")
+            .value.trim();
+
+          if (!name || !email || !message) {
+            alert("Please fill in all required fields.");
+            return;
+          }
+
+          const submitBtn = contactForm.querySelector(".form__submit");
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = "Sending...";
+          submitBtn.disabled = true;
+
+          fetch("http://localhost:5000/api/v1/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, phone, subject, message }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                const successMsg = document.getElementById("form-success");
+                if (successMsg) {
+                  successMsg.innerHTML =
+                    '<i class="fa-solid fa-circle-check"></i> ' + data.message;
+                  successMsg.classList.add("form__success-message--visible");
+                  setTimeout(
+                    () =>
+                      successMsg.classList.remove(
+                        "form__success-message--visible",
+                      ),
+                    5000,
+                  );
                 }
-                
-                const submitBtn = contactForm.querySelector('.form__submit');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Sending...';
-                submitBtn.disabled = true;
-                
-                fetch('http://localhost:5000/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email, phone, subject, message })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        const successMsg = document.getElementById('form-success');
-                        if (successMsg) {
-                            successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + data.message;
-                            successMsg.classList.add('form__success-message--visible');
-                            setTimeout(() => successMsg.classList.remove('form__success-message--visible'), 5000);
-                        }
-                        contactForm.reset();
-                        contactForm.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                        alert('Error: ' + (data.error || 'Something went wrong.'));
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert('Network error. Is the backend server running at http://localhost:5000 ?');
-                })
-                .finally(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+                contactForm.reset();
+                contactForm.scrollIntoView({ behavior: "smooth" });
+              } else {
+                alert("Error: " + (data.error || "Something went wrong."));
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+              alert(
+                "Network error. Is the backend server running at http://localhost:5000 ?",
+              );
+            })
+            .finally(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
             });
         });
+      });
     </script>
-    
+
     <script>
-        // ==========================================
-        // NEWSLETTER FORM - Flask Backend
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', function () {
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (!newsletterForm) return;
-            
-            newsletterForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                const email = emailInput.value.trim();
-                if (!email) return;
-                
-                const btn = this.querySelector('button');
-                const originalText = btn.textContent;
-                btn.textContent = 'Subscribing...';
-                btn.disabled = true;
-                
-                fetch('http://localhost:5000/api/newsletter', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    btn.textContent = data.success ? 'Subscribed!' : 'Error';
-                    btn.style.backgroundColor = data.success ? '#28A745' : '#DC3545';
-                    btn.style.color = '#FFFFFF';
-                    if (data.success) emailInput.value = '';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.backgroundColor = '';
-                        btn.style.color = '';
-                        btn.disabled = false;
-                    }, 3000);
-                })
-                .catch(() => {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                });
+      // ==========================================
+      // NEWSLETTER FORM - Flask Backend
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", function () {
+        const newsletterForm = document.getElementById("newsletter-form");
+        if (!newsletterForm) return;
+
+        newsletterForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const emailInput = this.querySelector('input[type="email"]');
+          const email = emailInput.value.trim();
+          if (!email) return;
+
+          const btn = this.querySelector("button");
+          const originalText = btn.textContent;
+          btn.textContent = "Subscribing...";
+          btn.disabled = true;
+
+          fetch("http://localhost:5000/api/v1/newsletter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              btn.textContent = data.success ? "Subscribed!" : "Error";
+              btn.style.backgroundColor = data.success ? "#28A745" : "#DC3545";
+              btn.style.color = "#FFFFFF";
+              if (data.success) emailInput.value = "";
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+                btn.disabled = false;
+              }, 3000);
+            })
+            .catch(() => {
+              btn.textContent = originalText;
+              btn.disabled = false;
             });
         });
+      });
     </script>
-    
-</body>
+    <script src="assets/js/webp-check.js"></script>
+  </body>
 </html>

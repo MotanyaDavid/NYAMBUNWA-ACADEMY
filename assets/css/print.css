@@ -1,0 +1,118 @@
+/* ============================================
+   NYAMBUNWA ACADEMY
+   print.css - Print-Friendly Styles
+   ============================================ */
+
+@media print {
+    /* Hide unnecessary elements */
+    .header,
+    .nav,
+    .nav__toggle,
+    .header__cta,
+    .header__top-strip,
+    .footer,
+    .whatsapp-btn,
+    .back-to-top,
+    .skip-link,
+    .cta-banner,
+    .hero__ctas,
+    .carousel__dots,
+    .carousel__pause,
+    .gallery__filters,
+    .lightbox,
+    #dyslexia-toggle {
+        display: none !important;
+    }
+
+    /* Reset background colors and text */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: black !important;
+        page-break-after: avoid;
+    }
+
+    /* Remove shadows and borders */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Make links readable */
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    /* Internal links don't need URL */
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    /* Ensure images don't break pages */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Expand collapsed sections for printing */
+    .faq__answer {
+        max-height: none !important;
+        display: block !important;
+    }
+
+    /* Make tables readable */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background: #f5f5f5 !important;
+        color: black !important;
+    }
+
+    /* Add page breaks */
+    .section {
+        page-break-inside: avoid;
+        padding: 1rem 0 !important;
+    }
+
+    .section__header {
+        page-break-after: avoid;
+    }
+
+    /* Show full URLs for downloads */
+    .download-item__btn:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+    }
+
+    /* Ensure content fits page */
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* Add margins */
+    @page {
+        margin: 2cm;
+    }
+}

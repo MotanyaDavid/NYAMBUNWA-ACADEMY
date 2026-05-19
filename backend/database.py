@@ -21,6 +21,10 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
+def get_table_name(submission_type):
+    """Get the correct table name for a submission type."""
+    return TABLE_MAP.get(submission_type, submission_type)
+
 def init_db():
     """Create all tables if they don't exist."""
     conn = get_db()
@@ -96,29 +100,50 @@ def init_db():
         )
     ''')
     
-    # Create admins table
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS admins (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        password_hash TEXT NOT NULL,
-        full_name TEXT NOT NULL,
-        email TEXT,
-        role TEXT DEFAULT 'admin',
-        is_active INTEGER DEFAULT 1,
-        last_login TIMESTAMP,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-''')
+        CREATE TABLE IF NOT EXISTS admins (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            full_name TEXT NOT NULL,
+            email TEXT,
+            role TEXT DEFAULT 'admin',
+            is_active INTEGER DEFAULT 1,
+            last_login TIMESTAMP,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS audit_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            admin_username TEXT NOT NULL,
+            action TEXT NOT NULL,
+            details TEXT,
+            ip_address TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Insert default admin if table is empty
+    cursor.execute('SELECT COUNT(*) FROM admins')
+    if cursor.fetchone()[0] == 0:
+        from werkzeug.security import generate_password_hash
+        
+        cursor.execute('''
+            INSERT INTO admins (username, password_hash, full_name, email, role)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (
+            Config.ADMIN_USERNAME,
+            generate_password_hash(Config.ADMIN_PASSWORD_HASH if hasattr(Config, 'ADMIN_PASSWORD_HASH') else 'admin123', method='pbkdf2:sha256'),
+            'School Administrator',
+            Config.SCHOOL_EMAIL,
+            'super_admin'
+        ))
     
     conn.commit()
     conn.close()
     print("Database initialized successfully!")
-
-
-def get_table_name(submission_type):
-    """Get the correct table name for a submission type."""
-    return TABLE_MAP.get(submission_type, submission_type)
 
 
 def save_contact(name, email, phone, subject, message):
@@ -268,47 +293,6 @@ def get_stats():
     conn.close()
     return stats
 
-def create_admins_table():
-    """Create admins table for multi-user support."""
-    conn = get_db()
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS admins (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL,
-            full_name TEXT NOT NULL,
-            email TEXT,
-            role TEXT DEFAULT 'admin',
-            is_active INTEGER DEFAULT 1,
-            last_login TIMESTAMP,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    
-    # Insert default admin if table is empty
-    cursor.execute('SELECT COUNT(*) FROM admins')
-    if cursor.fetchone()[0] == 0:
-        from werkzeug.security import generate_password_hash
-        from config import Config
-        
-        cursor.execute('''
-            INSERT INTO admins (username, password_hash, full_name, email, role)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (
-            Config.ADMIN_USERNAME,
-            generate_password_hash(Config.ADMIN_PASSWORD_HASH.split('$')[-1] if '$' in Config.ADMIN_PASSWORD_HASH else Config.ADMIN_PASSWORD_HASH, method='pbkdf2:sha256'),
-            'School Administrator',
-            Config.SCHOOL_EMAIL,
-            'super_admin'
-        ))
-    
-    conn.commit()
-    conn.close()
-    print("Admins table ready!")
-
-
 def get_admin_by_username(username):
     """Get admin by username."""
     conn = get_db()
@@ -319,7 +303,6 @@ def get_admin_by_username(username):
     conn.close()
     return dict(result) if result else None
 
-
 def update_admin_last_login(admin_id):
     """Update last login timestamp."""
     conn = get_db()
@@ -328,13 +311,43 @@ def update_admin_last_login(admin_id):
     conn.commit()
     conn.close()
 
-
 def get_all_admins():
     """Get all admin users."""
     conn = get_db()
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     cursor.execute('SELECT id, username, full_name, email, role, is_active, last_login, created_at FROM admins ORDER BY created_at')
+    results = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return results
+
+def log_audit(admin_username, action, details='', ip_address=''):
+    """Log an admin action."""
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO audit_log (admin_username, action, details, ip_address)
+        VALUES (?, ?, ?, ?)
+    ''', (admin_username, action, details, ip_address))
+    conn.commit()
+    conn.close()
+
+def get_audit_logs(limit=100):
+    """Get recent audit logs."""
+    conn = get_db()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM audit_log ORDER BY created_at DESC LIMIT ?', (limit,))
+    results = [dict(row) for row in cursor.fetchall()]
+    conn.close()
+    return results
+
+def get_admin_audit_logs(admin_username, limit=50):
+    """Get audit logs for a specific admin."""
+    conn = get_db()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM audit_log WHERE admin_username = ? ORDER BY created_at DESC LIMIT ?', (admin_username, limit))
     results = [dict(row) for row in cursor.fetchall()]
     conn.close()
     return results

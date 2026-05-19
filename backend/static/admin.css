@@ -719,3 +719,30 @@ body {
         align-items: flex-start;
     }
 }
+
+/* ============================================
+   N5: BULK ACTIONS BAR
+   ============================================ */
+
+.bulk-actions {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Checkbox styling */
+.submission-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}

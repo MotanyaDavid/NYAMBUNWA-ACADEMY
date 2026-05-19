@@ -1,433 +1,790 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="description" content="Join the Nyambunwa Academy team. Explore current teaching and non-teaching vacancies, learn why our staff love working here, and submit your application.">
-    <meta name="keywords" content="Nyambunwa Academy careers, teaching jobs, school vacancies Kenya, education jobs">
-    <meta name="author" content="Nyambunwa Academy">
-    
-    <meta property="og:title" content="Careers | Nyambunwa Academy">
-    <meta property="og:description" content="Become part of a passionate team shaping the next generation of leaders. View current vacancies and apply today.">
-    <meta property="og:image" content="assets/images/careers-hero.jpg">
-    <meta property="og:url" content="https://nyambunwaacademy.ac.ke/careers.html">
-    <meta property="og:type" content="website">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Join the Nyambunwa Academy team. Explore current teaching and non-teaching vacancies, learn why our staff love working here, and submit your application."
+    />
+    <meta
+      name="keywords"
+      content="Nyambunwa Academy careers, teaching jobs, school vacancies Kenya, education jobs"
+    />
+    <meta name="author" content="Nyambunwa Academy" />
+
+    <meta property="og:title" content="Careers | Nyambunwa Academy" />
+    <meta
+      property="og:description"
+      content="Become part of a passionate team shaping the next generation of leaders. View current vacancies and apply today."
+    />
+    <meta property="og:image" content="assets/images/careers-hero.jpg" />
+    <meta
+      property="og:url"
+      content="https://nyambunwaacademy.ac.ke/careers.html"
+    />
+    <meta property="og:type" content="website" />
+
     <title>Careers | Nyambunwa Academy</title>
-    
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/print.css" media="print" />
+
     <script src="school-data.js"></script>
-</head>
-<body>
-    
-    <div class="header__top-strip">
-        <span id="top-strip-text">Nyambunwa Academy</span>
+  </head>
+  <body>
+    <!-- Mobile CTA Button -->
+    <a href="admissions.html#inquiry-form" class="mobile-cta">Apply Now</a>
+    <!-- Page Loader -->
+    <div id="page-loader">
+      <div class="loader-spinner"></div>
     </div>
-    
-    <header class="header" id="header">
-        <div class="header__container">
-            <a href="index.html" class="header__logo">
-                <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo">
-            </a>
-            <nav class="nav" id="nav">
-                <ul class="nav__list">
-                    <li><a href="index.html" class="nav__link">Home</a></li>
-                    <li><a href="about.html" class="nav__link">About</a></li>
-                    <li><a href="admissions.html" class="nav__link">Admissions</a></li>
-                    <li><a href="gallery.html" class="nav__link">Gallery</a></li>
-                    <li><a href="downloads.html" class="nav__link">Downloads</a></li>
-                    <li><a href="careers.html" class="nav__link nav__link--active">Careers</a></li>
-                    <li><a href="contact.html" class="nav__link">Contact Us</a></li>
-                </ul>
-            </nav>
-            <a href="admissions.html#inquiry-form" class="header__cta">Enroll Now</a>
-            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-                <span class="nav__toggle-bar"></span>
-            </button>
+    <!-- Skip Navigation Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="header__top-strip">
+      <span id="top-strip-text">Nyambunwa Academy</span>
+    </div>
+
+    <header class="header" id="header" role="banner">
+      <div class="header__container">
+        <a href="index.html" class="header__logo">
+          <img src="assets/images/logo.png" alt="Nyambunwa Academy Logo" />
+        </a>
+
+        <!-- Search Bar -->
+        <div class="header__search">
+          <input
+            type="text"
+            id="site-search"
+            placeholder="Search..."
+            class="header__search-input"
+          />
+          <button
+            id="search-btn"
+            class="header__search-btn"
+            aria-label="Search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
+
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="admissions.html" class="nav__link">Admissions</a></li>
+            <li><a href="gallery.html" class="nav__link">Gallery</a></li>
+            <li><a href="downloads.html" class="nav__link">Downloads</a></li>
+            <li>
+              <a href="careers.html" class="nav__link nav__link--active"
+                >Careers</a
+              >
+            </li>
+            <li><a href="contact.html" class="nav__link">Contact Us</a></li>
+          </ul>
+        </nav>
+        <a href="admissions.html#inquiry-form" class="header__cta"
+          >Enroll Now</a
+        >
+        <button
+          class="nav__toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </button>
+        <!-- Dark Mode Toggle -->
+        <button
+          class="dark-mode-toggle"
+          id="dark-mode-toggle"
+          aria-label="Toggle dark mode"
+        >
+          🌙 Dark
+        </button>
+      </div>
     </header>
-    
-    <main>
-        
-        <section class="page-hero" style="background-image: url('assets/images/careers-hero.jpg');">
-            <div class="container">
-                <h1 class="page-hero__title">Join Our Team</h1>
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb__separator">/</span>
-                    <span class="breadcrumb__current">Careers</span>
-                </nav>
-            </div>
-        </section>
-        
-        <section class="section" id="working-here">
-            <div class="container">
-                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                    <span class="section__subtitle">Work With Us</span>
-                    <h2 class="section__title">Working at Nyambunwa Academy</h2>
-                    <p style="color: var(--color-neutral-medium); line-height: 1.8; font-size: 1.05rem;">
-                        Nyambunwa Academy is more than a place of employment — it's a community of passionate educators
-                        and professionals united by a shared mission: to develop the next generation of leaders.
-                        We believe that exceptional teachers create exceptional students, which is why we invest
-                        heavily in our staff's professional growth, wellbeing, and career advancement.
-                    </p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section section--light" id="why-work">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__subtitle">The Nyambunwa Difference</span>
-                    <h2 class="section__title">Why Work With Us?</h2>
-                </div>
-                <div class="work-reasons__grid" id="work-reasons-grid"></div>
-            </div>
-        </section>
-        
-        <section class="section" id="vacancies">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__subtitle">Open Positions</span>
-                    <h2 class="section__title">Current Vacancies</h2>
-                </div>
-                <div class="vacancies__list" id="vacancies-list"></div>
-                <div id="no-vacancies" style="display: none; text-align: center; padding: 3rem; background: var(--color-neutral-light); border-radius: var(--border-radius-md);">
-                    <i class="fa-solid fa-folder-open" style="font-size: 3rem; color: var(--color-neutral-medium); margin-bottom: 1rem;"></i>
-                    <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem;">No Current Openings</h3>
-                    <p style="color: var(--color-neutral-medium);">There are no vacancies at this time. However, we're always interested in hearing from talented individuals. Please submit a speculative application below.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section section--light" id="apply">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__subtitle">Take the Next Step</span>
-                    <h2 class="section__title">Submit Your Application</h2>
-                    <p class="section__description">Apply for a specific vacancy or submit a general application. We'd love to hear from you.</p>
-                </div>
-                
-                <div style="max-width: 700px; margin: 0 auto;">
-                    <form class="form" id="careers-form">
-                        
-                        <div class="form__success-message" id="form-success">
-                            <i class="fa-solid fa-circle-check"></i> Thank you for your application! Our HR team will review it and get back to you within 7 working days.
-                        </div>
-                        
-                        <div class="form__group">
-                            <label for="applicant-name" class="form__label form__label--required">Full Name</label>
-                            <input type="text" id="applicant-name" name="name" class="form__input" placeholder="Enter your full name as it appears on your ID" required>
-                        </div>
-                        
-                        <div class="form__group">
-                            <label for="applicant-email" class="form__label form__label--required">Email Address</label>
-                            <input type="email" id="applicant-email" name="email" class="form__input" placeholder="your.email@example.com" required>
-                        </div>
-                        
-                        <div class="form__group">
-                            <label for="applicant-phone" class="form__label form__label--required">Phone Number</label>
-                            <input type="tel" id="applicant-phone" name="phone" class="form__input" placeholder="+254 7XX XXX XXX" required>
-                        </div>
-                        
-                        <div class="form__group">
-                            <label for="position-applying" class="form__label">Position Applying For</label>
-                            <select id="position-applying" name="position_applying" class="form__select">
-                                <option value="">Select a position</option>
-                                <option value="Mathematics & Physics Teacher">Mathematics & Physics Teacher (Senior Secondary)</option>
-                                <option value="Kindergarten Class Teacher">Kindergarten Class Teacher</option>
-                                <option value="School Nurse">School Nurse</option>
-                                <option value="Speculative / General Application">Speculative / General Application</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form__group">
-                            <label for="cover-letter" class="form__label form__label--required">Cover Letter</label>
-                            <textarea id="cover-letter" name="cover_letter" class="form__textarea" placeholder="Tell us why you'd be a great fit for Nyambunwa Academy. Highlight your qualifications, experience, and what you'd bring to our community." rows="6" required></textarea>
-                        </div>
-                        
-                        <div class="form__group">
-                            <label for="cv-upload" class="form__label">Upload CV (PDF or Word, max 5MB)</label>
-                            <div class="form__file-wrapper">
-                                <input type="file" id="cv-upload" name="cv" class="form__file-input" accept=".pdf,.doc,.docx">
-                                <div class="form__file-trigger">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                                    <span id="file-name-display">Choose a file or drag it here</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form__group">
-                            <label style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--color-neutral-medium); cursor: pointer;">
-                                <input type="checkbox" required style="margin-top: 3px;">
-                                <span>I confirm that the information provided is accurate and complete. I consent to Nyambunwa Academy processing my personal data for recruitment purposes in accordance with the Data Protection Act.</span>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="form__submit">
-                            <i class="fa-solid fa-paper-plane"></i> Submit Application
-                        </button>
-                        
-                    </form>
-                </div>
-            </div>
-        </section>
-        
-        <section class="cta-banner">
-            <div class="container">
-                <h2 class="cta-banner__title">Questions About Working Here?</h2>
-                <p class="cta-banner__text">Reach out to our Human Resources team.</p>
-                <a href="contact.html" class="btn btn--primary">Contact HR</a>
-            </div>
-        </section>
-        
-    </main>
-    
-    <footer class="footer">
+
+    <main id="main-content">
+      <section
+        class="page-hero"
+        style="
+          background-image: url(&quot;assets/images/careers-hero.jpg&quot;);
+        "
+      >
         <div class="container">
-            <div class="footer__grid">
-                <div class="footer__brand">
-                    <img src="assets/images/logo-white.png" alt="Nyambunwa Academy Logo" class="footer__brand-logo">
-                    <p class="footer__brand-text" id="footer-tagline">Nurturing leaders, building character, and shaping futures.</p>
-                </div>
-                <div class="footer__links-wrapper">
-                    <h4 class="footer__heading">Quick Links</h4>
-                    <ul class="footer__links">
-                        <li><a href="index.html" class="footer__link">Home</a></li>
-                        <li><a href="about.html" class="footer__link">About Us</a></li>
-                        <li><a href="admissions.html" class="footer__link">Admissions</a></li>
-                        <li><a href="gallery.html" class="footer__link">Gallery</a></li>
-                        <li><a href="downloads.html" class="footer__link">Downloads</a></li>
-                        <li><a href="careers.html" class="footer__link">Careers</a></li>
-                        <li><a href="contact.html" class="footer__link">Contact Us</a></li>
-                        <li><a href="portals.html" class="footer__link">School Portals</a></li>
-                    </ul>
-                </div>
-                <div class="footer__contact">
-                    <h4 class="footer__heading">Contact Us</h4>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-location-dot footer__contact-icon"></i>
-                        <span id="footer-address">Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-phone footer__contact-icon"></i>
-                        <span id="footer-phone">+254 757 862 075</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-envelope footer__contact-icon"></i>
-                        <span id="footer-email">nyambunwaacademy@gmail.com</span>
-                    </div>
-                    <div class="footer__contact-item">
-                        <i class="fa-solid fa-clock footer__contact-icon"></i>
-                        <span id="footer-hours">Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 13:00 | Sun: Closed</span>
-                    </div>
-                </div>
-                <div class="footer__newsletter">
-                    <h4 class="footer__heading">Stay Updated</h4>
-                    <p style="font-size: 0.875rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">Subscribe to our newsletter for the latest news and updates.</p>
-                    <form class="footer__newsletter-form newsletter-form">
-                        <input type="email" class="footer__newsletter-input" placeholder="Your email address" required>
-                        <button type="submit" class="footer__newsletter-btn">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; <span id="current-year">2025</span> Nyambunwa Academy. All Rights Reserved.</p>
-                <div class="footer__social">
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-            </div>
+          <h1 class="page-hero__title">Join Our Team</h1>
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">Careers</span>
+          </nav>
         </div>
+      </section>
+
+      <section class="section" id="working-here">
+        <div class="container">
+          <div style="max-width: 800px; margin: 0 auto; text-align: center">
+            <span class="section__subtitle">Work With Us</span>
+            <h2 class="section__title">Working at Nyambunwa Academy</h2>
+            <p
+              style="
+                color: var(--color-neutral-medium);
+                line-height: 1.8;
+                font-size: 1.05rem;
+              "
+            >
+              Nyambunwa Academy is more than a place of employment — it's a
+              community of passionate educators and professionals united by a
+              shared mission: to develop the next generation of leaders. We
+              believe that exceptional teachers create exceptional students,
+              which is why we invest heavily in our staff's professional growth,
+              wellbeing, and career advancement.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light" id="why-work">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__subtitle">The Nyambunwa Difference</span>
+            <h2 class="section__title">Why Work With Us?</h2>
+          </div>
+          <div class="work-reasons__grid" id="work-reasons-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="vacancies">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__subtitle">Open Positions</span>
+            <h2 class="section__title">Current Vacancies</h2>
+          </div>
+          <div class="vacancies__list" id="vacancies-list"></div>
+          <div
+            id="no-vacancies"
+            style="
+              display: none;
+              text-align: center;
+              padding: 3rem;
+              background: var(--color-neutral-light);
+              border-radius: var(--border-radius-md);
+            "
+          >
+            <i
+              class="fa-solid fa-folder-open"
+              style="
+                font-size: 3rem;
+                color: var(--color-neutral-medium);
+                margin-bottom: 1rem;
+              "
+            ></i>
+            <h3 style="font-family: var(--font-heading); margin-bottom: 0.5rem">
+              No Current Openings
+            </h3>
+            <p style="color: var(--color-neutral-medium)">
+              There are no vacancies at this time. However, we're always
+              interested in hearing from talented individuals. Please submit a
+              speculative application below.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light" id="apply">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__subtitle">Take the Next Step</span>
+            <h2 class="section__title">Submit Your Application</h2>
+            <p class="section__description">
+              Apply for a specific vacancy or submit a general application. We'd
+              love to hear from you.
+            </p>
+          </div>
+
+          <div style="max-width: 700px; margin: 0 auto">
+            <form class="form" id="careers-form">
+              <div class="form__success-message" id="form-success">
+                <i class="fa-solid fa-circle-check"></i> Thank you for your
+                application! Our HR team will review it and get back to you
+                within 7 working days.
+              </div>
+
+              <div class="form__group">
+                <label
+                  for="applicant-name"
+                  class="form__label form__label--required"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="applicant-name"
+                  name="name"
+                  class="form__input"
+                  placeholder="Enter your full name as it appears on your ID"
+                  required
+                />
+              </div>
+
+              <div class="form__group">
+                <label
+                  for="applicant-email"
+                  class="form__label form__label--required"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="applicant-email"
+                  name="email"
+                  class="form__input"
+                  placeholder="your.email@example.com"
+                  required
+                />
+              </div>
+
+              <div class="form__group">
+                <label
+                  for="applicant-phone"
+                  class="form__label form__label--required"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  id="applicant-phone"
+                  name="phone"
+                  class="form__input"
+                  placeholder="+254 7XX XXX XXX"
+                  required
+                />
+              </div>
+
+              <div class="form__group">
+                <label for="position-applying" class="form__label"
+                  >Position Applying For</label
+                >
+                <select
+                  id="position-applying"
+                  name="position_applying"
+                  class="form__select"
+                >
+                  <option value="">Select a position</option>
+                  <option value="Mathematics & Physics Teacher">
+                    Mathematics & Physics Teacher (Senior Secondary)
+                  </option>
+                  <option value="Kindergarten Class Teacher">
+                    Kindergarten Class Teacher
+                  </option>
+                  <option value="School Nurse">School Nurse</option>
+                  <option value="Speculative / General Application">
+                    Speculative / General Application
+                  </option>
+                </select>
+              </div>
+
+              <div class="form__group">
+                <label
+                  for="cover-letter"
+                  class="form__label form__label--required"
+                  >Cover Letter</label
+                >
+                <textarea
+                  id="cover-letter"
+                  name="cover_letter"
+                  class="form__textarea"
+                  placeholder="Tell us why you'd be a great fit for Nyambunwa Academy. Highlight your qualifications, experience, and what you'd bring to our community."
+                  rows="6"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form__group">
+                <label for="cv-upload" class="form__label"
+                  >Upload CV (PDF or Word, max 5MB)</label
+                >
+                <div class="form__file-wrapper">
+                  <input
+                    type="file"
+                    id="cv-upload"
+                    name="cv"
+                    class="form__file-input"
+                    accept=".pdf,.doc,.docx"
+                  />
+                  <div class="form__file-trigger">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span id="file-name-display"
+                      >Choose a file or drag it here</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label
+                  style="
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+                    font-size: 0.85rem;
+                    color: var(--color-neutral-medium);
+                    cursor: pointer;
+                  "
+                >
+                  <input type="checkbox" required style="margin-top: 3px" />
+                  <span
+                    >I confirm that the information provided is accurate and
+                    complete. I consent to Nyambunwa Academy processing my
+                    personal data for recruitment purposes in accordance with
+                    the Data Protection Act.</span
+                  >
+                </label>
+              </div>
+
+              <button type="submit" class="form__submit">
+                <i class="fa-solid fa-paper-plane"></i> Submit Application
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-banner">
+        <div class="container">
+          <h2 class="cta-banner__title">Questions About Working Here?</h2>
+          <p class="cta-banner__text">Reach out to our Human Resources team.</p>
+          <a href="contact.html" class="btn btn--primary">Contact HR</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img
+              src="assets/images/logo-white.png"
+              alt="Nyambunwa Academy Logo"
+              class="footer__brand-logo"
+            />
+            <p class="footer__brand-text" id="footer-tagline">
+              Nurturing leaders, building character, and shaping futures.
+            </p>
+          </div>
+          <div class="footer__links-wrapper">
+            <h4 class="footer__heading">Quick Links</h4>
+            <ul class="footer__links">
+              <li><a href="index.html" class="footer__link">Home</a></li>
+              <li><a href="about.html" class="footer__link">About Us</a></li>
+              <li>
+                <a href="admissions.html" class="footer__link">Admissions</a>
+              </li>
+              <li><a href="gallery.html" class="footer__link">Gallery</a></li>
+              <li>
+                <a href="downloads.html" class="footer__link">Downloads</a>
+              </li>
+              <li><a href="careers.html" class="footer__link">Careers</a></li>
+              <li>
+                <a href="contact.html" class="footer__link">Contact Us</a>
+              </li>
+              <li>
+                <a href="portals.html" class="footer__link">School Portals</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__contact">
+            <h4 class="footer__heading">Contact Us</h4>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-location-dot footer__contact-icon"></i>
+              <span id="footer-address"
+                >Suneka-Asumbi Rd, P.O. Box 742 - 40200, Kisii</span
+              >
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-phone footer__contact-icon"></i>
+              <span id="footer-phone">+254 757 862 075</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-envelope footer__contact-icon"></i>
+              <span id="footer-email">nyambunwaacademy@gmail.com</span>
+            </div>
+            <div class="footer__contact-item">
+              <i class="fa-solid fa-clock footer__contact-icon"></i>
+              <span id="footer-hours"
+                >Mon-Fri: 08:00 - 17:00 | Sat: 08:00 - 13:00 | Sun: Closed</span
+              >
+            </div>
+          </div>
+          <div class="footer__newsletter">
+            <h4 class="footer__heading">Stay Updated</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: rgba(255, 255, 255, 0.7);
+                margin-bottom: 1rem;
+              "
+            >
+              Subscribe to our newsletter for the latest news and updates.
+            </p>
+            <form class="footer__newsletter-form newsletter-form">
+              <input
+                type="email"
+                class="footer__newsletter-input"
+                placeholder="Your email address"
+                required
+              />
+              <button type="submit" class="footer__newsletter-btn">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            &copy; <span id="current-year">2025</span> Nyambunwa Academy. All
+            Rights Reserved.
+          </p>
+          <div class="footer__social">
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              ><i class="fa-brands fa-x-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a
+              href="#"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </footer>
-    
-    <a href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!%20I%20have%20a%20question%20about%20careers." class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+
+    <!-- WhatsApp Chat Widget -->
+    <div class="whatsapp-widget">
+      <div class="whatsapp-popup" id="whatsapp-popup">
+        <div class="whatsapp-popup__header">
+          <img
+            src="assets/images/logo.png"
+            alt="Nyambunwa Academy"
+            style="width: 40px; height: 40px; border-radius: 50%"
+          />
+          <div>
+            <strong>Nyambunwa Academy</strong>
+            <p style="font-size: 0.7rem; margin: 0; color: #e0e0e0">
+              Typically replies within a few hours
+            </p>
+          </div>
+          <button
+            id="whatsapp-close"
+            style="
+              background: none;
+              border: none;
+              color: white;
+              font-size: 1.2rem;
+              cursor: pointer;
+            "
+          >
+            ✕
+          </button>
+        </div>
+        <div class="whatsapp-popup__body">
+          <p>
+            Hello! 👋 Welcome to Nyambunwa Academy. How can we help you today?
+          </p>
+          <a
+            href="https://wa.me/254757862075?text=Hello%20Nyambunwa%20Academy!%20I%20have%20a%20question"
+            target="_blank"
+            class="whatsapp-popup__btn"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Start Chat
+          </a>
+        </div>
+      </div>
+      <button
+        class="whatsapp-btn"
+        id="whatsapp-btn"
+        aria-label="Chat on WhatsApp"
+      >
         <i class="fa-brands fa-whatsapp"></i>
-    </a>
-    
+      </button>
+    </div>
+
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
+      <i class="fa-solid fa-chevron-up"></i>
     </button>
-    
+
     <script src="assets/js/main.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (typeof schoolData === 'undefined') return;
-            
-            document.getElementById('top-strip-text').textContent = schoolData.name;
-            document.getElementById('footer-tagline').textContent = schoolData.tagline + '. A ' + schoolData.schoolType + ' on ' + schoolData.mainCampus.address + '.';
-            document.getElementById('footer-address').textContent = schoolData.mainCampus.address;
-            document.getElementById('footer-phone').textContent = schoolData.phone.displayFormat;
-            document.getElementById('footer-email').textContent = schoolData.email.general;
-            document.getElementById('footer-hours').textContent = schoolData.workingHours.shortDisplay;
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            const workReasonsGrid = document.getElementById('work-reasons-grid');
-            schoolData.workReasons.forEach(function (reason) {
-                workReasonsGrid.innerHTML += '<div class="work-reason-card fade-in-up"><div class="work-reason-card__icon"><i class="' + reason.icon + '"></i></div><h3 class="work-reason-card__title">' + reason.title + '</h3><p class="work-reason-card__description">' + reason.description + '</p></div>';
-            });
-            
-            const vacanciesList = document.getElementById('vacancies-list');
-            const noVacancies = document.getElementById('no-vacancies');
-            
-            if (schoolData.vacancies && schoolData.vacancies.length > 0) {
-                noVacancies.style.display = 'none';
-                schoolData.vacancies.forEach(function (vacancy) {
-                    const closingDate = new Date(vacancy.closingDate);
-                    const formattedClosingDate = closingDate.toLocaleDateString('en-KE', { year: 'numeric', month: 'long', day: 'numeric' });
-                    vacanciesList.innerHTML += '<div class="vacancy-card fade-in-up"><div class="vacancy-card__header"><h3 class="vacancy-card__title">' + vacancy.title + '</h3><a href="#apply" class="btn btn--primary btn--sm">Apply Now</a></div><div class="vacancy-card__meta"><span><i class="fa-solid fa-building"></i> ' + vacancy.department + '</span><span><i class="fa-solid fa-location-dot"></i> ' + vacancy.location + '</span><span><i class="fa-solid fa-briefcase"></i> ' + vacancy.type + '</span></div><p class="vacancy-card__description">' + vacancy.description + '</p><p class="vacancy-card__closing"><i class="fa-solid fa-hourglass-half"></i> Closing Date: ' + formattedClosingDate + '</p></div>';
-                });
-            } else {
-                vacanciesList.style.display = 'none';
-                noVacancies.style.display = 'block';
-            }
-            
-            const fileInput = document.getElementById('cv-upload');
-            const fileNameDisplay = document.getElementById('file-name-display');
-            if (fileInput && fileNameDisplay) {
-                fileInput.addEventListener('change', function () {
-                    fileNameDisplay.textContent = this.files && this.files.length > 0 ? this.files[0].name : 'Choose a file or drag it here';
-                });
-            }
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof schoolData === "undefined") return;
+
+        document.getElementById("top-strip-text").textContent = schoolData.name;
+        document.getElementById("footer-tagline").textContent =
+          schoolData.tagline +
+          ". A " +
+          schoolData.schoolType +
+          " on " +
+          schoolData.mainCampus.address +
+          ".";
+        document.getElementById("footer-address").textContent =
+          schoolData.mainCampus.address;
+        document.getElementById("footer-phone").textContent =
+          schoolData.phone.displayFormat;
+        document.getElementById("footer-email").textContent =
+          schoolData.email.general;
+        document.getElementById("footer-hours").textContent =
+          schoolData.workingHours.shortDisplay;
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        const workReasonsGrid = document.getElementById("work-reasons-grid");
+        schoolData.workReasons.forEach(function (reason) {
+          workReasonsGrid.innerHTML +=
+            '<div class="work-reason-card fade-in-up"><div class="work-reason-card__icon"><i class="' +
+            reason.icon +
+            '"></i></div><h3 class="work-reason-card__title">' +
+            reason.title +
+            '</h3><p class="work-reason-card__description">' +
+            reason.description +
+            "</p></div>";
         });
+
+        const vacanciesList = document.getElementById("vacancies-list");
+        const noVacancies = document.getElementById("no-vacancies");
+
+        if (schoolData.vacancies && schoolData.vacancies.length > 0) {
+          noVacancies.style.display = "none";
+          schoolData.vacancies.forEach(function (vacancy) {
+            const closingDate = new Date(vacancy.closingDate);
+            const formattedClosingDate = closingDate.toLocaleDateString(
+              "en-KE",
+              { year: "numeric", month: "long", day: "numeric" },
+            );
+            vacanciesList.innerHTML +=
+              '<div class="vacancy-card fade-in-up"><div class="vacancy-card__header"><h3 class="vacancy-card__title">' +
+              vacancy.title +
+              '</h3><a href="#apply" class="btn btn--primary btn--sm">Apply Now</a></div><div class="vacancy-card__meta"><span><i class="fa-solid fa-building"></i> ' +
+              vacancy.department +
+              '</span><span><i class="fa-solid fa-location-dot"></i> ' +
+              vacancy.location +
+              '</span><span><i class="fa-solid fa-briefcase"></i> ' +
+              vacancy.type +
+              '</span></div><p class="vacancy-card__description">' +
+              vacancy.description +
+              '</p><p class="vacancy-card__closing"><i class="fa-solid fa-hourglass-half"></i> Closing Date: ' +
+              formattedClosingDate +
+              "</p></div>";
+          });
+        } else {
+          vacanciesList.style.display = "none";
+          noVacancies.style.display = "block";
+        }
+
+        const fileInput = document.getElementById("cv-upload");
+        const fileNameDisplay = document.getElementById("file-name-display");
+        if (fileInput && fileNameDisplay) {
+          fileInput.addEventListener("change", function () {
+            fileNameDisplay.textContent =
+              this.files && this.files.length > 0
+                ? this.files[0].name
+                : "Choose a file or drag it here";
+          });
+        }
+      });
     </script>
-    
+
     <script>
-        // ==========================================
-        // CAREERS FORM - Flask Backend Integration
-        // ==========================================
-        document.addEventListener('DOMContentLoaded', function () {
-            const careersForm = document.getElementById('careers-form');
-            if (!careersForm) return;
-            
-            careersForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                
-                const name = document.getElementById('applicant-name').value.trim();
-                const email = document.getElementById('applicant-email').value.trim();
-                const phone = document.getElementById('applicant-phone').value.trim();
-                const positionApplying = document.getElementById('position-applying').value;
-                const coverLetter = document.getElementById('cover-letter').value.trim();
-                
-                const cvFileInput = document.getElementById('cv-upload');
-                let cvFilename = 'Not uploaded';
-                if (cvFileInput && cvFileInput.files && cvFileInput.files.length > 0) {
-                    cvFilename = cvFileInput.files[0].name;
+      // ==========================================
+      // CAREERS FORM - Flask Backend Integration
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", function () {
+        const careersForm = document.getElementById("careers-form");
+        if (!careersForm) return;
+
+        careersForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("applicant-name").value.trim();
+          const email = document.getElementById("applicant-email").value.trim();
+          const phone = document.getElementById("applicant-phone").value.trim();
+          const positionApplying =
+            document.getElementById("position-applying").value;
+          const coverLetter = document
+            .getElementById("cover-letter")
+            .value.trim();
+
+          const cvFileInput = document.getElementById("cv-upload");
+          let cvFilename = "Not uploaded";
+          if (
+            cvFileInput &&
+            cvFileInput.files &&
+            cvFileInput.files.length > 0
+          ) {
+            cvFilename = cvFileInput.files[0].name;
+          }
+
+          if (!name || !email || !phone || !coverLetter) {
+            alert("Please fill in all required fields.");
+            return;
+          }
+
+          const submitBtn = careersForm.querySelector(".form__submit");
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = "Submitting...";
+          submitBtn.disabled = true;
+
+          const formData = new FormData();
+          formData.append("name", name);
+          formData.append("email", email);
+          formData.append("phone", phone);
+          formData.append("position_applying", positionApplying);
+          formData.append("cover_letter", coverLetter);
+
+          const cvInput = document.getElementById("cv-upload");
+          if (cvInput && cvInput.files && cvInput.files.length > 0) {
+            formData.append("cv", cvInput.files[0]);
+          }
+
+          fetch("http://localhost:5000/api/v1/careers", {
+            method: "POST",
+            body: formData,
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                const successMsg = document.getElementById("form-success");
+                if (successMsg) {
+                  successMsg.innerHTML =
+                    '<i class="fa-solid fa-circle-check"></i> ' + data.message;
+                  successMsg.classList.add("form__success-message--visible");
+                  setTimeout(
+                    () =>
+                      successMsg.classList.remove(
+                        "form__success-message--visible",
+                      ),
+                    8000,
+                  );
                 }
-                
-                if (!name || !email || !phone || !coverLetter) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                
-                const submitBtn = careersForm.querySelector('.form__submit');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Submitting...';
-                submitBtn.disabled = true;
-                
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('email', email);
-                formData.append('phone', phone);
-                formData.append('position_applying', positionApplying);
-                formData.append('cover_letter', coverLetter);
-                
-                const cvInput = document.getElementById('cv-upload');
-                if (cvInput && cvInput.files && cvInput.files.length > 0) {
-                    formData.append('cv', cvInput.files[0]);
-                }
-                
-                fetch('http://localhost:5000/api/careers', {
-                    method: 'POST',
-                    body: formData 
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        const successMsg = document.getElementById('form-success');
-                        if (successMsg) {
-                            successMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + data.message;
-                            successMsg.classList.add('form__success-message--visible');
-                            setTimeout(() => successMsg.classList.remove('form__success-message--visible'), 8000);
-                        }
-                        careersForm.reset();
-                        const fileNameDisplay = document.getElementById('file-name-display');
-                        if (fileNameDisplay) fileNameDisplay.textContent = 'Choose a file or drag it here';
-                        careersForm.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                        alert('Error: ' + (data.error || 'Something went wrong.'));
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert('Network error. Is the backend server running at http://localhost:5000 ?');
-                })
-                .finally(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+                careersForm.reset();
+                const fileNameDisplay =
+                  document.getElementById("file-name-display");
+                if (fileNameDisplay)
+                  fileNameDisplay.textContent = "Choose a file or drag it here";
+                careersForm.scrollIntoView({ behavior: "smooth" });
+              } else {
+                alert("Error: " + (data.error || "Something went wrong."));
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+              alert(
+                "Network error. Is the backend server running at http://localhost:5000 ?",
+              );
+            })
+            .finally(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
             });
         });
+      });
     </script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (!newsletterForm) return;
-            
-            newsletterForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                const email = emailInput.value.trim();
-                if (!email) return;
-                
-                const btn = this.querySelector('button');
-                const originalText = btn.textContent;
-                btn.textContent = 'Subscribing...';
-                btn.disabled = true;
-                
-                fetch('http://localhost:5000/api/newsletter', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    btn.textContent = data.success ? 'Subscribed!' : 'Error';
-                    btn.style.backgroundColor = data.success ? '#28A745' : '#DC3545';
-                    btn.style.color = '#FFFFFF';
-                    if (data.success) emailInput.value = '';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.backgroundColor = '';
-                        btn.style.color = '';
-                        btn.disabled = false;
-                    }, 3000);
-                })
-                .catch(() => {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                });
+      document.addEventListener("DOMContentLoaded", function () {
+        const newsletterForm = document.getElementById("newsletter-form");
+        if (!newsletterForm) return;
+
+        newsletterForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const emailInput = this.querySelector('input[type="email"]');
+          const email = emailInput.value.trim();
+          if (!email) return;
+
+          const btn = this.querySelector("button");
+          const originalText = btn.textContent;
+          btn.textContent = "Subscribing...";
+          btn.disabled = true;
+
+          fetch("http://localhost:5000/api/v1/newsletter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              btn.textContent = data.success ? "Subscribed!" : "Error";
+              btn.style.backgroundColor = data.success ? "#28A745" : "#DC3545";
+              btn.style.color = "#FFFFFF";
+              if (data.success) emailInput.value = "";
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+                btn.disabled = false;
+              }, 3000);
+            })
+            .catch(() => {
+              btn.textContent = originalText;
+              btn.disabled = false;
             });
         });
+      });
     </script>
-    
-</body>
+    <script src="assets/js/webp-check.js"></script>
+  </body>
 </html>
