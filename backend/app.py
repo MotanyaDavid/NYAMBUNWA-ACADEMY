@@ -3,6 +3,8 @@
 # app.py - Main Flask Application
 # ============================================
 
+import re
+
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for, make_response
 from flask import send_file
 from flask_cors import CORS
@@ -94,6 +96,29 @@ def sanitize_input(text):
     if text is None:
         return None
     return bleach.clean(str(text), tags=[], strip=True)
+
+def is_valid_email(email):
+    """Strict email format validation."""
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(pattern, email) is not None
+
+def is_valid_phone(phone):
+    """Validates Kenyan and international phone formats."""
+    if not phone:
+        return True # Phone is optional for some forms
+    # Allows +254..., 07..., 01..., with optional spaces/dashes
+    pattern = r'^\+?[\d\s\-()]{9,15}$'
+    return re.match(pattern, phone) is not None
+
+def is_valid_past_date(date_str):
+    """Ensures a date is in the past (for Date of Birth)."""
+    if not date_str:
+        return True # DOB is optional
+    try:
+        dob = datetime.strptime(date_str, '%Y-%m-%d')
+        return dob < datetime.now()
+    except ValueError:
+        return False # Not a valid date format
 
 def audit_log(action, details=''):
     """Log an admin action."""
@@ -201,8 +226,15 @@ def api_contact():
         subject = sanitize_input(data.get('subject', '').strip())
         message = sanitize_input(data.get('message', '').strip())
         
+          # Validation
         if not name or not email or not message:
             return jsonify({'success': False, 'error': 'Name, email, and message are required.'}), 400
+        
+        if not is_valid_email(email):
+            return jsonify({'success': False, 'error': 'Please provide a valid email address.'}), 400
+            
+        if phone and not is_valid_phone(phone):
+            return jsonify({'success': False, 'error': 'Please provide a valid phone number.'}), 400
         
         submission_id = save_contact(name, email, phone, subject, message)
         app.logger.info(f"New contact submission #{submission_id} from {email}")
@@ -246,8 +278,18 @@ def api_admissions():
         current_school = sanitize_input(data.get('current_school', '').strip())
         message = sanitize_input(data.get('message', '').strip())
         
+        # Validation
         if not parent_name or not email or not child_name or not grade_applying:
             return jsonify({'success': False, 'error': 'Parent name, email, child name, and grade are required.'}), 400
+            
+        if not is_valid_email(email):
+            return jsonify({'success': False, 'error': 'Please provide a valid email address.'}), 400
+            
+        if phone and not is_valid_phone(phone):
+            return jsonify({'success': False, 'error': 'Please provide a valid phone number.'}), 400
+            
+        if child_dob and not is_valid_past_date(child_dob):
+            return jsonify({'success': False, 'error': 'Date of birth must be a valid date in the past.'}), 400
         
         submission_id = save_admission(parent_name, email, phone, child_name, child_dob, grade_applying, current_school, message)
         app.logger.info(f"New admission inquiry #{submission_id} from {email} for grade {grade_applying}")
@@ -310,6 +352,12 @@ def api_careers():
         
         if not name or not email or not phone or not cover_letter:
             return jsonify({'success': False, 'error': 'Name, email, phone, and cover letter are required.'}), 400
+        
+        if not is_valid_email(email):
+            return jsonify({'success': False, 'error': 'Please provide a valid email address.'}), 400
+        
+        if phone and not is_valid_phone(phone):
+            return jsonify({'success': False, 'error': 'Please provide a valid phone number.'}), 400
         
         submission_id = save_career(name, email, phone, position_applying, cover_letter, cv_filename)
         app.logger.info(f"New career application #{submission_id} from {email} for {position_applying}")
