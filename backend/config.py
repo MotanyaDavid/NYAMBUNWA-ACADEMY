@@ -10,7 +10,8 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
-    DATABASE = os.path.join(os.path.dirname(__file__), 'nyambunwa.db')
+        # Use a production path if deployed on Render, otherwise use local
+    DATABASE = os.environ.get('DATABASE_URL', os.path.join(os.path.dirname(__file__), 'nyambunwa.db'))
     
     ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
     ADMIN_PASSWORD_HASH = os.environ.get('ADMIN_PASSWORD_HASH', '')
