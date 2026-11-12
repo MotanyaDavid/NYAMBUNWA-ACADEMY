@@ -1132,3 +1132,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 }); // End DOMContentLoaded
+
+// ============================================
+// COOKIE CONSENT BANNER
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    if (!cookieBanner) return;
+
+    // Check if user has already made a choice
+    const consent = localStorage.getItem('nyambunwa-cookie-consent');
+
+    if (!consent) {
+        // Show banner after 1 second
+        setTimeout(() => {
+            cookieBanner.classList.add('is-visible');
+        }, 1000);
+    }
+
+    // Handle Accept
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function () {
+            localStorage.setItem('nyambunwa-cookie-consent', 'accepted');
+            cookieBanner.classList.remove('is-visible');
+        });
+    }
+
+    // Handle Decline
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function () {
+            localStorage.setItem('nyambunwa-cookie-consent', 'declined');
+            cookieBanner.classList.remove('is-visible');
+        });
+    }
+});
