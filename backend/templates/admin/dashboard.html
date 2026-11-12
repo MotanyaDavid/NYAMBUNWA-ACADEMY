@@ -1,0 +1,352 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Overview{% endblock %}
+{% block page_title %}Overview{% endblock %}
+
+{% block content %}
+
+<div class="page-header flex items-center justify-between" style="flex-wrap: wrap; gap: 1rem;">
+    <div>
+        <h1 class="page-title">Welcome back, {{ (session.get('admin_full_name') or 'Admin').split()[0] }}</h1>
+        <p class="page-subtitle">Here's what's happening with your school's inquiries today.</p>
+    </div>
+    <a href="{{ url_for('view_submissions', submission_type='contacts') }}" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 6L2 7"/>
+        </svg>
+        Open Inbox
+    </a>
+</div>
+
+<div class="dashboard-stats">
+    
+    <a href="{{ url_for('view_submissions', submission_type='contacts') }}" class="card stat-card">
+        <div class="card-body">
+            <div class="flex items-center justify-between mb-3">
+                <div class="stat-icon stat-icon--info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 6L2 7"/>
+                    </svg>
+                </div>
+                {% if stats.contacts_new > 0 %}
+                <span class="badge badge-error">{{ stats.contacts_new }} new</span>
+                {% else %}
+                <span class="badge badge-neutral">All read</span>
+                {% endif %}
+            </div>
+            <div class="stat-number">{{ stats.contacts_total }}</div>
+            <div class="text-sm text-secondary mt-1">Contact Messages</div>
+        </div>
+    </a>
+    
+    <a href="{{ url_for('view_submissions', submission_type='admissions') }}" class="card stat-card">
+        <div class="card-body">
+            <div class="flex items-center justify-between mb-3">
+                <div class="stat-icon stat-icon--warning">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+                    </svg>
+                </div>
+                {% if stats.admissions_new > 0 %}
+                <span class="badge badge-warning">{{ stats.admissions_new }} new</span>
+                {% else %}
+                <span class="badge badge-neutral">All read</span>
+                {% endif %}
+            </div>
+            <div class="stat-number">{{ stats.admissions_total }}</div>
+            <div class="text-sm text-secondary mt-1">Admissions Inquiries</div>
+        </div>
+    </a>
+    
+    <a href="{{ url_for('view_submissions', submission_type='careers') }}" class="card stat-card">
+        <div class="card-body">
+            <div class="flex items-center justify-between mb-3">
+                <div class="stat-icon stat-icon--success">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    </svg>
+                </div>
+                {% if stats.careers_new > 0 %}
+                <span class="badge badge-success">{{ stats.careers_new }} new</span>
+                {% else %}
+                <span class="badge badge-neutral">All read</span>
+                {% endif %}
+            </div>
+            <div class="stat-number">{{ stats.careers_total }}</div>
+            <div class="text-sm text-secondary mt-1">Job Applications</div>
+        </div>
+    </a>
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="flex items-center justify-between mb-3">
+                <div class="stat-icon stat-icon--purple">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <span class="badge badge-neutral">Subscribers</span>
+            </div>
+            <div class="stat-number">{{ stats.newsletter_subscribers }}</div>
+            <div class="text-sm text-secondary mt-1">Newsletter Subscribers</div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="dashboard-grid">
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Recent Activity</h2>
+            <span class="text-xs text-muted">Last 6 submissions</span>
+        </div>
+        
+        {% if recent and recent|length > 0 %}
+        <div>
+            {% for item in recent %}
+            <a href="{{ url_for('view_message', submission_type=item._type, submission_id=item.id) }}" class="activity-item">
+                
+                <div class="activity-icon activity-icon--{{ item._type }}">
+                    {% if item._type == 'contacts' %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 6L2 7"/>
+                    </svg>
+                    {% elif item._type == 'admissions' %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+                    </svg>
+                    {% else %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    </svg>
+                    {% endif %}
+                </div>
+                
+                <div style="flex: 1; min-width: 0;">
+                    <div class="flex items-center gap-2" style="margin-bottom: 2px;">
+                        <span class="text-sm font-medium text-primary" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            {% if item._type == 'contacts' %}{{ item.name }}
+                            {% elif item._type == 'admissions' %}{{ item.parent_name }}
+                            {% else %}{{ item.name }}{% endif %}
+                        </span>
+                        <span class="badge badge-{{ 'info' if item._type == 'contacts' else ('warning' if item._type == 'admissions' else 'success') }}" style="font-size: 0.625rem;">
+                            {{ 'Contact' if item._type == 'contacts' else ('Admission' if item._type == 'admissions' else 'Career') }}
+                        </span>
+                    </div>
+                    <div class="text-xs text-muted" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        {% if item._type == 'contacts' %}{{ item.subject or item.message[:60] }}
+                        {% elif item._type == 'admissions' %}{{ item.child_name }} — {{ item.grade_applying }}
+                        {% else %}{{ item.position_applying or 'General Application' }}{% endif %}
+                    </div>
+                </div>
+                
+                <div class="text-xs text-muted" style="flex-shrink: 0;">
+                    {{ item.created_at[:10] }}
+                </div>
+                
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-10 6L2 7"/>
+                </svg>
+            </div>
+            <div class="text-sm font-medium text-primary mb-1">No submissions yet</div>
+            <div class="text-xs text-muted">New inquiries will appear here</div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Quick Actions</h2>
+        </div>
+        <div class="card-body" style="display: flex; flex-direction: column; gap: var(--space-2);">
+            
+            <a href="{{ url_for('view_submissions', submission_type='contacts') }}" class="btn btn-secondary btn-block quick-action-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-10 6L2 7"/>
+                </svg>
+                View Contact Messages
+            </a>
+            
+            <a href="{{ url_for('view_submissions', submission_type='admissions') }}" class="btn btn-secondary btn-block quick-action-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+                </svg>
+                View Admissions
+            </a>
+            
+            <a href="{{ url_for('view_submissions', submission_type='careers') }}" class="btn btn-secondary btn-block quick-action-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                View Applications
+            </a>
+            
+            <a href="{{ url_for('view_audit_log') }}" class="btn btn-secondary btn-block quick-action-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                    <path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/>
+                </svg>
+                View Audit Log
+            </a>
+            
+        </div>
+    </div>
+    
+</div>
+
+<style>
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.stat-card {
+    text-decoration: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-default);
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon--info {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--color-info);
+}
+
+.stat-icon--warning {
+    background: rgba(244, 180, 0, 0.15);
+    color: var(--brand-gold-dark);
+}
+
+.stat-icon--success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+}
+
+.stat-icon--purple {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+}
+
+.stat-number {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-6);
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item:hover {
+    background: var(--bg-hover);
+}
+
+.activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-icon--contacts {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--color-info);
+}
+
+.activity-icon--admissions {
+    background: rgba(244, 180, 0, 0.15);
+    color: var(--brand-gold-dark);
+}
+
+.activity-icon--careers {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+}
+
+.quick-action-btn {
+    justify-content: flex-start;
+    height: 48px;
+}
+
+.empty-state {
+    padding: var(--space-12) var(--space-6);
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--bg-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+</style>
+
+{% endblock %}

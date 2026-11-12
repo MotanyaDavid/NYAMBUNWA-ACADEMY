@@ -5,3 +5,5 @@ python-dotenv==1.0.0
 bleach==6.1.0
 werkzeug==3.0.0
 flask-limiter==3.5.0
+python-docx==0.8.11
+fpdf2==2.6.0

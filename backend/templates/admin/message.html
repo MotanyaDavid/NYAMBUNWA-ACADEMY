@@ -1,0 +1,572 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ submission_type|capitalize }} #{{ submission.id }}{% endblock %}
+{% block page_title %}
+    {{ 'Contact' if submission_type == 'contacts' else ('Admission' if submission_type == 'admissions' else 'Application') }} #{{ submission.id }}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/detail.css') }}">
+{% endblock %}
+
+{% block content %}
+
+{% set type_label = 'Contact Message' if submission_type == 'contacts' else ('Admission Inquiry' if submission_type == 'admissions' else 'Job Application') %}
+{% set display_name = submission.get('name') if submission_type != 'admissions' else submission.get('parent_name') %}
+{% if not display_name %}{% set display_name = 'Unknown' %}{% endif %}
+{% set email_addr = submission.get('email') or 'Not provided' %}
+{% set phone_val = submission.get('phone') or 'Not provided' %}
+{% set initial = display_name[0]|upper if display_name else '?' %}
+{% set status_val = submission.get('status') or 'New' %}
+{% set notes_val = submission.get('notes') or '' %}
+{% set created_val = submission.get('created_at') or '' %}
+
+{% set js_child_name = submission.get('child_name') or '' if submission_type == 'admissions' else '' %}
+{% set js_grade_applying = submission.get('grade_applying') or '' if submission_type == 'admissions' else '' %}
+{% set js_position_applying = submission.get('position_applying') or '' if submission_type == 'careers' else '' %}
+
+<!-- Hidden data passed to JavaScript (prevents VS Code linter errors) -->
+<div id="submission-data" 
+     data-type="{{ submission_type }}"
+     data-id="{{ submission.id }}"
+     data-display-name="{{ display_name }}"
+     data-email="{{ email_addr }}"
+     data-child-name="{{ js_child_name }}"
+     data-grade="{{ js_grade_applying }}"
+     data-position="{{ js_position_applying }}"
+     style="display: none;">
+</div>
+
+<div class="detail-layout">
+    
+    <!-- ============================================ -->
+    <!-- MAIN COLUMN -->
+    <!-- ============================================ -->
+    <div class="detail-main">
+        
+        <a href="{{ url_for('view_submissions', submission_type=submission_type) }}" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            Back to {{ type_label }}s
+        </a>
+        
+        <!-- Header -->
+        <div class="detail-header">
+            <div class="detail-header__avatar avatar--{{ 'info' if submission_type == 'contacts' else ('warning' if submission_type == 'admissions' else 'success') }}">
+                {{ initial }}
+            </div>
+            <div class="detail-header__info">
+                <h1 class="detail-header__title">{{ display_name }}</h1>
+                <div class="detail-header__subtitle">
+                    <span>{{ email_addr }}</span>
+                    {% if phone_val != 'Not provided' %}
+                    <span>&middot;</span>
+                    <span>{{ phone_val }}</span>
+                    {% endif %}
+                    <span>&middot;</span>
+                    <span class="badge badge-{{ 'info' if status_val == 'New' else ('warning' if status_val == 'In Progress' else ('success' if status_val == 'Replied' else 'neutral')) }}">
+                        <span class="badge-dot"></span>
+                        {{ status_val }}
+                    </span>
+                </div>
+            </div>
+            <div class="detail-header__actions">
+                <button class="btn btn-secondary btn-sm" id="delete-btn" title="Delete submission">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                    Delete
+                </button>
+            </div>
+        </div>
+        
+        <!-- Original Message -->
+        <div class="message-card">
+            <div class="message-card__header">
+                <div>
+                    <div class="message-card__title">
+                        {% if submission_type == 'contacts' %}
+                            {{ submission.get('subject') or 'No subject' }}
+                        {% elif submission_type == 'admissions' %}
+                            Inquiry for {{ submission.get('child_name') or '—' }} — {{ submission.get('grade_applying') or '—' }}
+                        {% else %}
+                            {{ submission.get('position_applying') or 'General Application' }}
+                        {% endif %}
+                    </div>
+                    <div class="message-card__meta">
+                        Received {{ created_val }}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Structured info for admissions -->
+            {% if submission_type == 'admissions' %}
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-item__label">Child's Name</div>
+                    <div class="info-item__value">{{ submission.get('child_name') or 'Not provided' }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item__label">Date of Birth</div>
+                    <div class="info-item__value">{{ submission.get('child_dob') or 'Not provided' }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item__label">Grade Applying For</div>
+                    <div class="info-item__value">{{ submission.get('grade_applying') or 'Not provided' }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item__label">Current School</div>
+                    <div class="info-item__value">{{ submission.get('current_school') or 'Not provided' }}</div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Message body -->
+            {% if submission_type == 'careers' %}
+                {% if submission.get('cover_letter') %}
+                <div class="message-card__body">{{ submission.get('cover_letter') }}</div>
+                {% endif %}
+            {% else %}
+                {% if submission.get('message') %}
+                <div class="message-card__body">{{ submission.get('message') }}</div>
+                {% endif %}
+            {% endif %}
+            
+            <div class="message-card__footer">
+                <span>From: <strong>{{ email_addr }}</strong></span>
+                {% if submission_type == 'careers' and submission.get('cv_filename') and submission.get('cv_filename') != 'Not uploaded' %}
+                <span>CV: <strong>{{ submission.get('cv_filename') }}</strong></span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Reply Composer -->
+        <div class="reply-composer">
+            <div class="reply-composer__header">
+                <div class="reply-composer__title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 17 4 12 9 7"/>
+                        <path d="M20 18v-2a4 4 0 0 0-4-4H4"/>
+                    </svg>
+                    Reply to {{ display_name }}
+                </div>
+                <div class="reply-composer__recipient">to {{ email_addr }}</div>
+            </div>
+            
+            <!-- Templates -->
+            <div class="reply-composer__templates">
+                <button class="template-chip" data-template="general_response">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    General Response
+                </button>
+                {% if submission_type == 'admissions' %}
+                <button class="template-chip" data-template="admissions_tour">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Schedule Tour
+                </button>
+                <button class="template-chip" data-template="application_received">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Application Received
+                </button>
+                {% elif submission_type == 'careers' %}
+                <button class="template-chip" data-template="application_received">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Application Received
+                </button>
+                <button class="template-chip" data-template="interview_invite">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Interview Invite
+                </button>
+                {% endif %}
+                <button class="template-chip" data-template="thank_you">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    Thank You
+                </button>
+            </div>
+            
+            <form id="reply-form">
+                <div class="reply-composer__body">
+                    <textarea class="reply-composer__textarea" id="reply-body" name="reply_body" placeholder="Write your reply to {{ display_name }}..." required></textarea>
+                </div>
+                <div class="reply-composer__footer">
+                    <div class="reply-composer__hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                        Reply will be sent to <strong style="color: var(--text-secondary);">{{ email_addr }}</strong> and status will update to Replied
+                    </div>
+                    <div class="reply-composer__actions">
+                        <button type="button" class="btn btn-ghost btn-sm" id="clear-btn">Clear</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="send-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                            Send Reply
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="timeline-section">
+            <div class="timeline-section__header">
+                <div class="timeline-section__title">Activity Timeline</div>
+                <span class="text-xs text-muted">{{ replies|length }} repl{{ 'y' if replies|length == 1 else 'ies' }}</span>
+            </div>
+            
+            <div class="timeline">
+                <!-- Created -->
+                <div class="timeline-item timeline-item--created">
+                    <div class="timeline-item__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </div>
+                    <div class="timeline-item__header">
+                        <span class="timeline-item__title">Submission received</span>
+                        <span class="timeline-item__time">{{ created_val }}</span>
+                    </div>
+                    <div class="timeline-item__body">
+                        {{ display_name }} submitted the {{ type_label|lower }} form.
+                    </div>
+                </div>
+                
+                <!-- Replies -->
+                {% for reply in replies %}
+                <div class="timeline-item timeline-item--reply">
+                    <div class="timeline-item__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 17 4 12 9 7"/>
+                            <path d="M20 18v-2a4 4 0 0 0-4-4H4"/>
+                        </svg>
+                    </div>
+                    <div class="timeline-item__header">
+                        <span class="timeline-item__title">Reply sent</span>
+                        <span class="timeline-item__time">{{ reply.get('sent_at') or '' }}</span>
+                    </div>
+                    <div class="timeline-item__body">{{ reply.get('body') or '' }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- SIDEBAR -->
+    <!-- ============================================ -->
+    <aside class="detail-sidebar">
+        
+        <!-- Status -->
+        <div class="sidebar-card">
+            <div class="sidebar-card__header">
+                <div class="sidebar-card__title">Status</div>
+            </div>
+            <div class="sidebar-card__body">
+                <div class="status-selector" id="status-selector">
+                    <button class="status-option {% if status_val == 'New' %}is-active{% endif %}" data-status="New">
+                        <span class="status-dot status-dot--new"></span> New
+                    </button>
+                    <button class="status-option {% if status_val == 'In Progress' %}is-active{% endif %}" data-status="In Progress">
+                        <span class="status-dot status-dot--progress"></span> In Progress
+                    </button>
+                    <button class="status-option {% if status_val == 'Replied' %}is-active{% endif %}" data-status="Replied">
+                        <span class="status-dot status-dot--replied"></span> Replied
+                    </button>
+                    <button class="status-option {% if status_val == 'Closed' %}is-active{% endif %}" data-status="Closed">
+                        <span class="status-dot status-dot--closed"></span> Closed
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="sidebar-card">
+            <div class="sidebar-card__header">
+                <div class="sidebar-card__title">Contact Details</div>
+            </div>
+            <div class="sidebar-card__body">
+                <div class="meta-list">
+                    <div class="meta-list__item">
+                        <svg class="meta-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <div>
+                            <div class="meta-list__label">Name</div>
+                            <div class="meta-list__value">{{ display_name }}</div>
+                        </div>
+                    </div>
+                    <div class="meta-list__item">
+                        <svg class="meta-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                        <div>
+                            <div class="meta-list__label">Email</div>
+                            <div class="meta-list__value"><a href="mailto:{{ email_addr }}">{{ email_addr }}</a></div>
+                        </div>
+                    </div>
+                    {% if phone_val != 'Not provided' %}
+                    <div class="meta-list__item">
+                        <svg class="meta-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <div>
+                            <div class="meta-list__label">Phone</div>
+                            <div class="meta-list__value"><a href="tel:{{ phone_val }}">{{ phone_val }}</a></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="meta-list__item">
+                        <svg class="meta-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <div>
+                            <div class="meta-list__label">Received</div>
+                            <div class="meta-list__value">{{ created_val }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Internal Notes -->
+        <div class="sidebar-card">
+            <div class="sidebar-card__header">
+                <div class="sidebar-card__title">Internal Notes</div>
+            </div>
+            <div class="sidebar-card__body">
+                <textarea class="notes-textarea" id="notes-input" placeholder="Add a private note for your team...">{{ notes_val }}</textarea>
+                <button class="btn btn-secondary btn-sm btn-block" id="save-notes-btn" style="margin-top: var(--space-2);">
+                    Save Notes
+                </button>
+            </div>
+        </div>
+        
+    </aside>
+    
+</div>
+
+<div class="toast" id="toast"></div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function() {
+    'use strict';
+    
+    // ============================================
+    // GET DATA FROM HTML DATASETS
+    // ============================================
+    const dataEl = document.getElementById('submission-data');
+    const SUBMISSION_TYPE = dataEl.dataset.type;
+    const SUBMISSION_ID = parseInt(dataEl.dataset.id);
+    const displayName = dataEl.dataset.displayName;
+    const emailAddr = dataEl.dataset.email;
+    const childName = dataEl.dataset.childName;
+    const gradeApplying = dataEl.dataset.grade;
+    const positionApplying = dataEl.dataset.position;
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+    
+    // ============================================
+    // TOAST
+    // ============================================
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+    
+    function showToast(message, type) {
+        type = type || 'success';
+        clearTimeout(toastTimeout);
+        
+        const iconSvg = type === 'success'
+            ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+            : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+        
+        toast.className = 'toast toast--' + type + ' is-visible';
+        toast.innerHTML = iconSvg + '<span>' + message + '</span>';
+        
+        toastTimeout = setTimeout(function() {
+            toast.classList.remove('is-visible');
+        }, 3500);
+    }
+    
+    // ============================================
+    // TEMPLATES
+    // ============================================
+    var templates = {
+        general_response: 'Dear ' + displayName + ',\n\nThank you for contacting Nyambunwa Academy. We have received your message and will respond to your inquiry shortly.\n\nIf your matter is urgent, please feel free to call us on 0757 862 075.\n\nWarm regards,\nNyambunwa Academy\nAsumbi Road, Suneka, Kisii\n0757 862 075 | nyambunwaacademy@gmail.com',
+        
+        admissions_tour: 'Dear ' + displayName + ',\n\nThank you for your interest in Nyambunwa Academy for ' + (childName || 'your child') + '.\n\nWe would be delighted to welcome you for a campus tour. You can visit us on Asumbi Road, Suneka, Kisii, Monday to Friday between 8:00 AM and 5:00 PM, or on Saturday between 8:00 AM and 1:00 PM.\n\nPlease let us know a convenient date and time, and we will make the necessary arrangements.\n\nWe look forward to meeting you.\n\nWarm regards,\nAdmissions Office\nNyambunwa Academy\n0757 862 075',
+        
+        application_received: 'Dear ' + displayName + ',\n\nThank you for your application to Nyambunwa Academy' + (positionApplying ? ' for the ' + positionApplying + ' position' : '') + '.\n\nWe have received all your documents and our team is currently reviewing them. If your qualifications match our requirements, we will contact you within 5 to 7 working days.\n\nIn the meantime, if you have any questions, please don\'t hesitate to get in touch.\n\nWarm regards,\nNyambunwa Academy\n0757 862 075',
+        
+        interview_invite: 'Dear ' + displayName + ',\n\nThank you for your application to join Nyambunwa Academy.\n\nWe are pleased to invite you for an interview on [DATE] at [TIME] at our campus on Asumbi Road, Suneka, Kisii.\n\nPlease bring the following documents:\n- Original academic certificates\n- National ID or passport\n- Any additional supporting documents\n\nKindly confirm your availability by replying to this email or calling 0757 862 075.\n\nWe look forward to meeting you.\n\nWarm regards,\nHuman Resources\nNyambunwa Academy',
+        
+        thank_you: 'Dear ' + displayName + ',\n\nThank you for reaching out to Nyambunwa Academy. We truly appreciate your interest in our school.\n\nYour message has been received and is being handled by the appropriate department. Should you require any further assistance, please don\'t hesitate to contact us.\n\nWarm regards,\nNyambunwa Academy\n0757 862 075 | nyambunwaacademy@gmail.com'
+    };
+    
+    var replyBody = document.getElementById('reply-body');
+    
+    document.querySelectorAll('.template-chip').forEach(function(chip) {
+        chip.addEventListener('click', function() {
+            var key = this.getAttribute('data-template');
+            if (!templates[key]) return;
+            
+            if (replyBody.value.trim() && !confirm('This will replace your current draft. Continue?')) {
+                return;
+            }
+            replyBody.value = templates[key];
+            replyBody.focus();
+            replyBody.setSelectionRange(replyBody.value.length, replyBody.value.length);
+        });
+    });
+    
+    // ============================================
+    // SEND REPLY
+    // ============================================
+    var replyForm = document.getElementById('reply-form');
+    var sendBtn = document.getElementById('send-btn');
+    var clearBtn = document.getElementById('clear-btn');
+    
+    replyForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        var body = replyBody.value.trim();
+        if (!body) {
+            showToast('Please write a reply before sending.', 'error');
+            return;
+        }
+        
+        var originalText = sendBtn.innerHTML;
+        sendBtn.disabled = true;
+        sendBtn.classList.add('is-loading');
+        
+        var formData = new FormData();
+        formData.append('reply_body', body);
+        formData.append('csrf_token', csrfToken);
+        
+        fetch('/admin/' + SUBMISSION_TYPE + '/' + SUBMISSION_ID + '/reply', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.success) {
+                showToast('Reply sent successfully!', 'success');
+                setTimeout(function() { window.location.reload(); }, 800);
+            } else {
+                showToast(data.error || 'Failed to send reply', 'error');
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = originalText;
+                sendBtn.classList.remove('is-loading');
+            }
+        })
+        .catch(function(err) {
+            console.error(err);
+            showToast('Network error. Please try again.', 'error');
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = originalText;
+            sendBtn.classList.remove('is-loading');
+        });
+    });
+    
+    clearBtn.addEventListener('click', function() {
+        if (replyBody.value.trim() && !confirm('Clear your draft?')) return;
+        replyBody.value = '';
+        replyBody.focus();
+    });
+    
+    // ============================================
+    // STATUS UPDATE
+    // ============================================
+    document.querySelectorAll('.status-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var status = this.getAttribute('data-status');
+            
+            document.querySelectorAll('.status-option').forEach(function(b) { b.classList.remove('is-active'); });
+            this.classList.add('is-active');
+            
+            var formData = new FormData();
+            formData.append('status', status);
+            formData.append('csrf_token', csrfToken);
+            
+            fetch('/admin/' + SUBMISSION_TYPE + '/' + SUBMISSION_ID + '/status', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    showToast('Status changed to ' + status, 'success');
+                } else {
+                    showToast('Failed to update status', 'error');
+                }
+            })
+            .catch(function() { showToast('Network error', 'error'); });
+        });
+    });
+    
+    // ============================================
+    // SAVE NOTES
+    // ============================================
+    var notesInput = document.getElementById('notes-input');
+    var saveNotesBtn = document.getElementById('save-notes-btn');
+    
+    saveNotesBtn.addEventListener('click', function() {
+        var notes = notesInput.value.trim();
+        var statusEl = document.querySelector('.status-option.is-active');
+        var status = statusEl ? statusEl.getAttribute('data-status') : 'New';
+        
+        saveNotesBtn.disabled = true;
+        saveNotesBtn.textContent = 'Saving...';
+        
+        var formData = new FormData();
+        formData.append('status', status);
+        formData.append('notes', notes);
+        formData.append('csrf_token', csrfToken);
+        
+        fetch('/admin/' + SUBMISSION_TYPE + '/' + SUBMISSION_ID + '/status', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.success) {
+                showToast('Notes saved', 'success');
+            } else {
+                showToast('Failed to save notes', 'error');
+            }
+        })
+        .catch(function() { showToast('Network error', 'error'); })
+        .then(function() {
+            saveNotesBtn.disabled = false;
+            saveNotesBtn.textContent = 'Save Notes';
+        });
+    });
+    
+    // ============================================
+    // DELETE
+    // ============================================
+    document.getElementById('delete-btn').addEventListener('click', function() {
+        if (!confirm('Delete this submission? This cannot be undone.')) return;
+        
+        fetch('/admin/' + SUBMISSION_TYPE + '/bulk-action', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ action: 'delete', ids: [SUBMISSION_ID] })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.success) {
+                window.location.href = '/admin/' + SUBMISSION_TYPE;
+            } else {
+                showToast('Failed to delete', 'error');
+            }
+        })
+        .catch(function() { showToast('Network error', 'error'); });
+    });
+    
+})();
+</script>
+{% endblock %}

@@ -4,6 +4,7 @@
 # ============================================
 
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for, make_response
+from flask import send_file
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -11,6 +12,8 @@ from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from datetime import datetime, timedelta
+from io import BytesIO
+from datetime import datetime
 import os
 import bleach
 import logging
@@ -25,15 +28,18 @@ from database import (
 )
 
 app = Flask(__name__)
+# Website URL for "View Site" link
+app.config['WEBSITE_URL'] = os.environ.get('WEBSITE_URL', 'http://localhost:8000')
 app.secret_key = Config.SECRET_KEY
 
 # CORS
-allowed_origins = os.environ.get('ALLOWED_ORIGINS', 'http://localhost:5000,http://127.0.0.1:5000,http://localhost:8000,http://127.0.0.1:8000,http://localhost:3000,http://127.0.0.1:3000').split(',')
+allowed_origins = os.environ.get('ALLOWED_ORIGINS', 'http://localhost:5000,http://127.0.0.1:5000,http://localhost:5500,http://127.0.0.1:5500,file://').split(',')
 CORS(app, origins=allowed_origins)
 
 # CSRF Protection
 csrf = CSRFProtect(app)
-
+# Allow public API routes to be accessed from any frontend (Localhost, Live Server, or your live domain)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 # Rate Limiting
 limiter = Limiter(
     app=app,
@@ -165,7 +171,7 @@ def add_security_headers(response):
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
-    response.headers['Content-Security-Policy'] = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; frame-src https://www.google.com https://www.youtube.com;"
+    response.headers['Content-Security-Policy'] = "default-src 'self'; connect-src 'self' http://localhost:5000 http://127.0.0.1:5000 http://localhost:5500 http://127.0.0.1:5500; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; frame-src https://www.google.com https://www.youtube.com;"
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     response.headers['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=()'
     return response
@@ -418,8 +424,23 @@ def logout():
 @login_required
 def dashboard():
     """Admin dashboard overview."""
+    from database import get_all_submissions
+    
     stats = get_stats()
-    return render_template('dashboard.html', stats=stats)
+    
+    # Get recent submissions across all types
+    recent = []
+    for stype in ['contacts', 'admissions', 'careers']:
+        items = get_all_submissions(stype)[:3]
+        for item in items:
+            item['_type'] = stype
+            recent.append(item)
+    recent.sort(key=lambda x: x.get('created_at', ''), reverse=True)
+    recent = recent[:6]
+    
+    return render_template('admin/dashboard.html',
+                          stats=stats,
+                          recent=recent)
 
 @app.route('/admin/<submission_type>')
 @login_required
@@ -432,10 +453,17 @@ def view_submissions(submission_type):
     submissions = get_all_submissions(submission_type, status_filter)
     stats = get_stats()
     
-    return render_template('dashboard.html',
+    type_labels = {
+        'contacts': 'Contact Messages',
+        'admissions': 'Admissions',
+        'careers': 'Job Applications'
+    }
+    
+    return render_template('admin/inbox.html',
                          stats=stats,
                          submissions=submissions,
                          submission_type=submission_type,
+                         type_label=type_labels[submission_type],
                          current_filter=status_filter)
 
 @app.route('/admin/<submission_type>/<int:submission_id>')
@@ -451,7 +479,10 @@ def view_message(submission_type, submission_id):
     if not submission:
         return redirect(url_for('dashboard'))
     
-    return render_template('message.html',
+    stats = get_stats()
+    
+    return render_template('admin/message.html',
+                         stats=stats,
                          submission=submission,
                          submission_type=submission_type,
                          replies=replies)
@@ -582,13 +613,99 @@ def export_submissions(submission_type):
     
     return response
 
+
+@app.route('/admin/<submission_type>/export/word')
+@login_required
+def export_submissions_word(submission_type):
+    """Export submissions to Word (.docx)."""
+    if submission_type not in ['contacts', 'admissions', 'careers']:
+        return redirect(url_for('dashboard'))
+    
+    from docx import Document
+    
+    submissions = get_all_submissions(submission_type)
+    if not submissions:
+        return redirect(url_for('view_submissions', submission_type=submission_type))
+    
+    doc = Document()
+    doc.add_heading(f'Nyambunwa Academy - {submission_type.capitalize()} Export', 0)
+    doc.add_paragraph(f'Generated on: {datetime.now().strftime("%Y-%m-%d %H:%M")}')
+    
+    for s in submissions:
+        doc.add_heading(f'Submission #{s["id"]} - {s["created_at"]}', level=1)
+        doc.add_paragraph(f'Status: {s["status"]}')
+        
+        if submission_type == 'contacts':
+            doc.add_paragraph(f'Name: {s["name"]}\nEmail: {s["email"]}\nPhone: {s["phone"]}\nSubject: {s["subject"]}\n\nMessage:\n{s["message"]}')
+        elif submission_type == 'admissions':
+            doc.add_paragraph(f'Parent: {s["parent_name"]}\nEmail: {s["email"]}\nPhone: {s["phone"]}\nChild: {s["child_name"]}\nDOB: {s["child_dob"]}\nGrade: {s["grade_applying"]}\nCurrent School: {s["current_school"]}\n\nMessage:\n{s["message"]}')
+        elif submission_type == 'careers':
+            doc.add_paragraph(f'Name: {s["name"]}\nEmail: {s["email"]}\nPhone: {s["phone"]}\nPosition: {s["position_applying"]}\n\nCover Letter:\n{s["cover_letter"]}')
+        
+        doc.add_paragraph('-' * 50)
+    
+    buffer = BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    
+    audit_log('export', f'Exported {submission_type} data to Word')
+    return send_file(buffer, as_attachment=True, download_name=f'nyambunwa-{submission_type}-export.docx', mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+
+
+@app.route('/admin/<submission_type>/export/pdf')
+@login_required
+def export_submissions_pdf(submission_type):
+    """Export submissions to PDF."""
+    if submission_type not in ['contacts', 'admissions', 'careers']:
+        return redirect(url_for('dashboard'))
+    
+    from fpdf import FPDF
+    
+    submissions = get_all_submissions(submission_type)
+    if not submissions:
+        return redirect(url_for('view_submissions', submission_type=submission_type))
+    
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Helvetica", "B", 16)
+    pdf.cell(0, 10, f'Nyambunwa Academy - {submission_type.capitalize()} Export', new_x="LMARGIN", new_y="NEXT", align='C')
+    pdf.set_font("Helvetica", "I", 10)
+    pdf.cell(0, 10, f'Generated on: {datetime.now().strftime("%Y-%m-%d %H:%M")}', new_x="LMARGIN", new_y="NEXT", align='C')
+    pdf.ln(10)
+    
+    for s in submissions:
+        pdf.set_font("Helvetica", "B", 12)
+        pdf.cell(0, 10, f'Submission #{s["id"]} - {s["created_at"]} (Status: {s["status"]})', new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font("Helvetica", "", 10)
+        
+        if submission_type == 'contacts':
+            text = f'Name: {s["name"]}\nEmail: {s["email"]}\nPhone: {s["phone"]}\nSubject: {s["subject"]}\n\nMessage:\n{s["message"]}'
+        elif submission_type == 'admissions':
+            text = f'Parent: {s["parent_name"]}\nEmail: {s["email"]}\nPhone: {s["phone"]}\nChild: {s["child_name"]}\nDOB: {s["child_dob"]}\nGrade: {s["grade_applying"]}\nCurrent School: {s["current_school"]}\n\nMessage:\n{s["message"]}'
+        elif submission_type == 'careers':
+            text = f'Name: {s["name"]}\nEmail: {s["email"]}\nPhone: {s["phone"]}\nPosition: {s["position_applying"]}\n\nCover Letter:\n{s["cover_letter"]}'
+        
+        # Clean text to avoid PDF encoding errors with special characters
+        clean_text = text.encode('latin-1', 'replace').decode('latin-1')
+        pdf.multi_cell(0, 6, clean_text)
+        pdf.ln(5)
+        pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+        pdf.ln(5)
+    
+    buffer = BytesIO()
+    pdf.output(buffer)
+    buffer.seek(0)
+    
+    audit_log('export', f'Exported {submission_type} data to PDF')
+    return send_file(buffer, as_attachment=True, download_name=f'nyambunwa-{submission_type}-export.pdf', mimetype='application/pdf')
 @app.route('/admin/audit-log')
 @login_required
 def view_audit_log():
     """View audit log."""
     from database import get_audit_logs
     logs = get_audit_logs(200)
-    return render_template('audit.html', logs=logs)
+    stats = get_stats()
+    return render_template('admin/audit.html', logs=logs, stats=stats)
 
 @app.route('/admin/stats')
 @login_required

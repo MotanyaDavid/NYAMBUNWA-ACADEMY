@@ -1,0 +1,431 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ type_label }}{% endblock %}
+{% block page_title %}{{ type_label }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/tables.css') }}">
+{% endblock %}
+
+{% block content %}
+
+{% set total = submissions|length %}
+{% set new_count = submissions|selectattr('status', 'equalto', 'New')|list|length %}
+{% set in_progress_count = submissions|selectattr('status', 'equalto', 'In Progress')|list|length %}
+{% set replied_count = submissions|selectattr('status', 'equalto', 'Replied')|list|length %}
+{% set closed_count = submissions|selectattr('status', 'equalto', 'Closed')|list|length %}
+
+<div class="page-header flex items-center justify-between" style="flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-5);">
+    <div>
+        <h1 class="page-title">{{ type_label }}</h1>
+        <p class="page-subtitle">
+            {% if total > 0 %}
+                {{ total }} submission{{ '' if total == 1 else 's' }}
+                {% if new_count > 0 %}&middot; {{ new_count }} unread{% endif %}
+            {% else %}
+                No submissions yet
+            {% endif %}
+        </p>
+    </div>
+    
+    <!-- Export Dropdown -->
+    <div style="position: relative;">
+        <button class="btn btn-secondary btn-sm" data-dropdown-trigger="export-dropdown">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        
+        <div class="dropdown" id="export-dropdown" style="min-width: 160px;">
+            <a href="{{ url_for('export_submissions', submission_type=submission_type) }}" class="dropdown__item">
+                📊 Excel (CSV)
+            </a>
+            <a href="{{ url_for('export_submissions_word', submission_type=submission_type) }}" class="dropdown__item">
+                📝 Word Document
+            </a>
+            <a href="{{ url_for('export_submissions_pdf', submission_type=submission_type) }}" class="dropdown__item">
+                📄 PDF Document
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-container">
+    
+    <!-- Toolbar -->
+    <div class="table-toolbar">
+        <div class="table-toolbar__search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input type="text" id="table-search" placeholder="Search by name, email, or content...">
+        </div>
+        <div class="table-toolbar__actions">
+            <button class="btn btn-ghost btn-sm" id="refresh-btn" title="Refresh">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M8 16H3v5"/>
+                </svg>
+                Refresh
+            </button>
+        </div>
+    </div>
+    
+    <!-- Filter pills -->
+    <div class="filter-pills">
+        <a href="?status=All" class="filter-pill {% if current_filter == 'All' or not current_filter %}is-active{% endif %}">
+            All <span class="filter-pill__count">{{ total }}</span>
+        </a>
+        <a href="?status=New" class="filter-pill {% if current_filter == 'New' %}is-active{% endif %}">
+            <span class="badge-dot" style="background: var(--color-info); width: 6px; height: 6px; border-radius: 50%;"></span>
+            New <span class="filter-pill__count">{{ new_count }}</span>
+        </a>
+        <a href="?status=In Progress" class="filter-pill {% if current_filter == 'In Progress' %}is-active{% endif %}">
+            <span class="badge-dot" style="background: var(--color-warning); width: 6px; height: 6px; border-radius: 50%;"></span>
+            In Progress <span class="filter-pill__count">{{ in_progress_count }}</span>
+        </a>
+        <a href="?status=Replied" class="filter-pill {% if current_filter == 'Replied' %}is-active{% endif %}">
+            <span class="badge-dot" style="background: var(--color-success); width: 6px; height: 6px; border-radius: 50%;"></span>
+            Replied <span class="filter-pill__count">{{ replied_count }}</span>
+        </a>
+        <a href="?status=Closed" class="filter-pill {% if current_filter == 'Closed' %}is-active{% endif %}">
+            <span class="badge-dot" style="background: var(--text-muted); width: 6px; height: 6px; border-radius: 50%;"></span>
+            Closed <span class="filter-pill__count">{{ closed_count }}</span>
+        </a>
+    </div>
+    
+    {% if submissions %}
+    <!-- Table -->
+    <table class="data-table" id="inbox-table">
+        <thead>
+            <tr>
+                <th class="col-checkbox">
+                    <input type="checkbox" id="select-all" aria-label="Select all" title="Select all">
+                </th>
+                <th class="sortable" data-sort="name">
+                    {% if submission_type == 'contacts' %}From{% elif submission_type == 'admissions' %}Parent{% else %}Applicant{% endif %}
+                    <span class="sort-icon">▲</span>
+                </th>
+                <th class="col-email sortable" data-sort="email">
+                    Email <span class="sort-icon">▲</span>
+                </th>
+                <th class="col-subject sortable" data-sort="subject">
+                    {% if submission_type == 'contacts' %}Subject{% elif submission_type == 'admissions' %}Child / Grade{% else %}Position{% endif %}
+                    <span class="sort-icon">▲</span>
+                </th>
+                <th class="sortable" data-sort="status">
+                    Status <span class="sort-icon">▲</span>
+                </th>
+                <th class="col-date sortable" data-sort="created_at">
+                    Date <span class="sort-icon">▲</span>
+                </th>
+                <th class="col-actions"></th>
+            </tr>
+        </thead>
+        <tbody id="inbox-body">
+            {% for s in submissions %}
+            <tr data-id="{{ s.id }}" data-status="{{ s.status }}" class="inbox-row">
+                <td class="col-checkbox">
+                    <input type="checkbox" class="row-checkbox" value="{{ s.id }}" aria-label="Select submission #{{ s.id }}">
+                </td>
+                <td>
+                    <div class="cell-person">
+                        <div class="avatar avatar--{{ 'info' if submission_type == 'contacts' else ('warning' if submission_type == 'admissions' else 'success') }}">
+                            {% set name = s.name if submission_type != 'admissions' else s.parent_name %}
+                            {{ name[0]|upper if name else '?' }}
+                        </div>
+                        <div class="cell-person__content">
+                            <div class="cell-person__name">{{ s.name if submission_type != 'admissions' else s.parent_name }}</div>
+                            <div class="cell-person__meta">#{{ s.id }} &middot; {{ s.phone or 'No phone' }}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="col-email">
+                    <div class="cell-person__name" style="font-weight: var(--font-regular);">{{ s.email }}</div>
+                </td>
+                <td class="col-subject">
+                    <div class="cell-person__name" style="font-weight: var(--font-regular);">
+                        {% if submission_type == 'contacts' %}
+                            {{ s.subject or '—' }}
+                        {% elif submission_type == 'admissions' %}
+                            {{ s.child_name }} — {{ s.grade_applying }}
+                        {% else %}
+                            {{ s.position_applying or 'General Application' }}
+                        {% endif %}
+                    </div>
+                    <div class="cell-person__meta">
+                        {% if submission_type == 'contacts' %}
+                            {{ s.message[:50] }}{% if s.message|length > 50 %}...{% endif %}
+                        {% elif submission_type == 'admissions' %}
+                            {{ (s.message or 'No additional notes')[:50] }}{% if s.message and s.message|length > 50 %}...{% endif %}
+                        {% else %}
+                            {{ s.cover_letter[:50] }}{% if s.cover_letter|length > 50 %}...{% endif %}
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <span class="badge badge-{{ 'info' if s.status == 'New' else ('warning' if s.status == 'In Progress' else ('success' if s.status == 'Replied' else 'neutral')) }}">
+                        <span class="badge-dot"></span>
+                        {{ s.status }}
+                    </span>
+                </td>
+                <td class="col-date">
+                    <span class="text-xs text-muted">{{ s.created_at[:16] }}</span>
+                </td>
+                <td class="col-actions">
+                    <div class="cell-actions">
+                        <a href="{{ url_for('view_message', submission_type=submission_type, submission_id=s.id) }}" class="row-action" title="View">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </a>
+                        <button class="row-action row-action--danger" data-delete="{{ s.id }}" title="Delete">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Pagination -->
+    <div class="pagination">
+        <div class="pagination__info">
+            Showing all {{ total }} submission{{ '' if total == 1 else 's' }}
+        </div>
+        <div class="pagination__controls">
+            <button class="pagination__btn" disabled>←</button>
+            <button class="pagination__btn is-active">1</button>
+            <button class="pagination__btn" disabled>→</button>
+        </div>
+    </div>
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="empty-state-large">
+        <div class="empty-state-large__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                {% if submission_type == 'contacts' %}
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-10 6L2 7"/>
+                {% elif submission_type == 'admissions' %}
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
+                {% else %}
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                {% endif %}
+            </svg>
+        </div>
+        <h3 class="empty-state-large__title">
+            {% if current_filter and current_filter != 'All' %}
+                No {{ current_filter|lower }} submissions
+            {% else %}
+                No submissions yet
+            {% endif %}
+        </h3>
+        <p class="empty-state-large__text">
+            {% if current_filter and current_filter != 'All' %}
+                Try a different filter to see more submissions.
+            {% else %}
+                When someone submits the {{ type_label|lower }} form on your website, it will appear here.
+            {% endif %}
+        </p>
+        {% if current_filter and current_filter != 'All' %}
+        <a href="?status=All" class="btn btn-secondary btn-sm">View all submissions</a>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+</div>
+
+<!-- Bulk Action Bar -->
+<div class="bulk-bar" id="bulk-bar">
+    <span class="bulk-bar__count"><strong id="bulk-count">0</strong> selected</span>
+    <span class="bulk-bar__divider"></span>
+    <button class="bulk-bar__btn" data-bulk="mark_replied">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Mark Replied</span>
+    </button>
+    <button class="bulk-bar__btn" data-bulk="mark_closed">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Close</span>
+    </button>
+    <button class="bulk-bar__btn bulk-bar__btn--danger" data-bulk="delete">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        <span>Delete</span>
+    </button>
+    <button class="bulk-bar__close" id="bulk-close" aria-label="Clear selection">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function() {
+    'use strict';
+    
+    const SUBMISSION_TYPE = '{{ submission_type }}';
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+    
+    // Selection
+    const selectAll = document.getElementById('select-all');
+    const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+    const bulkBar = document.getElementById('bulk-bar');
+    const bulkCount = document.getElementById('bulk-count');
+    const bulkClose = document.getElementById('bulk-close');
+    
+    function getSelected() {
+        return Array.from(document.querySelectorAll('.row-checkbox:checked')).map(cb => parseInt(cb.value));
+    }
+    
+    function updateSelection() {
+        const selected = getSelected();
+        rowCheckboxes.forEach(cb => {
+            cb.closest('tr').classList.toggle('is-selected', cb.checked);
+        });
+        if (selected.length > 0) {
+            bulkBar.classList.add('is-visible');
+            bulkCount.textContent = selected.length;
+        } else {
+            bulkBar.classList.remove('is-visible');
+        }
+        if (selectAll) {
+            const allChecked = rowCheckboxes.length > 0 && selected.length === rowCheckboxes.length;
+            selectAll.checked = allChecked;
+            selectAll.indeterminate = selected.length > 0 && !allChecked;
+        }
+    }
+    
+    if (selectAll) {
+        selectAll.addEventListener('change', function() {
+            rowCheckboxes.forEach(cb => {
+                if (cb.closest('tr').style.display !== 'none') {
+                    cb.checked = this.checked;
+                }
+            });
+            updateSelection();
+        });
+    }
+    
+    rowCheckboxes.forEach(cb => cb.addEventListener('change', updateSelection));
+    bulkClose.addEventListener('click', () => {
+        rowCheckboxes.forEach(cb => cb.checked = false);
+        updateSelection();
+    });
+    
+    // Bulk actions
+    document.querySelectorAll('[data-bulk]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.getAttribute('data-bulk');
+            const ids = getSelected();
+            if (ids.length === 0) return;
+            
+            const messages = {
+                'mark_replied': `Mark ${ids.length} submission${ids.length === 1 ? '' : 's'} as Replied?`,
+                'mark_closed': `Close ${ids.length} submission${ids.length === 1 ? '' : 's'}?`,
+                'delete': `Delete ${ids.length} submission${ids.length === 1 ? '' : 's'}? This cannot be undone.`
+            };
+            if (!confirm(messages[action])) return;
+            
+            fetch(`/admin/${SUBMISSION_TYPE}/bulk-action`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+                body: JSON.stringify({ action, ids })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) window.location.reload();
+                else alert('Error: ' + (data.error || 'Something went wrong'));
+            });
+        });
+    });
+    
+    // Single delete
+    document.querySelectorAll('[data-delete]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = this.getAttribute('data-delete');
+            if (!confirm('Delete this submission? This cannot be undone.')) return;
+            
+            fetch(`/admin/${SUBMISSION_TYPE}/bulk-action`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+                body: JSON.stringify({ action: 'delete', ids: [parseInt(id)] })
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) window.location.reload();
+                else alert('Error: ' + (data.error || 'Something went wrong'));
+            });
+        });
+    });
+    
+    // Search
+    const searchInput = document.getElementById('table-search');
+    const tbody = document.getElementById('inbox-body');
+    if (searchInput && tbody) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            tbody.querySelectorAll('tr').forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = !query || text.includes(query) ? '' : 'none';
+            });
+        });
+    }
+    
+    // Sorting
+    document.querySelectorAll('.data-table th.sortable').forEach(th => {
+        th.addEventListener('click', function() {
+            const sortKey = this.getAttribute('data-sort');
+            const tbody = document.getElementById('inbox-body');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            const isAsc = !this.classList.contains('sort-asc');
+            
+            document.querySelectorAll('.data-table th.sortable').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+            this.classList.add(isAsc ? 'sort-asc' : 'sort-desc');
+            
+            rows.sort((a, b) => {
+                let aVal, bVal;
+                if (sortKey === 'name') {
+                    aVal = a.querySelector('.cell-person__name').textContent.trim();
+                    bVal = b.querySelector('.cell-person__name').textContent.trim();
+                } else if (sortKey === 'email') {
+                    aVal = a.querySelector('.col-email')?.textContent.trim() || '';
+                    bVal = b.querySelector('.col-email')?.textContent.trim() || '';
+                } else if (sortKey === 'status') {
+                    aVal = a.getAttribute('data-status') || '';
+                    bVal = b.getAttribute('data-status') || '';
+                } else if (sortKey === 'created_at') {
+                    aVal = a.querySelector('.col-date')?.textContent.trim() || '';
+                    bVal = b.querySelector('.col-date')?.textContent.trim() || '';
+                } else if (sortKey === 'subject') {
+                    aVal = a.querySelector('.col-subject')?.textContent.trim() || '';
+                    bVal = b.querySelector('.col-subject')?.textContent.trim() || '';
+                }
+                if (aVal < bVal) return isAsc ? -1 : 1;
+                if (aVal > bVal) return isAsc ? 1 : -1;
+                return 0;
+            });
+            rows.forEach(row => tbody.appendChild(row));
+        });
+    });
+    
+    document.getElementById('refresh-btn')?.addEventListener('click', () => window.location.reload());
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Audit Log{% endblock %}
+{% block page_title %}Audit Log{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/tables.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header flex items-center justify-between" style="flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-5);">
+    <div>
+        <h1 class="page-title">Audit Log</h1>
+        <p class="page-subtitle">Security and activity history for the admin portal.</p>
+    </div>
+</div>
+
+<div class="table-container">
+    
+    <!-- Toolbar -->
+    <div class="table-toolbar">
+        <div class="table-toolbar__search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input type="text" id="log-search" placeholder="Search by admin, action, or IP address...">
+        </div>
+        <div class="table-toolbar__actions">
+            <button class="btn btn-secondary btn-sm" onclick="window.location.reload()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M8 16H3v5"/>
+                </svg>
+                Refresh
+            </button>
+        </div>
+    </div>
+    
+    {% if logs %}
+    <!-- Table -->
+    <table class="data-table" id="audit-table">
+        <thead>
+            <tr>
+                <th>Date & Time</th>
+                <th>Admin</th>
+                <th>Action</th>
+                <th>Details</th>
+                <th>IP Address</th>
+            </tr>
+        </thead>
+        <tbody id="audit-body">
+            {% for log in logs %}
+            <tr class="audit-row">
+                <td>
+                    <span class="text-xs font-medium text-primary">{{ log.created_at[:10] }}</span>
+                    <span class="text-xs text-muted" style="display: block;">{{ log.created_at[11:19] }}</span>
+                </td>
+                <td>
+                    <div class="cell-person">
+                        <div class="avatar avatar--primary avatar--sm">
+                            {{ log.admin_username[0]|upper }}
+                        </div>
+                        <div class="cell-person__content">
+                            <div class="cell-person__name">{{ log.admin_username }}</div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    {% if 'failed' in log.action %}
+                    <span class="badge badge-error">
+                        <span class="badge-dot"></span> {{ log.action|replace('_', ' ')|title }}
+                    </span>
+                    {% elif 'login' in log.action or 'reply' in log.action %}
+                    <span class="badge badge-success">
+                        <span class="badge-dot"></span> {{ log.action|replace('_', ' ')|title }}
+                    </span>
+                    {% elif 'delete' in log.action %}
+                    <span class="badge badge-error" style="background: var(--color-error-bg); color: var(--color-error);">
+                        <span class="badge-dot"></span> {{ log.action|replace('_', ' ')|title }}
+                    </span>
+                    {% elif 'export' in log.action %}
+                    <span class="badge" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                        <span class="badge-dot"></span> {{ log.action|replace('_', ' ')|title }}
+                    </span>
+                    {% else %}
+                    <span class="badge badge-neutral">
+                        <span class="badge-dot"></span> {{ log.action|replace('_', ' ')|title }}
+                    </span>
+                    {% endif %}
+                </td>
+                <td>
+                    <span class="text-sm text-secondary">{{ log.details or '—' }}</span>
+                </td>
+                <td>
+                    <span class="text-xs font-mono text-muted">{{ log.ip_address or 'Unknown' }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="pagination">
+        <div class="pagination__info">
+            Showing the last {{ logs|length }} actions
+        </div>
+    </div>
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="empty-state-large">
+        <div class="empty-state-large__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="2" width="8" height="4" rx="1"/>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/>
+            </svg>
+        </div>
+        <h3 class="empty-state-large__title">No Activity Yet</h3>
+        <p class="empty-state-large__text">As you and your team manage submissions, all actions will be logged here for security.</p>
+    </div>
+    {% endif %}
+    
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function() {
+    'use strict';
+    
+    // Live search filtering
+    const searchInput = document.getElementById('log-search');
+    const tbody = document.getElementById('audit-body');
+    
+    if (searchInput && tbody) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            
+            tbody.querySelectorAll('tr').forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = !query || text.includes(query) ? '' : 'none';
+            });
+        });
+    }
+})();
+</script>
+{% endblock %}
