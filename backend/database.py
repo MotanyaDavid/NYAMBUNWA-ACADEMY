@@ -17,6 +17,11 @@ TABLE_MAP = {
 
 def get_db():
     """Get database connection."""
+    # Ensure the directory exists before connecting
+    db_dir = os.path.dirname(Config.DATABASE)
+    if db_dir and not os.path.exists(db_dir):
+        os.makedirs(db_dir, exist_ok=True)
+        
     conn = sqlite3.connect(Config.DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
